@@ -1,0 +1,372 @@
+<div>
+  <h2 id="page-heading" data-cy="OrdersHeading">
+    <span>Orders</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-orders"
+        [routerLink]="['/orders/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span>Create a new Orders</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="orders?.length === 0">
+    <span>No Orders found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="orders && orders.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>Translation missing for global.field.id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="userId">
+            <div class="d-flex">
+              <span>User Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="cart">
+            <div class="d-flex">
+              <span>Cart</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="method">
+            <div class="d-flex">
+              <span>Method</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="shipping">
+            <div class="d-flex">
+              <span>Shipping</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="pickupLocation">
+            <div class="d-flex">
+              <span>Pickup Location</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="totalQty">
+            <div class="d-flex">
+              <span>Total Qty</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="payAmount">
+            <div class="d-flex">
+              <span>Pay Amount</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="txnid">
+            <div class="d-flex">
+              <span>Txnid</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="chargeId">
+            <div class="d-flex">
+              <span>Charge Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="orderNumber">
+            <div class="d-flex">
+              <span>Order Number</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="paymentStatus">
+            <div class="d-flex">
+              <span>Payment Status</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="customerEmail">
+            <div class="d-flex">
+              <span>Customer Email</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="customerName">
+            <div class="d-flex">
+              <span>Customer Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="customerCountry">
+            <div class="d-flex">
+              <span>Customer Country</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="customerPhone">
+            <div class="d-flex">
+              <span>Customer Phone</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="customerAddress">
+            <div class="d-flex">
+              <span>Customer Address</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="customerCity">
+            <div class="d-flex">
+              <span>Customer City</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="customerZip">
+            <div class="d-flex">
+              <span>Customer Zip</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="shippingName">
+            <div class="d-flex">
+              <span>Shipping Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="shippingCountry">
+            <div class="d-flex">
+              <span>Shipping Country</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="shippingEmail">
+            <div class="d-flex">
+              <span>Shipping Email</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="shippingPhone">
+            <div class="d-flex">
+              <span>Shipping Phone</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="shippingAddress">
+            <div class="d-flex">
+              <span>Shipping Address</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="shippingCity">
+            <div class="d-flex">
+              <span>Shipping City</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="shippingZip">
+            <div class="d-flex">
+              <span>Shipping Zip</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="orderNote">
+            <div class="d-flex">
+              <span>Order Note</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="couponCode">
+            <div class="d-flex">
+              <span>Coupon Code</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="couponDiscount">
+            <div class="d-flex">
+              <span>Coupon Discount</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="status">
+            <div class="d-flex">
+              <span>Status</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="createdAt">
+            <div class="d-flex">
+              <span>Created At</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="updatedAt">
+            <div class="d-flex">
+              <span>Updated At</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="affilateUser">
+            <div class="d-flex">
+              <span>Affilate User</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="affilateCharge">
+            <div class="d-flex">
+              <span>Affilate Charge</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="currencySign">
+            <div class="d-flex">
+              <span>Currency Sign</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="currencyValue">
+            <div class="d-flex">
+              <span>Currency Value</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="shippingCost">
+            <div class="d-flex">
+              <span>Shipping Cost</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="packingCost">
+            <div class="d-flex">
+              <span>Packing Cost</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="tax">
+            <div class="d-flex">
+              <span>Tax</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dp">
+            <div class="d-flex">
+              <span>Dp</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="payId">
+            <div class="d-flex">
+              <span>Pay Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="vendorShippingId">
+            <div class="d-flex">
+              <span>Vendor Shipping Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="vendorPackingId">
+            <div class="d-flex">
+              <span>Vendor Packing Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="wholeDiscount">
+            <div class="d-flex">
+              <span>Whole Discount</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let orders of orders; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/orders', orders.id, 'view']">{{ orders.id }}</a>
+          </td>
+          <td>{{ orders.userId }}</td>
+          <td>{{ orders.cart }}</td>
+          <td>{{ orders.method }}</td>
+          <td>{{ orders.shipping }}</td>
+          <td>{{ orders.pickupLocation }}</td>
+          <td>{{ orders.totalQty }}</td>
+          <td>{{ orders.payAmount }}</td>
+          <td>{{ orders.txnid }}</td>
+          <td>{{ orders.chargeId }}</td>
+          <td>{{ orders.orderNumber }}</td>
+          <td>{{ orders.paymentStatus }}</td>
+          <td>{{ orders.customerEmail }}</td>
+          <td>{{ orders.customerName }}</td>
+          <td>{{ orders.customerCountry }}</td>
+          <td>{{ orders.customerPhone }}</td>
+          <td>{{ orders.customerAddress }}</td>
+          <td>{{ orders.customerCity }}</td>
+          <td>{{ orders.customerZip }}</td>
+          <td>{{ orders.shippingName }}</td>
+          <td>{{ orders.shippingCountry }}</td>
+          <td>{{ orders.shippingEmail }}</td>
+          <td>{{ orders.shippingPhone }}</td>
+          <td>{{ orders.shippingAddress }}</td>
+          <td>{{ orders.shippingCity }}</td>
+          <td>{{ orders.shippingZip }}</td>
+          <td>{{ orders.orderNote }}</td>
+          <td>{{ orders.couponCode }}</td>
+          <td>{{ orders.couponDiscount }}</td>
+          <td>{{ orders.status }}</td>
+          <td>{{ orders.createdAt | formatMediumDatetime }}</td>
+          <td>{{ orders.updatedAt | formatMediumDatetime }}</td>
+          <td>{{ orders.affilateUser }}</td>
+          <td>{{ orders.affilateCharge }}</td>
+          <td>{{ orders.currencySign }}</td>
+          <td>{{ orders.currencyValue }}</td>
+          <td>{{ orders.shippingCost }}</td>
+          <td>{{ orders.packingCost }}</td>
+          <td>{{ orders.tax }}</td>
+          <td>{{ orders.dp }}</td>
+          <td>{{ orders.payId }}</td>
+          <td>{{ orders.vendorShippingId }}</td>
+          <td>{{ orders.vendorPackingId }}</td>
+          <td>{{ orders.wholeDiscount }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <a [routerLink]="['/orders', orders.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">Translation missing for entity.action.view</span>
+              </a>
+
+              <a [routerLink]="['/orders', orders.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Translation missing for entity.action.edit</span>
+              </a>
+
+              <button type="submit" (click)="delete(orders)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Translation missing for entity.action.delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

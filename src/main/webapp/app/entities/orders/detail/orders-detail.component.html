@@ -1,0 +1,200 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="orders">
+      <h2 data-cy="ordersDetailsHeading"><span>Orders</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>Translation missing for global.field.id</span></dt>
+        <dd>
+          <span>{{ orders.id }}</span>
+        </dd>
+        <dt><span>User Id</span></dt>
+        <dd>
+          <span>{{ orders.userId }}</span>
+        </dd>
+        <dt><span>Cart</span></dt>
+        <dd>
+          <span>{{ orders.cart }}</span>
+        </dd>
+        <dt><span>Method</span></dt>
+        <dd>
+          <span>{{ orders.method }}</span>
+        </dd>
+        <dt><span>Shipping</span></dt>
+        <dd>
+          <span>{{ orders.shipping }}</span>
+        </dd>
+        <dt><span>Pickup Location</span></dt>
+        <dd>
+          <span>{{ orders.pickupLocation }}</span>
+        </dd>
+        <dt><span>Total Qty</span></dt>
+        <dd>
+          <span>{{ orders.totalQty }}</span>
+        </dd>
+        <dt><span>Pay Amount</span></dt>
+        <dd>
+          <span>{{ orders.payAmount }}</span>
+        </dd>
+        <dt><span>Txnid</span></dt>
+        <dd>
+          <span>{{ orders.txnid }}</span>
+        </dd>
+        <dt><span>Charge Id</span></dt>
+        <dd>
+          <span>{{ orders.chargeId }}</span>
+        </dd>
+        <dt><span>Order Number</span></dt>
+        <dd>
+          <span>{{ orders.orderNumber }}</span>
+        </dd>
+        <dt><span>Payment Status</span></dt>
+        <dd>
+          <span>{{ orders.paymentStatus }}</span>
+        </dd>
+        <dt><span>Customer Email</span></dt>
+        <dd>
+          <span>{{ orders.customerEmail }}</span>
+        </dd>
+        <dt><span>Customer Name</span></dt>
+        <dd>
+          <span>{{ orders.customerName }}</span>
+        </dd>
+        <dt><span>Customer Country</span></dt>
+        <dd>
+          <span>{{ orders.customerCountry }}</span>
+        </dd>
+        <dt><span>Customer Phone</span></dt>
+        <dd>
+          <span>{{ orders.customerPhone }}</span>
+        </dd>
+        <dt><span>Customer Address</span></dt>
+        <dd>
+          <span>{{ orders.customerAddress }}</span>
+        </dd>
+        <dt><span>Customer City</span></dt>
+        <dd>
+          <span>{{ orders.customerCity }}</span>
+        </dd>
+        <dt><span>Customer Zip</span></dt>
+        <dd>
+          <span>{{ orders.customerZip }}</span>
+        </dd>
+        <dt><span>Shipping Name</span></dt>
+        <dd>
+          <span>{{ orders.shippingName }}</span>
+        </dd>
+        <dt><span>Shipping Country</span></dt>
+        <dd>
+          <span>{{ orders.shippingCountry }}</span>
+        </dd>
+        <dt><span>Shipping Email</span></dt>
+        <dd>
+          <span>{{ orders.shippingEmail }}</span>
+        </dd>
+        <dt><span>Shipping Phone</span></dt>
+        <dd>
+          <span>{{ orders.shippingPhone }}</span>
+        </dd>
+        <dt><span>Shipping Address</span></dt>
+        <dd>
+          <span>{{ orders.shippingAddress }}</span>
+        </dd>
+        <dt><span>Shipping City</span></dt>
+        <dd>
+          <span>{{ orders.shippingCity }}</span>
+        </dd>
+        <dt><span>Shipping Zip</span></dt>
+        <dd>
+          <span>{{ orders.shippingZip }}</span>
+        </dd>
+        <dt><span>Order Note</span></dt>
+        <dd>
+          <span>{{ orders.orderNote }}</span>
+        </dd>
+        <dt><span>Coupon Code</span></dt>
+        <dd>
+          <span>{{ orders.couponCode }}</span>
+        </dd>
+        <dt><span>Coupon Discount</span></dt>
+        <dd>
+          <span>{{ orders.couponDiscount }}</span>
+        </dd>
+        <dt><span>Status</span></dt>
+        <dd>
+          <span>{{ orders.status }}</span>
+        </dd>
+        <dt><span>Created At</span></dt>
+        <dd>
+          <span>{{ orders.createdAt | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Updated At</span></dt>
+        <dd>
+          <span>{{ orders.updatedAt | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Affilate User</span></dt>
+        <dd>
+          <span>{{ orders.affilateUser }}</span>
+        </dd>
+        <dt><span>Affilate Charge</span></dt>
+        <dd>
+          <span>{{ orders.affilateCharge }}</span>
+        </dd>
+        <dt><span>Currency Sign</span></dt>
+        <dd>
+          <span>{{ orders.currencySign }}</span>
+        </dd>
+        <dt><span>Currency Value</span></dt>
+        <dd>
+          <span>{{ orders.currencyValue }}</span>
+        </dd>
+        <dt><span>Shipping Cost</span></dt>
+        <dd>
+          <span>{{ orders.shippingCost }}</span>
+        </dd>
+        <dt><span>Packing Cost</span></dt>
+        <dd>
+          <span>{{ orders.packingCost }}</span>
+        </dd>
+        <dt><span>Tax</span></dt>
+        <dd>
+          <span>{{ orders.tax }}</span>
+        </dd>
+        <dt><span>Dp</span></dt>
+        <dd>
+          <span>{{ orders.dp }}</span>
+        </dd>
+        <dt><span>Pay Id</span></dt>
+        <dd>
+          <span>{{ orders.payId }}</span>
+        </dd>
+        <dt><span>Vendor Shipping Id</span></dt>
+        <dd>
+          <span>{{ orders.vendorShippingId }}</span>
+        </dd>
+        <dt><span>Vendor Packing Id</span></dt>
+        <dd>
+          <span>{{ orders.vendorPackingId }}</span>
+        </dd>
+        <dt><span>Whole Discount</span></dt>
+        <dd>
+          <span>{{ orders.wholeDiscount }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Translation missing for entity.action.back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/orders', orders.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Translation missing for entity.action.edit</span>
+      </button>
+    </div>
+  </div>
+</div>

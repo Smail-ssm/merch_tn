@@ -1,0 +1,201 @@
+{
+  "applications": "*",
+  "changelogDate": "20231202174027",
+  "entityTableName": "orders",
+  "fields": [
+    {
+      "fieldName": "userId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "cart",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "method",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "shipping",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "pickupLocation",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "totalQty",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "payAmount",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "txnid",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "chargeId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "orderNumber",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "paymentStatus",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "customerEmail",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "customerName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "customerCountry",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "customerPhone",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "customerAddress",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "customerCity",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "customerZip",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "shippingName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "shippingCountry",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "shippingEmail",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "shippingPhone",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "shippingAddress",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "shippingCity",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "shippingZip",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "orderNote",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "couponCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "couponDiscount",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "updatedAt",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "affilateUser",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "affilateCharge",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "currencySign",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "currencyValue",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "shippingCost",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "packingCost",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "tax",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dp",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "payId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "vendorShippingId",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "vendorPackingId",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "wholeDiscount",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "Orders",
+  "relationships": [],
+  "searchEngine": "no"
+}

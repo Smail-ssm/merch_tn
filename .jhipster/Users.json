@@ -1,0 +1,191 @@
+{
+  "applications": "*",
+  "changelogDate": "20231202173927",
+  "entityTableName": "users",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "photo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "zip",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "city",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "country",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "address",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "phone",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "fax",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["unique", "required"]
+    },
+    {
+      "fieldName": "password",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "rememberToken",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "updatedAt",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "isProvider",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "verificationLink",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "emailVerified",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "affilateCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "affilateIncome",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "shopName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ownerName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "shopNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "shopAddress",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "regNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "shopMessage",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "shopDetails",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "shopImage",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "fUrl",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "gUrl",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tUrl",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lUrl",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "isVendor",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "fCheck",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "gCheck",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "tCheck",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "lCheck",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "mailSent",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "shippingCost",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "currentBalance",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "ban",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "isPrinter",
+      "fieldType": "Boolean"
+    }
+  ],
+  "name": "Users",
+  "relationships": [],
+  "searchEngine": "no"
+}

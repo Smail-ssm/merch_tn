@@ -1,0 +1,256 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="products">
+      <h2 data-cy="productsDetailsHeading"><span>Products</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>Translation missing for global.field.id</span></dt>
+        <dd>
+          <span>{{ products.id }}</span>
+        </dd>
+        <dt><span>Sku</span></dt>
+        <dd>
+          <span>{{ products.sku }}</span>
+        </dd>
+        <dt><span>Product Type</span></dt>
+        <dd>
+          <span>{{ products.productType }}</span>
+        </dd>
+        <dt><span>Affiliate Link</span></dt>
+        <dd>
+          <span>{{ products.affiliateLink }}</span>
+        </dd>
+        <dt><span>User Id</span></dt>
+        <dd>
+          <span>{{ products.userId }}</span>
+        </dd>
+        <dt><span>Category Id</span></dt>
+        <dd>
+          <span>{{ products.categoryId }}</span>
+        </dd>
+        <dt><span>Subcategory Id</span></dt>
+        <dd>
+          <span>{{ products.subcategoryId }}</span>
+        </dd>
+        <dt><span>Childcategory Id</span></dt>
+        <dd>
+          <span>{{ products.childcategoryId }}</span>
+        </dd>
+        <dt><span>Attributes</span></dt>
+        <dd>
+          <span>{{ products.attributes }}</span>
+        </dd>
+        <dt><span>Name</span></dt>
+        <dd>
+          <span>{{ products.name }}</span>
+        </dd>
+        <dt><span>Slug</span></dt>
+        <dd>
+          <span>{{ products.slug }}</span>
+        </dd>
+        <dt><span>Photo</span></dt>
+        <dd>
+          <span>{{ products.photo }}</span>
+        </dd>
+        <dt><span>Thumbnail</span></dt>
+        <dd>
+          <span>{{ products.thumbnail }}</span>
+        </dd>
+        <dt><span>File</span></dt>
+        <dd>
+          <span>{{ products.file }}</span>
+        </dd>
+        <dt><span>Size</span></dt>
+        <dd>
+          <span>{{ products.size }}</span>
+        </dd>
+        <dt><span>Size Qty</span></dt>
+        <dd>
+          <span>{{ products.sizeQty }}</span>
+        </dd>
+        <dt><span>Size Price</span></dt>
+        <dd>
+          <span>{{ products.sizePrice }}</span>
+        </dd>
+        <dt><span>Color</span></dt>
+        <dd>
+          <span>{{ products.color }}</span>
+        </dd>
+        <dt><span>Price</span></dt>
+        <dd>
+          <span>{{ products.price }}</span>
+        </dd>
+        <dt><span>Previous Price</span></dt>
+        <dd>
+          <span>{{ products.previousPrice }}</span>
+        </dd>
+        <dt><span>Details</span></dt>
+        <dd>
+          <span>{{ products.details }}</span>
+        </dd>
+        <dt><span>Stock</span></dt>
+        <dd>
+          <span>{{ products.stock }}</span>
+        </dd>
+        <dt><span>Policy</span></dt>
+        <dd>
+          <span>{{ products.policy }}</span>
+        </dd>
+        <dt><span>Status</span></dt>
+        <dd>
+          <span>{{ products.status }}</span>
+        </dd>
+        <dt><span>Views</span></dt>
+        <dd>
+          <span>{{ products.views }}</span>
+        </dd>
+        <dt><span>Tags</span></dt>
+        <dd>
+          <span>{{ products.tags }}</span>
+        </dd>
+        <dt><span>Features</span></dt>
+        <dd>
+          <span>{{ products.features }}</span>
+        </dd>
+        <dt><span>Colors</span></dt>
+        <dd>
+          <span>{{ products.colors }}</span>
+        </dd>
+        <dt><span>Product Condition</span></dt>
+        <dd>
+          <span>{{ products.productCondition }}</span>
+        </dd>
+        <dt><span>Ship</span></dt>
+        <dd>
+          <span>{{ products.ship }}</span>
+        </dd>
+        <dt><span>Is Meta</span></dt>
+        <dd>
+          <span>{{ products.isMeta }}</span>
+        </dd>
+        <dt><span>Meta Tag</span></dt>
+        <dd>
+          <span>{{ products.metaTag }}</span>
+        </dd>
+        <dt><span>Meta Description</span></dt>
+        <dd>
+          <span>{{ products.metaDescription }}</span>
+        </dd>
+        <dt><span>Youtube</span></dt>
+        <dd>
+          <span>{{ products.youtube }}</span>
+        </dd>
+        <dt><span>Type</span></dt>
+        <dd>
+          <span>{{ products.type }}</span>
+        </dd>
+        <dt><span>License</span></dt>
+        <dd>
+          <span>{{ products.license }}</span>
+        </dd>
+        <dt><span>License Qty</span></dt>
+        <dd>
+          <span>{{ products.licenseQty }}</span>
+        </dd>
+        <dt><span>Link</span></dt>
+        <dd>
+          <span>{{ products.link }}</span>
+        </dd>
+        <dt><span>Platform</span></dt>
+        <dd>
+          <span>{{ products.platform }}</span>
+        </dd>
+        <dt><span>Region</span></dt>
+        <dd>
+          <span>{{ products.region }}</span>
+        </dd>
+        <dt><span>Licence Type</span></dt>
+        <dd>
+          <span>{{ products.licenceType }}</span>
+        </dd>
+        <dt><span>Measure</span></dt>
+        <dd>
+          <span>{{ products.measure }}</span>
+        </dd>
+        <dt><span>Featured</span></dt>
+        <dd>
+          <span>{{ products.featured }}</span>
+        </dd>
+        <dt><span>Best</span></dt>
+        <dd>
+          <span>{{ products.best }}</span>
+        </dd>
+        <dt><span>Top</span></dt>
+        <dd>
+          <span>{{ products.top }}</span>
+        </dd>
+        <dt><span>Hot</span></dt>
+        <dd>
+          <span>{{ products.hot }}</span>
+        </dd>
+        <dt><span>Latest</span></dt>
+        <dd>
+          <span>{{ products.latest }}</span>
+        </dd>
+        <dt><span>Big</span></dt>
+        <dd>
+          <span>{{ products.big }}</span>
+        </dd>
+        <dt><span>Trending</span></dt>
+        <dd>
+          <span>{{ products.trending }}</span>
+        </dd>
+        <dt><span>Sale</span></dt>
+        <dd>
+          <span>{{ products.sale }}</span>
+        </dd>
+        <dt><span>Created At</span></dt>
+        <dd>
+          <span>{{ products.createdAt | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Updated At</span></dt>
+        <dd>
+          <span>{{ products.updatedAt | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Is Discount</span></dt>
+        <dd>
+          <span>{{ products.isDiscount }}</span>
+        </dd>
+        <dt><span>Discount Date</span></dt>
+        <dd>
+          <span>{{ products.discountDate }}</span>
+        </dd>
+        <dt><span>Whole Sell Qty</span></dt>
+        <dd>
+          <span>{{ products.wholeSellQty }}</span>
+        </dd>
+        <dt><span>Whole Sell Discount</span></dt>
+        <dd>
+          <span>{{ products.wholeSellDiscount }}</span>
+        </dd>
+        <dt><span>Is Catalog</span></dt>
+        <dd>
+          <span>{{ products.isCatalog }}</span>
+        </dd>
+        <dt><span>Catalog Id</span></dt>
+        <dd>
+          <span>{{ products.catalogId }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Translation missing for entity.action.back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/products', products.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Translation missing for entity.action.edit</span>
+      </button>
+    </div>
+  </div>
+</div>

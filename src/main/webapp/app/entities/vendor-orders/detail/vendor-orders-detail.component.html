@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="vendorOrders">
+      <h2 data-cy="vendorOrdersDetailsHeading"><span>Vendor Orders</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>Translation missing for global.field.id</span></dt>
+        <dd>
+          <span>{{ vendorOrders.id }}</span>
+        </dd>
+        <dt><span>User Id</span></dt>
+        <dd>
+          <span>{{ vendorOrders.userId }}</span>
+        </dd>
+        <dt><span>Order Id</span></dt>
+        <dd>
+          <span>{{ vendorOrders.orderId }}</span>
+        </dd>
+        <dt><span>Qty</span></dt>
+        <dd>
+          <span>{{ vendorOrders.qty }}</span>
+        </dd>
+        <dt><span>Price</span></dt>
+        <dd>
+          <span>{{ vendorOrders.price }}</span>
+        </dd>
+        <dt><span>Order Number</span></dt>
+        <dd>
+          <span>{{ vendorOrders.orderNumber }}</span>
+        </dd>
+        <dt><span>Status</span></dt>
+        <dd>
+          <span>{{ vendorOrders.status }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Translation missing for entity.action.back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/vendor-orders', vendorOrders.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Translation missing for entity.action.edit</span>
+      </button>
+    </div>
+  </div>
+</div>

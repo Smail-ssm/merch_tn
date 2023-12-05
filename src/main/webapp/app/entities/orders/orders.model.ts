@@ -1,0 +1,50 @@
+import dayjs from 'dayjs/esm';
+
+export interface IOrders {
+  id: number;
+  userId?: number | null;
+  cart?: string | null;
+  method?: string | null;
+  shipping?: string | null;
+  pickupLocation?: string | null;
+  totalQty?: string | null;
+  payAmount?: number | null;
+  txnid?: string | null;
+  chargeId?: string | null;
+  orderNumber?: string | null;
+  paymentStatus?: string | null;
+  customerEmail?: string | null;
+  customerName?: string | null;
+  customerCountry?: string | null;
+  customerPhone?: string | null;
+  customerAddress?: string | null;
+  customerCity?: string | null;
+  customerZip?: string | null;
+  shippingName?: string | null;
+  shippingCountry?: string | null;
+  shippingEmail?: string | null;
+  shippingPhone?: string | null;
+  shippingAddress?: string | null;
+  shippingCity?: string | null;
+  shippingZip?: string | null;
+  orderNote?: string | null;
+  couponCode?: string | null;
+  couponDiscount?: string | null;
+  status?: string | null;
+  createdAt?: dayjs.Dayjs | null;
+  updatedAt?: dayjs.Dayjs | null;
+  affilateUser?: string | null;
+  affilateCharge?: string | null;
+  currencySign?: string | null;
+  currencyValue?: number | null;
+  shippingCost?: number | null;
+  packingCost?: number | null;
+  tax?: number | null;
+  dp?: boolean | null;
+  payId?: string | null;
+  vendorShippingId?: number | null;
+  vendorPackingId?: number | null;
+  wholeDiscount?: number | null;
+}
+
+export type NewOrders = Omit<IOrders, 'id'> & { id: null };

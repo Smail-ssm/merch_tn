@@ -1,0 +1,113 @@
+<div>
+  <h2 id="page-heading" data-cy="VendorOrdersHeading">
+    <span>Vendor Orders</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-vendor-orders"
+        [routerLink]="['/vendor-orders/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span>Create a new Vendor Orders</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="vendorOrders?.length === 0">
+    <span>No Vendor Orders found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="vendorOrders && vendorOrders.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>Translation missing for global.field.id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="userId">
+            <div class="d-flex">
+              <span>User Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="orderId">
+            <div class="d-flex">
+              <span>Order Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="qty">
+            <div class="d-flex">
+              <span>Qty</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="price">
+            <div class="d-flex">
+              <span>Price</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="orderNumber">
+            <div class="d-flex">
+              <span>Order Number</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="status">
+            <div class="d-flex">
+              <span>Status</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let vendorOrders of vendorOrders; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/vendor-orders', vendorOrders.id, 'view']">{{ vendorOrders.id }}</a>
+          </td>
+          <td>{{ vendorOrders.userId }}</td>
+          <td>{{ vendorOrders.orderId }}</td>
+          <td>{{ vendorOrders.qty }}</td>
+          <td>{{ vendorOrders.price }}</td>
+          <td>{{ vendorOrders.orderNumber }}</td>
+          <td>{{ vendorOrders.status }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <a [routerLink]="['/vendor-orders', vendorOrders.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">Translation missing for entity.action.view</span>
+              </a>
+
+              <a [routerLink]="['/vendor-orders', vendorOrders.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Translation missing for entity.action.edit</span>
+              </a>
+
+              <button type="submit" (click)="delete(vendorOrders)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Translation missing for entity.action.delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

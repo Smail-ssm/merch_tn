@@ -1,0 +1,59 @@
+{
+  "applications": "*",
+  "changelogDate": "20231202174227",
+  "entityTableName": "admins",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["unique", "required"]
+    },
+    {
+      "fieldName": "phone",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "role",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "photo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "password",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "rememberToken",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdat",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "updatedat",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "shopName",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Admins",
+  "relationships": [],
+  "searchEngine": "no"
+}

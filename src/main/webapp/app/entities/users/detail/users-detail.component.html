@@ -1,0 +1,196 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="users">
+      <h2 data-cy="usersDetailsHeading"><span>Users</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>Translation missing for global.field.id</span></dt>
+        <dd>
+          <span>{{ users.id }}</span>
+        </dd>
+        <dt><span>Name</span></dt>
+        <dd>
+          <span>{{ users.name }}</span>
+        </dd>
+        <dt><span>Photo</span></dt>
+        <dd>
+          <span>{{ users.photo }}</span>
+        </dd>
+        <dt><span>Zip</span></dt>
+        <dd>
+          <span>{{ users.zip }}</span>
+        </dd>
+        <dt><span>City</span></dt>
+        <dd>
+          <span>{{ users.city }}</span>
+        </dd>
+        <dt><span>Country</span></dt>
+        <dd>
+          <span>{{ users.country }}</span>
+        </dd>
+        <dt><span>Address</span></dt>
+        <dd>
+          <span>{{ users.address }}</span>
+        </dd>
+        <dt><span>Phone</span></dt>
+        <dd>
+          <span>{{ users.phone }}</span>
+        </dd>
+        <dt><span>Fax</span></dt>
+        <dd>
+          <span>{{ users.fax }}</span>
+        </dd>
+        <dt><span>Email</span></dt>
+        <dd>
+          <span>{{ users.email }}</span>
+        </dd>
+        <dt><span>Password</span></dt>
+        <dd>
+          <span>{{ users.password }}</span>
+        </dd>
+        <dt><span>Remember Token</span></dt>
+        <dd>
+          <span>{{ users.rememberToken }}</span>
+        </dd>
+        <dt><span>Created At</span></dt>
+        <dd>
+          <span>{{ users.createdAt | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Updated At</span></dt>
+        <dd>
+          <span>{{ users.updatedAt | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Is Provider</span></dt>
+        <dd>
+          <span>{{ users.isProvider }}</span>
+        </dd>
+        <dt><span>Status</span></dt>
+        <dd>
+          <span>{{ users.status }}</span>
+        </dd>
+        <dt><span>Verification Link</span></dt>
+        <dd>
+          <span>{{ users.verificationLink }}</span>
+        </dd>
+        <dt><span>Email Verified</span></dt>
+        <dd>
+          <span>{{ users.emailVerified }}</span>
+        </dd>
+        <dt><span>Affilate Code</span></dt>
+        <dd>
+          <span>{{ users.affilateCode }}</span>
+        </dd>
+        <dt><span>Affilate Income</span></dt>
+        <dd>
+          <span>{{ users.affilateIncome }}</span>
+        </dd>
+        <dt><span>Shop Name</span></dt>
+        <dd>
+          <span>{{ users.shopName }}</span>
+        </dd>
+        <dt><span>Owner Name</span></dt>
+        <dd>
+          <span>{{ users.ownerName }}</span>
+        </dd>
+        <dt><span>Shop Number</span></dt>
+        <dd>
+          <span>{{ users.shopNumber }}</span>
+        </dd>
+        <dt><span>Shop Address</span></dt>
+        <dd>
+          <span>{{ users.shopAddress }}</span>
+        </dd>
+        <dt><span>Reg Number</span></dt>
+        <dd>
+          <span>{{ users.regNumber }}</span>
+        </dd>
+        <dt><span>Shop Message</span></dt>
+        <dd>
+          <span>{{ users.shopMessage }}</span>
+        </dd>
+        <dt><span>Shop Details</span></dt>
+        <dd>
+          <span>{{ users.shopDetails }}</span>
+        </dd>
+        <dt><span>Shop Image</span></dt>
+        <dd>
+          <span>{{ users.shopImage }}</span>
+        </dd>
+        <dt><span>F Url</span></dt>
+        <dd>
+          <span>{{ users.fUrl }}</span>
+        </dd>
+        <dt><span>G Url</span></dt>
+        <dd>
+          <span>{{ users.gUrl }}</span>
+        </dd>
+        <dt><span>T Url</span></dt>
+        <dd>
+          <span>{{ users.tUrl }}</span>
+        </dd>
+        <dt><span>L Url</span></dt>
+        <dd>
+          <span>{{ users.lUrl }}</span>
+        </dd>
+        <dt><span>Is Vendor</span></dt>
+        <dd>
+          <span>{{ users.isVendor }}</span>
+        </dd>
+        <dt><span>F Check</span></dt>
+        <dd>
+          <span>{{ users.fCheck }}</span>
+        </dd>
+        <dt><span>G Check</span></dt>
+        <dd>
+          <span>{{ users.gCheck }}</span>
+        </dd>
+        <dt><span>T Check</span></dt>
+        <dd>
+          <span>{{ users.tCheck }}</span>
+        </dd>
+        <dt><span>L Check</span></dt>
+        <dd>
+          <span>{{ users.lCheck }}</span>
+        </dd>
+        <dt><span>Mail Sent</span></dt>
+        <dd>
+          <span>{{ users.mailSent }}</span>
+        </dd>
+        <dt><span>Shipping Cost</span></dt>
+        <dd>
+          <span>{{ users.shippingCost }}</span>
+        </dd>
+        <dt><span>Current Balance</span></dt>
+        <dd>
+          <span>{{ users.currentBalance }}</span>
+        </dd>
+        <dt><span>Date</span></dt>
+        <dd>
+          <span>{{ users.date | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Ban</span></dt>
+        <dd>
+          <span>{{ users.ban }}</span>
+        </dd>
+        <dt><span>Is Printer</span></dt>
+        <dd>
+          <span>{{ users.isPrinter }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Translation missing for entity.action.back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/users', users.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Translation missing for entity.action.edit</span>
+      </button>
+    </div>
+  </div>
+</div>

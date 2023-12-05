@@ -1,0 +1,446 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-users-heading" data-cy="UsersCreateUpdateHeading">Create or edit a Users</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+          <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required"
+              >Translation missing for entity.validation.required</small
+            >
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_photo">Photo</label>
+          <input type="text" class="form-control" name="photo" id="field_photo" data-cy="photo" formControlName="photo" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_zip">Zip</label>
+          <input type="text" class="form-control" name="zip" id="field_zip" data-cy="zip" formControlName="zip" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_city">City</label>
+          <input type="text" class="form-control" name="city" id="field_city" data-cy="city" formControlName="city" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_country">Country</label>
+          <input type="text" class="form-control" name="country" id="field_country" data-cy="country" formControlName="country" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_address">Address</label>
+          <input type="text" class="form-control" name="address" id="field_address" data-cy="address" formControlName="address" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_phone">Phone</label>
+          <input type="text" class="form-control" name="phone" id="field_phone" data-cy="phone" formControlName="phone" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_fax">Fax</label>
+          <input type="text" class="form-control" name="fax" id="field_fax" data-cy="fax" formControlName="fax" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_email">Email</label>
+          <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
+          <div *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('email')?.errors?.required"
+              >Translation missing for entity.validation.required</small
+            >
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_password">Password</label>
+          <input type="text" class="form-control" name="password" id="field_password" data-cy="password" formControlName="password" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_rememberToken">Remember Token</label>
+          <input
+            type="text"
+            class="form-control"
+            name="rememberToken"
+            id="field_rememberToken"
+            data-cy="rememberToken"
+            formControlName="rememberToken"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_createdAt">Created At</label>
+          <div class="input-group">
+            <input
+              id="field_createdAt"
+              data-cy="createdAt"
+              type="text"
+              class="form-control"
+              name="createdAt"
+              ngbDatepicker
+              #createdAtDp="ngbDatepicker"
+              formControlName="createdAt"
+            />
+            <button type="button" class="btn btn-secondary" (click)="createdAtDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_updatedAt">Updated At</label>
+          <div class="input-group">
+            <input
+              id="field_updatedAt"
+              data-cy="updatedAt"
+              type="text"
+              class="form-control"
+              name="updatedAt"
+              ngbDatepicker
+              #updatedAtDp="ngbDatepicker"
+              formControlName="updatedAt"
+            />
+            <button type="button" class="btn btn-secondary" (click)="updatedAtDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_isProvider">Is Provider</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="isProvider"
+            id="field_isProvider"
+            data-cy="isProvider"
+            formControlName="isProvider"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_status">Status</label>
+          <input type="checkbox" class="form-check" name="status" id="field_status" data-cy="status" formControlName="status" />
+          <div *ngIf="editForm.get('status')!.invalid && (editForm.get('status')!.dirty || editForm.get('status')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('status')?.errors?.required"
+              >Translation missing for entity.validation.required</small
+            >
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_verificationLink">Verification Link</label>
+          <input
+            type="text"
+            class="form-control"
+            name="verificationLink"
+            id="field_verificationLink"
+            data-cy="verificationLink"
+            formControlName="verificationLink"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_emailVerified">Email Verified</label>
+          <input
+            type="text"
+            class="form-control"
+            name="emailVerified"
+            id="field_emailVerified"
+            data-cy="emailVerified"
+            formControlName="emailVerified"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_affilateCode">Affilate Code</label>
+          <input
+            type="text"
+            class="form-control"
+            name="affilateCode"
+            id="field_affilateCode"
+            data-cy="affilateCode"
+            formControlName="affilateCode"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_affilateIncome">Affilate Income</label>
+          <input
+            type="number"
+            class="form-control"
+            name="affilateIncome"
+            id="field_affilateIncome"
+            data-cy="affilateIncome"
+            formControlName="affilateIncome"
+          />
+          <div
+            *ngIf="
+              editForm.get('affilateIncome')!.invalid && (editForm.get('affilateIncome')!.dirty || editForm.get('affilateIncome')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('affilateIncome')?.errors?.required"
+              >Translation missing for entity.validation.required</small
+            >
+            <small class="form-text text-danger" [hidden]="!editForm.get('affilateIncome')?.errors?.number"
+              >Translation missing for entity.validation.number</small
+            >
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_shopName">Shop Name</label>
+          <input type="text" class="form-control" name="shopName" id="field_shopName" data-cy="shopName" formControlName="shopName" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ownerName">Owner Name</label>
+          <input type="text" class="form-control" name="ownerName" id="field_ownerName" data-cy="ownerName" formControlName="ownerName" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_shopNumber">Shop Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="shopNumber"
+            id="field_shopNumber"
+            data-cy="shopNumber"
+            formControlName="shopNumber"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_shopAddress">Shop Address</label>
+          <input
+            type="text"
+            class="form-control"
+            name="shopAddress"
+            id="field_shopAddress"
+            data-cy="shopAddress"
+            formControlName="shopAddress"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_regNumber">Reg Number</label>
+          <input type="text" class="form-control" name="regNumber" id="field_regNumber" data-cy="regNumber" formControlName="regNumber" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_shopMessage">Shop Message</label>
+          <input
+            type="text"
+            class="form-control"
+            name="shopMessage"
+            id="field_shopMessage"
+            data-cy="shopMessage"
+            formControlName="shopMessage"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_shopDetails">Shop Details</label>
+          <input
+            type="text"
+            class="form-control"
+            name="shopDetails"
+            id="field_shopDetails"
+            data-cy="shopDetails"
+            formControlName="shopDetails"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_shopImage">Shop Image</label>
+          <input type="text" class="form-control" name="shopImage" id="field_shopImage" data-cy="shopImage" formControlName="shopImage" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_fUrl">F Url</label>
+          <input type="text" class="form-control" name="fUrl" id="field_fUrl" data-cy="fUrl" formControlName="fUrl" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_gUrl">G Url</label>
+          <input type="text" class="form-control" name="gUrl" id="field_gUrl" data-cy="gUrl" formControlName="gUrl" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_tUrl">T Url</label>
+          <input type="text" class="form-control" name="tUrl" id="field_tUrl" data-cy="tUrl" formControlName="tUrl" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_lUrl">L Url</label>
+          <input type="text" class="form-control" name="lUrl" id="field_lUrl" data-cy="lUrl" formControlName="lUrl" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_isVendor">Is Vendor</label>
+          <input type="checkbox" class="form-check" name="isVendor" id="field_isVendor" data-cy="isVendor" formControlName="isVendor" />
+          <div *ngIf="editForm.get('isVendor')!.invalid && (editForm.get('isVendor')!.dirty || editForm.get('isVendor')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('isVendor')?.errors?.required"
+              >Translation missing for entity.validation.required</small
+            >
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_fCheck">F Check</label>
+          <input type="checkbox" class="form-check" name="fCheck" id="field_fCheck" data-cy="fCheck" formControlName="fCheck" />
+          <div *ngIf="editForm.get('fCheck')!.invalid && (editForm.get('fCheck')!.dirty || editForm.get('fCheck')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('fCheck')?.errors?.required"
+              >Translation missing for entity.validation.required</small
+            >
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_gCheck">G Check</label>
+          <input type="checkbox" class="form-check" name="gCheck" id="field_gCheck" data-cy="gCheck" formControlName="gCheck" />
+          <div *ngIf="editForm.get('gCheck')!.invalid && (editForm.get('gCheck')!.dirty || editForm.get('gCheck')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('gCheck')?.errors?.required"
+              >Translation missing for entity.validation.required</small
+            >
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_tCheck">T Check</label>
+          <input type="checkbox" class="form-check" name="tCheck" id="field_tCheck" data-cy="tCheck" formControlName="tCheck" />
+          <div *ngIf="editForm.get('tCheck')!.invalid && (editForm.get('tCheck')!.dirty || editForm.get('tCheck')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('tCheck')?.errors?.required"
+              >Translation missing for entity.validation.required</small
+            >
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_lCheck">L Check</label>
+          <input type="checkbox" class="form-check" name="lCheck" id="field_lCheck" data-cy="lCheck" formControlName="lCheck" />
+          <div *ngIf="editForm.get('lCheck')!.invalid && (editForm.get('lCheck')!.dirty || editForm.get('lCheck')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('lCheck')?.errors?.required"
+              >Translation missing for entity.validation.required</small
+            >
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_mailSent">Mail Sent</label>
+          <input type="checkbox" class="form-check" name="mailSent" id="field_mailSent" data-cy="mailSent" formControlName="mailSent" />
+          <div *ngIf="editForm.get('mailSent')!.invalid && (editForm.get('mailSent')!.dirty || editForm.get('mailSent')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('mailSent')?.errors?.required"
+              >Translation missing for entity.validation.required</small
+            >
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_shippingCost">Shipping Cost</label>
+          <input
+            type="number"
+            class="form-control"
+            name="shippingCost"
+            id="field_shippingCost"
+            data-cy="shippingCost"
+            formControlName="shippingCost"
+          />
+          <div
+            *ngIf="editForm.get('shippingCost')!.invalid && (editForm.get('shippingCost')!.dirty || editForm.get('shippingCost')!.touched)"
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('shippingCost')?.errors?.required"
+              >Translation missing for entity.validation.required</small
+            >
+            <small class="form-text text-danger" [hidden]="!editForm.get('shippingCost')?.errors?.number"
+              >Translation missing for entity.validation.number</small
+            >
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_currentBalance">Current Balance</label>
+          <input
+            type="number"
+            class="form-control"
+            name="currentBalance"
+            id="field_currentBalance"
+            data-cy="currentBalance"
+            formControlName="currentBalance"
+          />
+          <div
+            *ngIf="
+              editForm.get('currentBalance')!.invalid && (editForm.get('currentBalance')!.dirty || editForm.get('currentBalance')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('currentBalance')?.errors?.required"
+              >Translation missing for entity.validation.required</small
+            >
+            <small class="form-text text-danger" [hidden]="!editForm.get('currentBalance')?.errors?.number"
+              >Translation missing for entity.validation.number</small
+            >
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_date">Date</label>
+          <div class="input-group">
+            <input
+              id="field_date"
+              data-cy="date"
+              type="text"
+              class="form-control"
+              name="date"
+              ngbDatepicker
+              #dateDp="ngbDatepicker"
+              formControlName="date"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ban">Ban</label>
+          <input type="checkbox" class="form-check" name="ban" id="field_ban" data-cy="ban" formControlName="ban" />
+          <div *ngIf="editForm.get('ban')!.invalid && (editForm.get('ban')!.dirty || editForm.get('ban')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('ban')?.errors?.required"
+              >Translation missing for entity.validation.required</small
+            >
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_isPrinter">Is Printer</label>
+          <input type="checkbox" class="form-check" name="isPrinter" id="field_isPrinter" data-cy="isPrinter" formControlName="isPrinter" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Translation missing for entity.action.cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Translation missing for entity.action.save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

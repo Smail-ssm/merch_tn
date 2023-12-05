@@ -1,0 +1,256 @@
+{
+  "applications": "*",
+  "changelogDate": "20231202173827",
+  "entityTableName": "products",
+  "fields": [
+    {
+      "fieldName": "sku",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "productType",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "affiliateLink",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "userId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "categoryId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "subcategoryId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "childcategoryId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "attributes",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "slug",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "photo",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "thumbnail",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "file",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "size",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sizeQty",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sizePrice",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "color",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "price",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "previousPrice",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "details",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "stock",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "policy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "views",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "tags",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "features",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "colors",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "productCondition",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "ship",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "isMeta",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "metaTag",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "metaDescription",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "youtube",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "license",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "licenseQty",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "link",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "platform",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "region",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "licenceType",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "measure",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "featured",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "best",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "top",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "hot",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "latest",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "big",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "trending",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "sale",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "updatedAt",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "isDiscount",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "discountDate",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "wholeSellQty",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "wholeSellDiscount",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "isCatalog",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "catalogId",
+      "fieldType": "Long"
+    }
+  ],
+  "name": "Products",
+  "relationships": [],
+  "searchEngine": "no"
+}
