@@ -273,7 +273,7 @@ public class OrdersResource {
     @GetMapping("")
     public List<Orders> getAllOrders() {
         log.debug("REST request to get all Orders");
-        return ordersRepository.findAll();
+        return ordersRepository.findall();
     }
 
     /**

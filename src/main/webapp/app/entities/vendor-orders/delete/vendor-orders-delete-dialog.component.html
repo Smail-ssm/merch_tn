@@ -1,6 +1,6 @@
 <form *ngIf="vendorOrders" name="deleteForm" (ngSubmit)="confirmDelete(vendorOrders.id!)">
   <div class="modal-header">
-    <h4 class="modal-title" data-cy="vendorOrdersDeleteDialogHeading">Translation missing for entity.delete.title</h4>
+    <h4 class="modal-title" data-cy="vendorOrdersDeleteDialogHeading">title</h4>
 
     <button type="button" class="btn-close" data-dismiss="modal" aria-hidden="true" (click)="cancel()">&times;</button>
   </div>
@@ -12,11 +12,11 @@
 
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">
-      <fa-icon icon="ban"></fa-icon>&nbsp;<span>Translation missing for entity.action.cancel</span>
+      <fa-icon icon="ban"></fa-icon>&nbsp;<span>cancel</span>
     </button>
 
     <button id="jhi-confirm-delete-vendorOrders" data-cy="entityConfirmDeleteButton" type="submit" class="btn btn-danger">
-      <fa-icon icon="times"></fa-icon>&nbsp;<span>Translation missing for entity.action.delete</span>
+      <fa-icon icon="times"></fa-icon>&nbsp;<span>delete</span>
     </button>
   </div>
 </form>

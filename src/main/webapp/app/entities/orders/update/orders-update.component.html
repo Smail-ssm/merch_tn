@@ -20,9 +20,7 @@
           <label class="form-label" for="field_cart">Cart</label>
           <input type="text" class="form-control" name="cart" id="field_cart" data-cy="cart" formControlName="cart" />
           <div *ngIf="editForm.get('cart')!.invalid && (editForm.get('cart')!.dirty || editForm.get('cart')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('cart')?.errors?.required"
-              >Translation missing for entity.validation.required</small
-            >
+            <small class="form-text text-danger" *ngIf="editForm.get('cart')?.errors?.required">required</small>
           </div>
         </div>
 
@@ -52,9 +50,7 @@
           <label class="form-label" for="field_totalQty">Total Qty</label>
           <input type="text" class="form-control" name="totalQty" id="field_totalQty" data-cy="totalQty" formControlName="totalQty" />
           <div *ngIf="editForm.get('totalQty')!.invalid && (editForm.get('totalQty')!.dirty || editForm.get('totalQty')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('totalQty')?.errors?.required"
-              >Translation missing for entity.validation.required</small
-            >
+            <small class="form-text text-danger" *ngIf="editForm.get('totalQty')?.errors?.required">required</small>
           </div>
         </div>
 
@@ -62,12 +58,8 @@
           <label class="form-label" for="field_payAmount">Pay Amount</label>
           <input type="number" class="form-control" name="payAmount" id="field_payAmount" data-cy="payAmount" formControlName="payAmount" />
           <div *ngIf="editForm.get('payAmount')!.invalid && (editForm.get('payAmount')!.dirty || editForm.get('payAmount')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('payAmount')?.errors?.required"
-              >Translation missing for entity.validation.required</small
-            >
-            <small class="form-text text-danger" [hidden]="!editForm.get('payAmount')?.errors?.number"
-              >Translation missing for entity.validation.number</small
-            >
+            <small class="form-text text-danger" *ngIf="editForm.get('payAmount')?.errors?.required">required</small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('payAmount')?.errors?.number">number</small>
           </div>
         </div>
 
@@ -92,9 +84,7 @@
             formControlName="orderNumber"
           />
           <div *ngIf="editForm.get('orderNumber')!.invalid && (editForm.get('orderNumber')!.dirty || editForm.get('orderNumber')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('orderNumber')?.errors?.required"
-              >Translation missing for entity.validation.required</small
-            >
+            <small class="form-text text-danger" *ngIf="editForm.get('orderNumber')?.errors?.required">required</small>
           </div>
         </div>
 
@@ -113,9 +103,7 @@
               editForm.get('paymentStatus')!.invalid && (editForm.get('paymentStatus')!.dirty || editForm.get('paymentStatus')!.touched)
             "
           >
-            <small class="form-text text-danger" *ngIf="editForm.get('paymentStatus')?.errors?.required"
-              >Translation missing for entity.validation.required</small
-            >
+            <small class="form-text text-danger" *ngIf="editForm.get('paymentStatus')?.errors?.required">required</small>
           </div>
         </div>
 
@@ -134,9 +122,7 @@
               editForm.get('customerEmail')!.invalid && (editForm.get('customerEmail')!.dirty || editForm.get('customerEmail')!.touched)
             "
           >
-            <small class="form-text text-danger" *ngIf="editForm.get('customerEmail')?.errors?.required"
-              >Translation missing for entity.validation.required</small
-            >
+            <small class="form-text text-danger" *ngIf="editForm.get('customerEmail')?.errors?.required">required</small>
           </div>
         </div>
 
@@ -153,9 +139,7 @@
           <div
             *ngIf="editForm.get('customerName')!.invalid && (editForm.get('customerName')!.dirty || editForm.get('customerName')!.touched)"
           >
-            <small class="form-text text-danger" *ngIf="editForm.get('customerName')?.errors?.required"
-              >Translation missing for entity.validation.required</small
-            >
+            <small class="form-text text-danger" *ngIf="editForm.get('customerName')?.errors?.required">required</small>
           </div>
         </div>
 
@@ -175,9 +159,7 @@
               (editForm.get('customerCountry')!.dirty || editForm.get('customerCountry')!.touched)
             "
           >
-            <small class="form-text text-danger" *ngIf="editForm.get('customerCountry')?.errors?.required"
-              >Translation missing for entity.validation.required</small
-            >
+            <small class="form-text text-danger" *ngIf="editForm.get('customerCountry')?.errors?.required">required</small>
           </div>
         </div>
 
@@ -196,9 +178,7 @@
               editForm.get('customerPhone')!.invalid && (editForm.get('customerPhone')!.dirty || editForm.get('customerPhone')!.touched)
             "
           >
-            <small class="form-text text-danger" *ngIf="editForm.get('customerPhone')?.errors?.required"
-              >Translation missing for entity.validation.required</small
-            >
+            <small class="form-text text-danger" *ngIf="editForm.get('customerPhone')?.errors?.required">required</small>
           </div>
         </div>
 
@@ -355,9 +335,7 @@
           <label class="form-label" for="field_status">Status</label>
           <input type="text" class="form-control" name="status" id="field_status" data-cy="status" formControlName="status" />
           <div *ngIf="editForm.get('status')!.invalid && (editForm.get('status')!.dirty || editForm.get('status')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('status')?.errors?.required"
-              >Translation missing for entity.validation.required</small
-            >
+            <small class="form-text text-danger" *ngIf="editForm.get('status')?.errors?.required">required</small>
           </div>
         </div>
 
@@ -428,9 +406,7 @@
           <div
             *ngIf="editForm.get('currencySign')!.invalid && (editForm.get('currencySign')!.dirty || editForm.get('currencySign')!.touched)"
           >
-            <small class="form-text text-danger" *ngIf="editForm.get('currencySign')?.errors?.required"
-              >Translation missing for entity.validation.required</small
-            >
+            <small class="form-text text-danger" *ngIf="editForm.get('currencySign')?.errors?.required">required</small>
           </div>
         </div>
 
@@ -449,12 +425,8 @@
               editForm.get('currencyValue')!.invalid && (editForm.get('currencyValue')!.dirty || editForm.get('currencyValue')!.touched)
             "
           >
-            <small class="form-text text-danger" *ngIf="editForm.get('currencyValue')?.errors?.required"
-              >Translation missing for entity.validation.required</small
-            >
-            <small class="form-text text-danger" [hidden]="!editForm.get('currencyValue')?.errors?.number"
-              >Translation missing for entity.validation.number</small
-            >
+            <small class="form-text text-danger" *ngIf="editForm.get('currencyValue')?.errors?.required">required</small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('currencyValue')?.errors?.number">number</small>
           </div>
         </div>
 
@@ -471,12 +443,8 @@
           <div
             *ngIf="editForm.get('shippingCost')!.invalid && (editForm.get('shippingCost')!.dirty || editForm.get('shippingCost')!.touched)"
           >
-            <small class="form-text text-danger" *ngIf="editForm.get('shippingCost')?.errors?.required"
-              >Translation missing for entity.validation.required</small
-            >
-            <small class="form-text text-danger" [hidden]="!editForm.get('shippingCost')?.errors?.number"
-              >Translation missing for entity.validation.number</small
-            >
+            <small class="form-text text-danger" *ngIf="editForm.get('shippingCost')?.errors?.required">required</small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('shippingCost')?.errors?.number">number</small>
           </div>
         </div>
 
@@ -491,12 +459,8 @@
             formControlName="packingCost"
           />
           <div *ngIf="editForm.get('packingCost')!.invalid && (editForm.get('packingCost')!.dirty || editForm.get('packingCost')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('packingCost')?.errors?.required"
-              >Translation missing for entity.validation.required</small
-            >
-            <small class="form-text text-danger" [hidden]="!editForm.get('packingCost')?.errors?.number"
-              >Translation missing for entity.validation.number</small
-            >
+            <small class="form-text text-danger" *ngIf="editForm.get('packingCost')?.errors?.required">required</small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('packingCost')?.errors?.number">number</small>
           </div>
         </div>
 
@@ -504,12 +468,8 @@
           <label class="form-label" for="field_tax">Tax</label>
           <input type="number" class="form-control" name="tax" id="field_tax" data-cy="tax" formControlName="tax" />
           <div *ngIf="editForm.get('tax')!.invalid && (editForm.get('tax')!.dirty || editForm.get('tax')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('tax')?.errors?.required"
-              >Translation missing for entity.validation.required</small
-            >
-            <small class="form-text text-danger" [hidden]="!editForm.get('tax')?.errors?.number"
-              >Translation missing for entity.validation.number</small
-            >
+            <small class="form-text text-danger" *ngIf="editForm.get('tax')?.errors?.required">required</small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('tax')?.errors?.number">number</small>
           </div>
         </div>
 
@@ -517,9 +477,7 @@
           <label class="form-label" for="field_dp">Dp</label>
           <input type="checkbox" class="form-check" name="dp" id="field_dp" data-cy="dp" formControlName="dp" />
           <div *ngIf="editForm.get('dp')!.invalid && (editForm.get('dp')!.dirty || editForm.get('dp')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('dp')?.errors?.required"
-              >Translation missing for entity.validation.required</small
-            >
+            <small class="form-text text-danger" *ngIf="editForm.get('dp')?.errors?.required">required</small>
           </div>
         </div>
 
@@ -544,12 +502,8 @@
               (editForm.get('vendorShippingId')!.dirty || editForm.get('vendorShippingId')!.touched)
             "
           >
-            <small class="form-text text-danger" *ngIf="editForm.get('vendorShippingId')?.errors?.required"
-              >Translation missing for entity.validation.required</small
-            >
-            <small class="form-text text-danger" [hidden]="!editForm.get('vendorShippingId')?.errors?.number"
-              >Translation missing for entity.validation.number</small
-            >
+            <small class="form-text text-danger" *ngIf="editForm.get('vendorShippingId')?.errors?.required">required</small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('vendorShippingId')?.errors?.number">number</small>
           </div>
         </div>
 
@@ -569,12 +523,8 @@
               (editForm.get('vendorPackingId')!.dirty || editForm.get('vendorPackingId')!.touched)
             "
           >
-            <small class="form-text text-danger" *ngIf="editForm.get('vendorPackingId')?.errors?.required"
-              >Translation missing for entity.validation.required</small
-            >
-            <small class="form-text text-danger" [hidden]="!editForm.get('vendorPackingId')?.errors?.number"
-              >Translation missing for entity.validation.number</small
-            >
+            <small class="form-text text-danger" *ngIf="editForm.get('vendorPackingId')?.errors?.required">required</small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('vendorPackingId')?.errors?.number">number</small>
           </div>
         </div>
 
@@ -593,19 +543,15 @@
               editForm.get('wholeDiscount')!.invalid && (editForm.get('wholeDiscount')!.dirty || editForm.get('wholeDiscount')!.touched)
             "
           >
-            <small class="form-text text-danger" *ngIf="editForm.get('wholeDiscount')?.errors?.required"
-              >Translation missing for entity.validation.required</small
-            >
-            <small class="form-text text-danger" [hidden]="!editForm.get('wholeDiscount')?.errors?.number"
-              >Translation missing for entity.validation.number</small
-            >
+            <small class="form-text text-danger" *ngIf="editForm.get('wholeDiscount')?.errors?.required">required</small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('wholeDiscount')?.errors?.number">number</small>
           </div>
         </div>
       </div>
 
       <div>
         <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
-          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Translation missing for entity.action.cancel</span>
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>cancel</span>
         </button>
 
         <button
@@ -615,7 +561,7 @@
           [disabled]="editForm.invalid || isSaving"
           class="btn btn-primary"
         >
-          <fa-icon icon="save"></fa-icon>&nbsp;<span>Translation missing for entity.action.save</span>
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>save</span>
         </button>
       </div>
     </form>

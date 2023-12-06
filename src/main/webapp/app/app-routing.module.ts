@@ -9,6 +9,7 @@ import { errorRoute } from './layouts/error/error.route';
 import HomeComponent from './home/home.component';
 import NavbarComponent from './layouts/navbar/navbar.component';
 import LoginComponent from './login/login.component';
+import { UsersLoginComponent } from './entities/users/login/users-login.component';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import LoginComponent from './login/login.component';
           component: HomeComponent,
           title: 'Welcome, Java Hipster!',
         },
+        { path: 'usersLogin', component: UsersLoginComponent },
         {
           path: '',
           component: NavbarComponent,

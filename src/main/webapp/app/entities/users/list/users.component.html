@@ -34,7 +34,7 @@
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
           <th scope="col" jhiSortBy="id">
             <div class="d-flex">
-              <span>Translation missing for global.field.id</span>
+              <span>id</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
@@ -344,17 +344,17 @@
             <div class="btn-group">
               <a [routerLink]="['/users', users.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
                 <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline">Translation missing for entity.action.view</span>
+                <span class="d-none d-md-inline">view</span>
               </a>
 
               <a [routerLink]="['/users', users.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
                 <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline">Translation missing for entity.action.edit</span>
+                <span class="d-none d-md-inline">edit</span>
               </a>
 
               <button type="submit" (click)="delete(users)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
                 <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline">Translation missing for entity.action.delete</span>
+                <span class="d-none d-md-inline">delete</span>
               </button>
             </div>
           </td>

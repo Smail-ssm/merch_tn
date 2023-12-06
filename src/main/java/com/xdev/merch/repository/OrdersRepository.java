@@ -1,7 +1,9 @@
 package com.xdev.merch.repository;
 
 import com.xdev.merch.domain.Orders;
+import java.util.List;
 import org.springframework.data.jpa.repository.*;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -9,4 +11,10 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface OrdersRepository extends JpaRepository<Orders, Long> {}
+public interface OrdersRepository extends JpaRepository<Orders, Long> {
+    @Query("SELECT o.id, o.orderNumber, o.totalQty, o.payAmount, o.paymentStatus, o.customerName FROM Orders o WHERE o.id = :orderId")
+    List<Object[]> findOrderDetailsById(@Param("orderId") Long orderId);
+
+    @Query("SELECT o.id, o.orderNumber,  o.payAmount, o.paymentStatus, o.customerName FROM Orders o")
+    List<Orders> findall();
+}

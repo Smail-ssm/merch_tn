@@ -5,13 +5,14 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import SharedModule from 'app/shared/shared.module';
 import { SortDirective, SortByDirective } from 'app/shared/sort';
-import { DurationPipe, FormatMediumDatetimePipe, FormatMediumDatePipe } from 'app/shared/date';
+import { DurationPipe, FormatMediumDatetimePipe } from 'app/shared/date';
 import { FormsModule } from '@angular/forms';
 import { ASC, DESC, SORT, ITEM_DELETED_EVENT, DEFAULT_SORT_DATA } from 'app/config/navigation.constants';
 import { SortService } from 'app/shared/sort/sort.service';
 import { IUsers } from '../users.model';
 import { EntityArrayResponseType, UsersService } from '../service/users.service';
 import { UsersDeleteDialogComponent } from '../delete/users-delete-dialog.component';
+import FormatMediumDatePipe from '../../../shared/date/format-medium-date.pipe';
 
 @Component({
   standalone: true,
@@ -25,6 +26,7 @@ import { UsersDeleteDialogComponent } from '../delete/users-delete-dialog.compon
     SortByDirective,
     DurationPipe,
     FormatMediumDatetimePipe,
+    FormatMediumDatePipe,
     FormatMediumDatePipe,
   ],
 })

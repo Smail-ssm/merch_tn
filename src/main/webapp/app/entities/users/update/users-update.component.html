@@ -15,9 +15,7 @@
           <label class="form-label" for="field_name">Name</label>
           <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
           <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required"
-              >Translation missing for entity.validation.required</small
-            >
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required">required</small>
           </div>
         </div>
 
@@ -60,9 +58,7 @@
           <label class="form-label" for="field_email">Email</label>
           <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
           <div *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('email')?.errors?.required"
-              >Translation missing for entity.validation.required</small
-            >
+            <small class="form-text text-danger" *ngIf="editForm.get('email')?.errors?.required">required</small>
           </div>
         </div>
 
@@ -133,9 +129,7 @@
           <label class="form-label" for="field_status">Status</label>
           <input type="checkbox" class="form-check" name="status" id="field_status" data-cy="status" formControlName="status" />
           <div *ngIf="editForm.get('status')!.invalid && (editForm.get('status')!.dirty || editForm.get('status')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('status')?.errors?.required"
-              >Translation missing for entity.validation.required</small
-            >
+            <small class="form-text text-danger" *ngIf="editForm.get('status')?.errors?.required">required</small>
           </div>
         </div>
 
@@ -190,12 +184,8 @@
               editForm.get('affilateIncome')!.invalid && (editForm.get('affilateIncome')!.dirty || editForm.get('affilateIncome')!.touched)
             "
           >
-            <small class="form-text text-danger" *ngIf="editForm.get('affilateIncome')?.errors?.required"
-              >Translation missing for entity.validation.required</small
-            >
-            <small class="form-text text-danger" [hidden]="!editForm.get('affilateIncome')?.errors?.number"
-              >Translation missing for entity.validation.number</small
-            >
+            <small class="form-text text-danger" *ngIf="editForm.get('affilateIncome')?.errors?.required">required</small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('affilateIncome')?.errors?.number">number</small>
           </div>
         </div>
 
@@ -291,9 +281,7 @@
           <label class="form-label" for="field_isVendor">Is Vendor</label>
           <input type="checkbox" class="form-check" name="isVendor" id="field_isVendor" data-cy="isVendor" formControlName="isVendor" />
           <div *ngIf="editForm.get('isVendor')!.invalid && (editForm.get('isVendor')!.dirty || editForm.get('isVendor')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('isVendor')?.errors?.required"
-              >Translation missing for entity.validation.required</small
-            >
+            <small class="form-text text-danger" *ngIf="editForm.get('isVendor')?.errors?.required">required</small>
           </div>
         </div>
 
@@ -301,9 +289,7 @@
           <label class="form-label" for="field_fCheck">F Check</label>
           <input type="checkbox" class="form-check" name="fCheck" id="field_fCheck" data-cy="fCheck" formControlName="fCheck" />
           <div *ngIf="editForm.get('fCheck')!.invalid && (editForm.get('fCheck')!.dirty || editForm.get('fCheck')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('fCheck')?.errors?.required"
-              >Translation missing for entity.validation.required</small
-            >
+            <small class="form-text text-danger" *ngIf="editForm.get('fCheck')?.errors?.required">required</small>
           </div>
         </div>
 
@@ -311,9 +297,7 @@
           <label class="form-label" for="field_gCheck">G Check</label>
           <input type="checkbox" class="form-check" name="gCheck" id="field_gCheck" data-cy="gCheck" formControlName="gCheck" />
           <div *ngIf="editForm.get('gCheck')!.invalid && (editForm.get('gCheck')!.dirty || editForm.get('gCheck')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('gCheck')?.errors?.required"
-              >Translation missing for entity.validation.required</small
-            >
+            <small class="form-text text-danger" *ngIf="editForm.get('gCheck')?.errors?.required">required</small>
           </div>
         </div>
 
@@ -321,9 +305,7 @@
           <label class="form-label" for="field_tCheck">T Check</label>
           <input type="checkbox" class="form-check" name="tCheck" id="field_tCheck" data-cy="tCheck" formControlName="tCheck" />
           <div *ngIf="editForm.get('tCheck')!.invalid && (editForm.get('tCheck')!.dirty || editForm.get('tCheck')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('tCheck')?.errors?.required"
-              >Translation missing for entity.validation.required</small
-            >
+            <small class="form-text text-danger" *ngIf="editForm.get('tCheck')?.errors?.required">required</small>
           </div>
         </div>
 
@@ -331,9 +313,7 @@
           <label class="form-label" for="field_lCheck">L Check</label>
           <input type="checkbox" class="form-check" name="lCheck" id="field_lCheck" data-cy="lCheck" formControlName="lCheck" />
           <div *ngIf="editForm.get('lCheck')!.invalid && (editForm.get('lCheck')!.dirty || editForm.get('lCheck')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('lCheck')?.errors?.required"
-              >Translation missing for entity.validation.required</small
-            >
+            <small class="form-text text-danger" *ngIf="editForm.get('lCheck')?.errors?.required">required</small>
           </div>
         </div>
 
@@ -341,9 +321,7 @@
           <label class="form-label" for="field_mailSent">Mail Sent</label>
           <input type="checkbox" class="form-check" name="mailSent" id="field_mailSent" data-cy="mailSent" formControlName="mailSent" />
           <div *ngIf="editForm.get('mailSent')!.invalid && (editForm.get('mailSent')!.dirty || editForm.get('mailSent')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('mailSent')?.errors?.required"
-              >Translation missing for entity.validation.required</small
-            >
+            <small class="form-text text-danger" *ngIf="editForm.get('mailSent')?.errors?.required">required</small>
           </div>
         </div>
 
@@ -360,12 +338,8 @@
           <div
             *ngIf="editForm.get('shippingCost')!.invalid && (editForm.get('shippingCost')!.dirty || editForm.get('shippingCost')!.touched)"
           >
-            <small class="form-text text-danger" *ngIf="editForm.get('shippingCost')?.errors?.required"
-              >Translation missing for entity.validation.required</small
-            >
-            <small class="form-text text-danger" [hidden]="!editForm.get('shippingCost')?.errors?.number"
-              >Translation missing for entity.validation.number</small
-            >
+            <small class="form-text text-danger" *ngIf="editForm.get('shippingCost')?.errors?.required">required</small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('shippingCost')?.errors?.number">number</small>
           </div>
         </div>
 
@@ -384,12 +358,8 @@
               editForm.get('currentBalance')!.invalid && (editForm.get('currentBalance')!.dirty || editForm.get('currentBalance')!.touched)
             "
           >
-            <small class="form-text text-danger" *ngIf="editForm.get('currentBalance')?.errors?.required"
-              >Translation missing for entity.validation.required</small
-            >
-            <small class="form-text text-danger" [hidden]="!editForm.get('currentBalance')?.errors?.number"
-              >Translation missing for entity.validation.number</small
-            >
+            <small class="form-text text-danger" *ngIf="editForm.get('currentBalance')?.errors?.required">required</small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('currentBalance')?.errors?.number">number</small>
           </div>
         </div>
 
@@ -414,9 +384,7 @@
           <label class="form-label" for="field_ban">Ban</label>
           <input type="checkbox" class="form-check" name="ban" id="field_ban" data-cy="ban" formControlName="ban" />
           <div *ngIf="editForm.get('ban')!.invalid && (editForm.get('ban')!.dirty || editForm.get('ban')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('ban')?.errors?.required"
-              >Translation missing for entity.validation.required</small
-            >
+            <small class="form-text text-danger" *ngIf="editForm.get('ban')?.errors?.required">required</small>
           </div>
         </div>
 
@@ -428,7 +396,7 @@
 
       <div>
         <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
-          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Translation missing for entity.action.cancel</span>
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>cancel</span>
         </button>
 
         <button
@@ -438,7 +406,7 @@
           [disabled]="editForm.invalid || isSaving"
           class="btn btn-primary"
         >
-          <fa-icon icon="save"></fa-icon>&nbsp;<span>Translation missing for entity.action.save</span>
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>save</span>
         </button>
       </div>
     </form>

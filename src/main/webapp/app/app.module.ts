@@ -19,6 +19,8 @@ import { fontAwesomeIcons } from './config/font-awesome-icons';
 import MainComponent from './layouts/main/main.component';
 import MainModule from './layouts/main/main.module';
 import { AppPageTitleStrategy } from './app-page-title-strategy';
+import { UsersLoginComponent } from './entities/users/login/users-login.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -29,6 +31,7 @@ import { AppPageTitleStrategy } from './app-page-title-strategy';
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: false }),
     HttpClientModule,
     MainModule,
+    FormsModule,
   ],
   providers: [
     Title,
@@ -38,6 +41,7 @@ import { AppPageTitleStrategy } from './app-page-title-strategy';
     { provide: TitleStrategy, useClass: AppPageTitleStrategy },
   ],
   bootstrap: [MainComponent],
+  declarations: [UsersLoginComponent],
 })
 export class AppModule {
   constructor(applicationConfigService: ApplicationConfigService, iconLibrary: FaIconLibrary, dpConfig: NgbDatepickerConfig) {

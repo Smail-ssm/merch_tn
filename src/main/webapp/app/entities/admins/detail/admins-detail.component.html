@@ -10,7 +10,7 @@
       <jhi-alert></jhi-alert>
 
       <dl class="row-md jh-entity-details">
-        <dt><span>Translation missing for global.field.id</span></dt>
+        <dt><span>id</span></dt>
         <dd>
           <span>{{ admins.id }}</span>
         </dd>
@@ -61,11 +61,11 @@
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
-        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Translation missing for entity.action.back</span>
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>back</span>
       </button>
 
       <button type="button" [routerLink]="['/admins', admins.id, 'edit']" class="btn btn-primary">
-        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Translation missing for entity.action.edit</span>
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>edit</span>
       </button>
     </div>
   </div>
