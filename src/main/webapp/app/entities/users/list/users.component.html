@@ -2,21 +2,27 @@
   <h2 id="page-heading" data-cy="UsersHeading">
     <span>Users</span>
 
-    <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
-        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span>Refresh list</span>
-      </button>
+    <div class="d-flex justify-content-start align-items-center">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Search by name..." [(ngModel)]="userEmail" (keyup.enter)="searchUsers()" />
+        <button class="btn btn-outline-secondary me-2" type="button" (click)="searchUsers()">
+          <fa-icon icon="search"></fa-icon>
+        </button>
+        <!-- Refresh list button with icon only -->
+        <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+          <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        </button>
 
-      <button
-        id="jh-create-entity"
-        data-cy="entityCreateButton"
-        class="btn btn-primary jh-create-entity create-users"
-        [routerLink]="['/users/new']"
-      >
-        <fa-icon icon="plus"></fa-icon>
-        <span>Create a new Users</span>
-      </button>
+        <!-- Create new Products button with icon only -->
+        <button
+          id="jh-create-entity"
+          data-cy="entityCreateButton"
+          class="btn btn-primary jh-create-entity create-products"
+          [routerLink]="['/users/new']"
+        >
+          <fa-icon icon="plus"></fa-icon>
+        </button>
+      </div>
     </div>
   </h2>
 
@@ -32,57 +38,9 @@
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
-          <th scope="col" jhiSortBy="id">
-            <div class="d-flex">
-              <span>id</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
           <th scope="col" jhiSortBy="name">
             <div class="d-flex">
               <span>Name</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="photo">
-            <div class="d-flex">
-              <span>Photo</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="zip">
-            <div class="d-flex">
-              <span>Zip</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="city">
-            <div class="d-flex">
-              <span>City</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="country">
-            <div class="d-flex">
-              <span>Country</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="address">
-            <div class="d-flex">
-              <span>Address</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="phone">
-            <div class="d-flex">
-              <span>Phone</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="fax">
-            <div class="d-flex">
-              <span>Fax</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
@@ -92,75 +50,15 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="password">
-            <div class="d-flex">
-              <span>Password</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="rememberToken">
-            <div class="d-flex">
-              <span>Remember Token</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="createdAt">
-            <div class="d-flex">
-              <span>Created At</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="updatedAt">
-            <div class="d-flex">
-              <span>Updated At</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="isProvider">
-            <div class="d-flex">
-              <span>Is Provider</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="status">
-            <div class="d-flex">
-              <span>Status</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="verificationLink">
-            <div class="d-flex">
-              <span>Verification Link</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="emailVerified">
-            <div class="d-flex">
-              <span>Email Verified</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="affilateCode">
-            <div class="d-flex">
-              <span>Affilate Code</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="affilateIncome">
-            <div class="d-flex">
-              <span>Affilate Income</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
           <th scope="col" jhiSortBy="shopName">
             <div class="d-flex">
-              <span>Shop Name</span>
+              <span>Store Name</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="ownerName">
+          <th scope="col" jhiSortBy="vendorEmail">
             <div class="d-flex">
-              <span>Owner Name</span>
+              <span>Vendor Email</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
@@ -170,194 +68,24 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="shopAddress">
+          <th scope="col" jhiSortBy="status">
             <div class="d-flex">
-              <span>Shop Address</span>
+              <span>Status</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="regNumber">
-            <div class="d-flex">
-              <span>Reg Number</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="shopMessage">
-            <div class="d-flex">
-              <span>Shop Message</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="shopDetails">
-            <div class="d-flex">
-              <span>Shop Details</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="shopImage">
-            <div class="d-flex">
-              <span>Shop Image</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="fUrl">
-            <div class="d-flex">
-              <span>F Url</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="gUrl">
-            <div class="d-flex">
-              <span>G Url</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="tUrl">
-            <div class="d-flex">
-              <span>T Url</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="lUrl">
-            <div class="d-flex">
-              <span>L Url</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="isVendor">
-            <div class="d-flex">
-              <span>Is Vendor</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="fCheck">
-            <div class="d-flex">
-              <span>F Check</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="gCheck">
-            <div class="d-flex">
-              <span>G Check</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="tCheck">
-            <div class="d-flex">
-              <span>T Check</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="lCheck">
-            <div class="d-flex">
-              <span>L Check</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="mailSent">
-            <div class="d-flex">
-              <span>Mail Sent</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="shippingCost">
-            <div class="d-flex">
-              <span>Shipping Cost</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="currentBalance">
-            <div class="d-flex">
-              <span>Current Balance</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="date">
-            <div class="d-flex">
-              <span>Date</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="ban">
-            <div class="d-flex">
-              <span>Ban</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="isPrinter">
-            <div class="d-flex">
-              <span>Is Printer</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let users of users; trackBy: trackId" data-cy="entityTable">
-          <td>
-            <a [routerLink]="['/users', users.id, 'view']">{{ users.id }}</a>
-          </td>
-          <td>{{ users.name }}</td>
-          <td>{{ users.photo }}</td>
-          <td>{{ users.zip }}</td>
-          <td>{{ users.city }}</td>
-          <td>{{ users.country }}</td>
-          <td>{{ users.address }}</td>
-          <td>{{ users.phone }}</td>
-          <td>{{ users.fax }}</td>
-          <td>{{ users.email }}</td>
-          <td>{{ users.password }}</td>
-          <td>{{ users.rememberToken }}</td>
-          <td>{{ users.createdAt | formatMediumDate }}</td>
-          <td>{{ users.updatedAt | formatMediumDate }}</td>
-          <td>{{ users.isProvider }}</td>
-          <td>{{ users.status }}</td>
-          <td>{{ users.verificationLink }}</td>
-          <td>{{ users.emailVerified }}</td>
-          <td>{{ users.affilateCode }}</td>
-          <td>{{ users.affilateIncome }}</td>
-          <td>{{ users.shopName }}</td>
-          <td>{{ users.ownerName }}</td>
-          <td>{{ users.shopNumber }}</td>
-          <td>{{ users.shopAddress }}</td>
-          <td>{{ users.regNumber }}</td>
-          <td>{{ users.shopMessage }}</td>
-          <td>{{ users.shopDetails }}</td>
-          <td>{{ users.shopImage }}</td>
-          <td>{{ users.fUrl }}</td>
-          <td>{{ users.gUrl }}</td>
-          <td>{{ users.tUrl }}</td>
-          <td>{{ users.lUrl }}</td>
-          <td>{{ users.isVendor }}</td>
-          <td>{{ users.fCheck }}</td>
-          <td>{{ users.gCheck }}</td>
-          <td>{{ users.tCheck }}</td>
-          <td>{{ users.lCheck }}</td>
-          <td>{{ users.mailSent }}</td>
-          <td>{{ users.shippingCost }}</td>
-          <td>{{ users.currentBalance }}</td>
-          <td>{{ users.date | formatMediumDate }}</td>
-          <td>{{ users.ban }}</td>
-          <td>{{ users.isPrinter }}</td>
-          <td class="text-end">
-            <div class="btn-group">
-              <a [routerLink]="['/users', users.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
-                <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline">view</span>
-              </a>
-
-              <a [routerLink]="['/users', users.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
-                <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline">edit</span>
-              </a>
-
-              <button type="submit" (click)="delete(users)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
-                <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline">delete</span>
-              </button>
-            </div>
-          </td>
+        <tr *ngFor="let user of filteredUsers; trackBy: trackId" data-cy="entityTable">
+          <!-- Display the desired attributes -->
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.shopName }}</td>
+          <td>{{ user.isVendor }}</td>
+          <td>{{ user.shopNumber }}</td>
+          <td>{{ user.status }}</td>
+          <!-- Add or remove attributes as needed -->
         </tr>
       </tbody>
     </table>

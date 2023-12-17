@@ -33,7 +33,8 @@ import FormatMediumDatePipe from '../../../shared/date/format-medium-date.pipe';
 export class UsersComponent implements OnInit {
   users?: IUsers[];
   isLoading = false;
-
+  public userEmail: string = '';
+  public filteredUsers?: IUsers[];
   predicate = 'id';
   ascending = true;
 
@@ -49,8 +50,12 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.load();
+    this.filteredUsers = this.users; // Initialize with all users
   }
 
+  searchUsers() {
+    this.filteredUsers = this.users?.filter(user => user.email?.includes(this.userEmail));
+  }
   delete(users: IUsers): void {
     const modalRef = this.modalService.open(UsersDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.users = users;

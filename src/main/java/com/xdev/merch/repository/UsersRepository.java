@@ -11,7 +11,4 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface UsersRepository extends JpaRepository<Users, Long> {
-    @Query("SELECT u.id, u.login, u, u.name, u.email, u.act, u.createdAt, u.updatedAt, u.status FROM Users u ")
-    List<Users> findUserDetailsById(@Param("userId") Long userId);
-}
+public interface UsersRepository extends JpaRepository<Users, Long> {}

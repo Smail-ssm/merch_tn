@@ -12,6 +12,7 @@ import { SortService } from 'app/shared/sort/sort.service';
 import { IOrders } from '../orders.model';
 import { EntityArrayResponseType, OrdersService } from '../service/orders.service';
 import { OrdersDeleteDialogComponent } from '../delete/orders-delete-dialog.component';
+import { IProducts } from '../../products/products.model';
 
 @Component({
   standalone: true,
@@ -31,7 +32,8 @@ import { OrdersDeleteDialogComponent } from '../delete/orders-delete-dialog.comp
 export class OrdersComponent implements OnInit {
   orders?: IOrders[];
   isLoading = false;
-
+  searchQuery: string = '';
+  filteredOrders: IOrders[] = [];
   predicate = 'id';
   ascending = true;
 
@@ -69,8 +71,15 @@ export class OrdersComponent implements OnInit {
     this.loadFromBackendWithRouteInformations().subscribe({
       next: (res: EntityArrayResponseType) => {
         this.onResponseSuccess(res);
+        this.applySearchFilter(); // Added to apply search filter after fetching products
       },
     });
+  }
+
+  applySearchFilter(): void {
+    if (this.orders) {
+      this.filteredOrders = this.orders.filter(order => order.orderNumber?.toLowerCase().includes(this.searchQuery.toLowerCase()));
+    }
   }
 
   navigateToWithComponentValues(): void {

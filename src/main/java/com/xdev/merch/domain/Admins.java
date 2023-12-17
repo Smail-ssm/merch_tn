@@ -32,7 +32,7 @@ public class Admins implements Serializable {
     @Column(name = "phone", nullable = false)
     private String phone;
 
-    @Column(name = "role")
+    @Column(name = "role_id")
     private String role;
 
     @Column(name = "photo")
@@ -49,10 +49,10 @@ public class Admins implements Serializable {
     @Column(name = "remember_token")
     private String rememberToken;
 
-    @Column(name = "createdat")
+    @Column(name = "created_at")
     private ZonedDateTime createdat;
 
-    @Column(name = "updatedat")
+    @Column(name = "updated_at")
     private ZonedDateTime updatedat;
 
     @Column(name = "shop_name")

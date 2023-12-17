@@ -37,7 +37,7 @@ public class Orders implements Serializable {
     private String pickupLocation;
 
     @NotNull
-    @Column(name = "totalQty")
+    @Column(name = "total_qty")
     private String totalQty;
 
     @NotNull

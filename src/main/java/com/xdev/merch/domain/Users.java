@@ -49,7 +49,7 @@ public class Users implements Serializable {
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column(name = "password_hash")
+    @Column(name = "password")
     private String password;
 
     @Column(name = "remember_token")

@@ -1,22 +1,29 @@
 <div>
   <h2 id="page-heading" data-cy="AdminsHeading">
     <span>Admins</span>
+    <div class="d-flex justify-content-start align-items-center">
+      <!-- Search icon button -->
 
-    <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
-        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span>Refresh list</span>
-      </button>
+      <!-- Search input field (visible only when isSearchBarVisible is true) -->
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Search by name..." [(ngModel)]="searchQuery" (keyup.enter)="filterAdmins()" />
+        <button class="btn btn-outline-secondary me-2" type="button" (click)="filterAdmins()">
+          <fa-icon icon="search"></fa-icon>
+        </button>
+        <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+          <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        </button>
 
-      <button
-        id="jh-create-entity"
-        data-cy="entityCreateButton"
-        class="btn btn-primary jh-create-entity create-admins"
-        [routerLink]="['/admins/new']"
-      >
-        <fa-icon icon="plus"></fa-icon>
-        <span>Create a new Admins</span>
-      </button>
+        <!-- Create new Products button with icon only -->
+        <button
+          id="jh-create-entity"
+          data-cy="entityCreateButton"
+          class="btn btn-primary jh-create-entity create-products"
+          [routerLink]="['/admins/new']"
+        >
+          <fa-icon icon="plus"></fa-icon>
+        </button>
+      </div>
     </div>
   </h2>
 
@@ -31,113 +38,40 @@
   <div class="table-responsive table-entities" id="entities" *ngIf="admins && admins.length > 0">
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
-        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
-          <th scope="col" jhiSortBy="id">
-            <div class="d-flex">
-              <span>id</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="name">
-            <div class="d-flex">
-              <span>Name</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="email">
-            <div class="d-flex">
-              <span>Email</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="phone">
-            <div class="d-flex">
-              <span>Phone</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="role">
-            <div class="d-flex">
-              <span>Role</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="photo">
-            <div class="d-flex">
-              <span>Photo</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="password">
-            <div class="d-flex">
-              <span>Password</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="status">
-            <div class="d-flex">
-              <span>Status</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="rememberToken">
-            <div class="d-flex">
-              <span>Remember Token</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="createdat">
-            <div class="d-flex">
-              <span>Createdat</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="updatedat">
-            <div class="d-flex">
-              <span>Updatedat</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="shopName">
-            <div class="d-flex">
-              <span>Shop Name</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Role</th>
+          <th scope="col">Status</th>
+          <th scope="col">Created At</th>
+          <th scope="col">Updated At</th>
           <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let admins of admins; trackBy: trackId" data-cy="entityTable">
+        <tr *ngFor="let admin of admins; trackBy: trackId" data-cy="entityTable">
           <td>
-            <a [routerLink]="['/admins', admins.id, 'view']">{{ admins.id }}</a>
+            <a [routerLink]="['/admins', admin.id, 'view']">{{ admin.id }}</a>
           </td>
-          <td>{{ admins.name }}</td>
-          <td>{{ admins.email }}</td>
-          <td>{{ admins.phone }}</td>
-          <td>{{ admins.role }}</td>
-          <td>{{ admins.photo }}</td>
-          <td>{{ admins.password }}</td>
-          <td>{{ admins.status }}</td>
-          <td>{{ admins.rememberToken }}</td>
-          <td>{{ admins.createdat | formatMediumDatetime }}</td>
-          <td>{{ admins.updatedat | formatMediumDatetime }}</td>
-          <td>{{ admins.shopName }}</td>
+          <td>{{ admin.name }}</td>
+          <td>{{ admin.email }}</td>
+          <td>{{ admin.phone }}</td>
+          <td>{{ admin.role }}</td>
+          <td>{{ admin.status }}</td>
+          <td>{{ admin.createdat | formatMediumDatetime }}</td>
+          <td>{{ admin.updatedat | formatMediumDatetime }}</td>
           <td class="text-end">
             <div class="btn-group">
-              <a [routerLink]="['/admins', admins.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+              <a [routerLink]="['/admins', admin.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
                 <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline">view</span>
               </a>
-
-              <a [routerLink]="['/admins', admins.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+              <a [routerLink]="['/admins', admin.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
                 <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline">edit</span>
               </a>
-
-              <button type="submit" (click)="delete(admins)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+              <button type="submit" (click)="delete(admin)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
                 <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline">delete</span>
               </button>
             </div>
           </td>

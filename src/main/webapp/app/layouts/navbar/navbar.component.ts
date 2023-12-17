@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
 
 import SharedModule from 'app/shared/shared.module';
 import HasAnyAuthorityDirective from 'app/shared/auth/has-any-authority.directive';
@@ -10,6 +10,7 @@ import { LoginService } from 'app/login/login.service';
 import { ProfileService } from 'app/layouts/profiles/profile.service';
 import { EntityNavbarItems } from 'app/entities/entity-navbar-items';
 import NavbarItem from './navbar-item.model';
+import { filter } from 'rxjs/operators';
 
 @Component({
   standalone: true,
@@ -25,12 +26,14 @@ export default class NavbarComponent implements OnInit {
   version = '';
   account: Account | null = null;
   entitiesNavbarItems: NavbarItem[] = [];
+  showNavbar: boolean = true;
 
   constructor(
     private loginService: LoginService,
     private accountService: AccountService,
     private profileService: ProfileService,
     private router: Router,
+    private route: ActivatedRoute,
   ) {
     if (VERSION) {
       this.version = VERSION.toLowerCase().startsWith('v') ? VERSION : `v${VERSION}`;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Data, ParamMap, Router, RouterModule } from '@angular/router';
 import { combineLatest, filter, Observable, switchMap, tap } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -12,6 +12,7 @@ import { SortService } from 'app/shared/sort/sort.service';
 import { IProducts } from '../products.model';
 import { EntityArrayResponseType, ProductsService } from '../service/products.service';
 import { ProductsDeleteDialogComponent } from '../delete/products-delete-dialog.component';
+import { SlicePipe } from '@angular/common';
 
 @Component({
   standalone: true,
@@ -26,12 +27,14 @@ import { ProductsDeleteDialogComponent } from '../delete/products-delete-dialog.
     DurationPipe,
     FormatMediumDatetimePipe,
     FormatMediumDatePipe,
+    SlicePipe,
   ],
 })
 export class ProductsComponent implements OnInit {
   products?: IProducts[];
+  filteredProducts: IProducts[] = [];
   isLoading = false;
-
+  searchQuery: string = ''; // Added searchQuery property
   predicate = 'id';
   ascending = true;
 
@@ -48,7 +51,6 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
     this.load();
   }
-
   delete(products: IProducts): void {
     const modalRef = this.modalService.open(ProductsDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.products = products;
@@ -69,8 +71,16 @@ export class ProductsComponent implements OnInit {
     this.loadFromBackendWithRouteInformations().subscribe({
       next: (res: EntityArrayResponseType) => {
         this.onResponseSuccess(res);
+        this.applySearchFilter(); // Added to apply search filter after fetching products
       },
     });
+  }
+
+  applySearchFilter(): void {
+    if (this.products) {
+      // Filter products based on search query
+      this.filteredProducts = this.products.filter(product => product.name?.toLowerCase().includes(this.searchQuery.toLowerCase()));
+    }
   }
 
   navigateToWithComponentValues(): void {

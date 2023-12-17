@@ -2,21 +2,36 @@
   <h2 id="page-heading" data-cy="ProductsHeading">
     <span>Products</span>
 
-    <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
-        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span>Refresh list</span>
-      </button>
+    <div class="d-flex justify-content-start align-items-center">
+      <!-- Search icon button -->
 
-      <button
-        id="jh-create-entity"
-        data-cy="entityCreateButton"
-        class="btn btn-primary jh-create-entity create-products"
-        [routerLink]="['/products/new']"
-      >
-        <fa-icon icon="plus"></fa-icon>
-        <span>Create a new Products</span>
-      </button>
+      <!-- Search input field (visible only when isSearchBarVisible is true) -->
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search by name..."
+          [(ngModel)]="searchQuery"
+          (keyup.enter)="applySearchFilter()"
+        />
+        <button class="btn btn-outline-secondary me-2" type="button" (click)="applySearchFilter()">
+          <fa-icon icon="search"></fa-icon>
+        </button>
+        <!-- Refresh list button with icon only -->
+        <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+          <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        </button>
+
+        <!-- Create new Products button with icon only -->
+        <button
+          id="jh-create-entity"
+          data-cy="entityCreateButton"
+          class="btn btn-primary jh-create-entity create-products"
+          [routerLink]="['/products/new']"
+        >
+          <fa-icon icon="plus"></fa-icon>
+        </button>
+      </div>
     </div>
   </h2>
 
@@ -32,207 +47,9 @@
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
-          <th scope="col" jhiSortBy="id">
-            <div class="d-flex">
-              <span>id</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="sku">
-            <div class="d-flex">
-              <span>Sku</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="productType">
-            <div class="d-flex">
-              <span>Product Type</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="affiliateLink">
-            <div class="d-flex">
-              <span>Affiliate Link</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="userId">
-            <div class="d-flex">
-              <span>User Id</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="categoryId">
-            <div class="d-flex">
-              <span>Category Id</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="subcategoryId">
-            <div class="d-flex">
-              <span>Subcategory Id</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="childcategoryId">
-            <div class="d-flex">
-              <span>Childcategory Id</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="attributes">
-            <div class="d-flex">
-              <span>Attributes</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
           <th scope="col" jhiSortBy="name">
             <div class="d-flex">
               <span>Name</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="slug">
-            <div class="d-flex">
-              <span>Slug</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="photo">
-            <div class="d-flex">
-              <span>Photo</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="thumbnail">
-            <div class="d-flex">
-              <span>Thumbnail</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="file">
-            <div class="d-flex">
-              <span>File</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="size">
-            <div class="d-flex">
-              <span>Size</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="sizeQty">
-            <div class="d-flex">
-              <span>Size Qty</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="sizePrice">
-            <div class="d-flex">
-              <span>Size Price</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="color">
-            <div class="d-flex">
-              <span>Color</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="price">
-            <div class="d-flex">
-              <span>Price</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="previousPrice">
-            <div class="d-flex">
-              <span>Previous Price</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="details">
-            <div class="d-flex">
-              <span>Details</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="stock">
-            <div class="d-flex">
-              <span>Stock</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="policy">
-            <div class="d-flex">
-              <span>Policy</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="status">
-            <div class="d-flex">
-              <span>Status</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="views">
-            <div class="d-flex">
-              <span>Views</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="tags">
-            <div class="d-flex">
-              <span>Tags</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="features">
-            <div class="d-flex">
-              <span>Features</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="colors">
-            <div class="d-flex">
-              <span>Colors</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="productCondition">
-            <div class="d-flex">
-              <span>Product Condition</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="ship">
-            <div class="d-flex">
-              <span>Ship</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="isMeta">
-            <div class="d-flex">
-              <span>Is Meta</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="metaTag">
-            <div class="d-flex">
-              <span>Meta Tag</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="metaDescription">
-            <div class="d-flex">
-              <span>Meta Description</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="youtube">
-            <div class="d-flex">
-              <span>Youtube</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
@@ -242,224 +59,45 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="license">
+          <th scope="col" jhiSortBy="stock">
             <div class="d-flex">
-              <span>License</span>
+              <span>Stock</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="licenseQty">
+          <th scope="col" jhiSortBy="price">
             <div class="d-flex">
-              <span>License Qty</span>
+              <span>Price</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="link">
+          <th scope="col" jhiSortBy="status">
             <div class="d-flex">
-              <span>Link</span>
+              <span>Status</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="platform">
-            <div class="d-flex">
-              <span>Platform</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="region">
-            <div class="d-flex">
-              <span>Region</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="licenceType">
-            <div class="d-flex">
-              <span>Licence Type</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="measure">
-            <div class="d-flex">
-              <span>Measure</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="featured">
-            <div class="d-flex">
-              <span>Featured</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="best">
-            <div class="d-flex">
-              <span>Best</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="top">
-            <div class="d-flex">
-              <span>Top</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="hot">
-            <div class="d-flex">
-              <span>Hot</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="latest">
-            <div class="d-flex">
-              <span>Latest</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="big">
-            <div class="d-flex">
-              <span>Big</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="trending">
-            <div class="d-flex">
-              <span>Trending</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="sale">
-            <div class="d-flex">
-              <span>Sale</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="createdAt">
-            <div class="d-flex">
-              <span>Created At</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="updatedAt">
-            <div class="d-flex">
-              <span>Updated At</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="isDiscount">
-            <div class="d-flex">
-              <span>Is Discount</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="discountDate">
-            <div class="d-flex">
-              <span>Discount Date</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="wholeSellQty">
-            <div class="d-flex">
-              <span>Whole Sell Qty</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="wholeSellDiscount">
-            <div class="d-flex">
-              <span>Whole Sell Discount</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="isCatalog">
-            <div class="d-flex">
-              <span>Is Catalog</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="catalogId">
-            <div class="d-flex">
-              <span>Catalog Id</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let products of products; trackBy: trackId" data-cy="entityTable">
+        <tr *ngFor="let product of filteredProducts; trackBy: trackId" data-cy="entityTable">
           <td>
-            <a [routerLink]="['/products', products.id, 'view']">{{ products.id }}</a>
+            <a [routerLink]="['/products', product.id, 'view']">{{ product.name }}</a>
           </td>
-          <td>{{ products.sku }}</td>
-          <td>{{ products.productType }}</td>
-          <td>{{ products.affiliateLink }}</td>
-          <td>{{ products.userId }}</td>
-          <td>{{ products.categoryId }}</td>
-          <td>{{ products.subcategoryId }}</td>
-          <td>{{ products.childcategoryId }}</td>
-          <td>{{ products.attributes }}</td>
-          <td>{{ products.name }}</td>
-          <td>{{ products.slug }}</td>
-          <td>{{ products.photo }}</td>
-          <td>{{ products.thumbnail }}</td>
-          <td>{{ products.file }}</td>
-          <td>{{ products.size }}</td>
-          <td>{{ products.sizeQty }}</td>
-          <td>{{ products.sizePrice }}</td>
-          <td>{{ products.color }}</td>
-          <td>{{ products.price }}</td>
-          <td>{{ products.previousPrice }}</td>
-          <td>{{ products.details }}</td>
-          <td>{{ products.stock }}</td>
-          <td>{{ products.policy }}</td>
-          <td>{{ products.status }}</td>
-          <td>{{ products.views }}</td>
-          <td>{{ products.tags }}</td>
-          <td>{{ products.features }}</td>
-          <td>{{ products.colors }}</td>
-          <td>{{ products.productCondition }}</td>
-          <td>{{ products.ship }}</td>
-          <td>{{ products.isMeta }}</td>
-          <td>{{ products.metaTag }}</td>
-          <td>{{ products.metaDescription }}</td>
-          <td>{{ products.youtube }}</td>
-          <td>{{ products.type }}</td>
-          <td>{{ products.license }}</td>
-          <td>{{ products.licenseQty }}</td>
-          <td>{{ products.link }}</td>
-          <td>{{ products.platform }}</td>
-          <td>{{ products.region }}</td>
-          <td>{{ products.licenceType }}</td>
-          <td>{{ products.measure }}</td>
-          <td>{{ products.featured }}</td>
-          <td>{{ products.best }}</td>
-          <td>{{ products.top }}</td>
-          <td>{{ products.hot }}</td>
-          <td>{{ products.latest }}</td>
-          <td>{{ products.big }}</td>
-          <td>{{ products.trending }}</td>
-          <td>{{ products.sale }}</td>
-          <td>{{ products.createdAt | formatMediumDatetime }}</td>
-          <td>{{ products.updatedAt | formatMediumDatetime }}</td>
-          <td>{{ products.isDiscount }}</td>
-          <td>{{ products.discountDate }}</td>
-          <td>{{ products.wholeSellQty }}</td>
-          <td>{{ products.wholeSellDiscount }}</td>
-          <td>{{ products.isCatalog }}</td>
-          <td>{{ products.catalogId }}</td>
+          <td>{{ product.type }}</td>
+          <td>{{ product.stock }}</td>
+          <td>{{ product.price }}</td>
+          <td>{{ product.status }}</td>
           <td class="text-end">
             <div class="btn-group">
-              <a [routerLink]="['/products', products.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+              <a [routerLink]="['/products', product.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
                 <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline">view</span>
               </a>
-
-              <a [routerLink]="['/products', products.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+              <a [routerLink]="['/products', product.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
                 <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline">edit</span>
               </a>
-
-              <button type="submit" (click)="delete(products)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+              <button type="submit" (click)="delete(product)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
                 <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline">delete</span>
               </button>
             </div>
           </td>

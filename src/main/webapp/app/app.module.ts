@@ -19,8 +19,8 @@ import { fontAwesomeIcons } from './config/font-awesome-icons';
 import MainComponent from './layouts/main/main.component';
 import MainModule from './layouts/main/main.module';
 import { AppPageTitleStrategy } from './app-page-title-strategy';
-import { UsersLoginComponent } from './entities/users/login/users-login.component';
 import { FormsModule } from '@angular/forms';
+import { MloginComponent } from './entities/mercher/mlogin/mlogin.component';
 
 @NgModule({
   imports: [
@@ -41,7 +41,7 @@ import { FormsModule } from '@angular/forms';
     { provide: TitleStrategy, useClass: AppPageTitleStrategy },
   ],
   bootstrap: [MainComponent],
-  declarations: [UsersLoginComponent],
+  declarations: [MloginComponent],
 })
 export class AppModule {
   constructor(applicationConfigService: ApplicationConfigService, iconLibrary: FaIconLibrary, dpConfig: NgbDatepickerConfig) {

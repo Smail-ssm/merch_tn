@@ -44,6 +44,7 @@ export class AdminsComponent implements OnInit {
   ) {}
 
   trackId = (_index: number, item: IAdmins): number => this.adminsService.getAdminsIdentifier(item);
+  searchQuery: any;
 
   ngOnInit(): void {
     this.load();
@@ -69,6 +70,7 @@ export class AdminsComponent implements OnInit {
     this.loadFromBackendWithRouteInformations().subscribe({
       next: (res: EntityArrayResponseType) => {
         this.onResponseSuccess(res);
+        this.filterAdmins(); // Added to apply search filter after fetching products
       },
     });
   }
@@ -128,6 +130,20 @@ export class AdminsComponent implements OnInit {
       return [];
     } else {
       return [predicate + ',' + ascendingQueryParam];
+    }
+  }
+
+  filterAdmins(): void {
+    if (!this.searchQuery) {
+      // If search text is empty, show all admins
+      this.load();
+    } else {
+      // If search text is present, filter admins by email or name
+      this.admins = this.admins?.filter(
+        admin =>
+          admin.email?.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+          admin.name?.toLowerCase().includes(this.searchQuery.toLowerCase()),
+      );
     }
   }
 }
