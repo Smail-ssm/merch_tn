@@ -1,6 +1,7 @@
 package com.xdev.merch.repository;
 
 import com.xdev.merch.domain.User;
+import com.xdev.merch.domain.Users;
 import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
@@ -26,5 +27,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @EntityGraph(attributePaths = "authorities")
     Optional<User> findOneWithAuthoritiesByEmailIgnoreCase(String email);
 
-    Page<User> findAllByIdNotNullAndActivatedIsTrue(Pageable pageable);
+    Page<Users> findAllByIdNotNullAndActivatedIsTrue(Pageable pageable);
 }

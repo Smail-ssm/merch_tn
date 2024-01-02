@@ -159,6 +159,100 @@ public class Users implements Serializable {
     @Column(name = "is_printer")
     private Boolean isPrinter;
 
+    public Users() {}
+
+    public Users(
+        Long id,
+        String name,
+        String photo,
+        String zip,
+        String city,
+        String country,
+        String address,
+        String phone,
+        String fax,
+        String email,
+        String password,
+        String rememberToken,
+        LocalDate createdAt,
+        LocalDate updatedAt,
+        Boolean isProvider,
+        Boolean status,
+        String verificationLink,
+        String emailVerified,
+        String affilateCode,
+        Double affilateIncome,
+        String shopName,
+        String ownerName,
+        String shopNumber,
+        String shopAddress,
+        String regNumber,
+        String shopMessage,
+        String shopDetails,
+        String shopImage,
+        String fUrl,
+        String gUrl,
+        String tUrl,
+        String lUrl,
+        Boolean isVendor,
+        Boolean fCheck,
+        Boolean gCheck,
+        Boolean tCheck,
+        Boolean lCheck,
+        Boolean mailSent,
+        Double shippingCost,
+        Double currentBalance,
+        LocalDate date,
+        Boolean ban,
+        Boolean isPrinter
+    ) {
+        this.id = id;
+        this.name = name;
+        this.photo = photo;
+        this.zip = zip;
+        this.city = city;
+        this.country = country;
+        this.address = address;
+        this.phone = phone;
+        this.fax = fax;
+        this.email = email;
+        this.password = password;
+        this.rememberToken = rememberToken;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.isProvider = isProvider;
+        this.status = status;
+        this.verificationLink = verificationLink;
+        this.emailVerified = emailVerified;
+        this.affilateCode = affilateCode;
+        this.affilateIncome = affilateIncome;
+        this.shopName = shopName;
+        this.ownerName = ownerName;
+        this.shopNumber = shopNumber;
+        this.shopAddress = shopAddress;
+        this.regNumber = regNumber;
+        this.shopMessage = shopMessage;
+        this.shopDetails = shopDetails;
+        this.shopImage = shopImage;
+        this.fUrl = fUrl;
+        this.gUrl = gUrl;
+        this.tUrl = tUrl;
+        this.lUrl = lUrl;
+        this.isVendor = isVendor;
+        this.fCheck = fCheck;
+        this.gCheck = gCheck;
+        this.tCheck = tCheck;
+        this.lCheck = lCheck;
+        this.mailSent = mailSent;
+        this.shippingCost = shippingCost;
+        this.currentBalance = currentBalance;
+        this.date = date;
+        this.ban = ban;
+        this.isPrinter = isPrinter;
+    }
+
+    public Users(Users users) {}
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {

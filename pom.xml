@@ -88,6 +88,24 @@
 
     <dependencies>
         <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>0.11.2</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>0.11.2</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>0.11.2</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
             <groupId>tech.jhipster</groupId>
             <artifactId>jhipster-framework</artifactId>
         </dependency>
@@ -252,6 +270,11 @@
             <groupId>org.testcontainers</groupId>
             <artifactId>mysql</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.xdev.merch</groupId>
+            <artifactId>merch-tn</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

@@ -209,3 +209,6 @@ jhipster:
 # ===================================================================
 
 # application:
+app:
+  jwtSecret: 'xdev'
+  jwtExpirationInMs: 86400000 # Example: Token expires in 24 hours # Example: Token expires in 24 hours

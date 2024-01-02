@@ -13,6 +13,7 @@ import { IUsers } from '../users.model';
 import { EntityArrayResponseType, UsersService } from '../service/users.service';
 import { UsersDeleteDialogComponent } from '../delete/users-delete-dialog.component';
 import FormatMediumDatePipe from '../../../shared/date/format-medium-date.pipe';
+import { IProducts } from '../../products/products.model';
 
 @Component({
   standalone: true,
@@ -33,11 +34,10 @@ import FormatMediumDatePipe from '../../../shared/date/format-medium-date.pipe';
 export class UsersComponent implements OnInit {
   users?: IUsers[];
   isLoading = false;
-  public userEmail: string = '';
-  public filteredUsers?: IUsers[];
+  filteredUsers?: IUsers[];
   predicate = 'id';
   ascending = true;
-
+  searchQuery: string = ''; // Added searchQuery property
   constructor(
     protected usersService: UsersService,
     protected activatedRoute: ActivatedRoute,
@@ -50,12 +50,8 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.load();
-    this.filteredUsers = this.users; // Initialize with all users
   }
 
-  searchUsers() {
-    this.filteredUsers = this.users?.filter(user => user.email?.includes(this.userEmail));
-  }
   delete(users: IUsers): void {
     const modalRef = this.modalService.open(UsersDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.users = users;
@@ -68,14 +64,23 @@ export class UsersComponent implements OnInit {
       .subscribe({
         next: (res: EntityArrayResponseType) => {
           this.onResponseSuccess(res);
+          this.applySearchFilter(); // Added to apply search filter after fetching products
         },
       });
+  }
+
+  applySearchFilter(): void {
+    if (this.users) {
+      // Filter products based on search query
+      this.filteredUsers = this.users.filter(user => user.email?.toLowerCase().includes(this.searchQuery.toLowerCase()));
+    }
   }
 
   load(): void {
     this.loadFromBackendWithRouteInformations().subscribe({
       next: (res: EntityArrayResponseType) => {
         this.onResponseSuccess(res);
+        this.filteredUsers = this.users?.slice(); // Initialize filteredUsers with a copy of the complete list
       },
     });
   }

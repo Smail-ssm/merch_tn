@@ -4,7 +4,6 @@
   integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
   crossorigin="anonymous"
 />
-<div>5 5 5 5 5 5 5 5</div>
 <div class="flex-r login-wrapper">
   <div class="login-text">
     <div class="logo">
@@ -31,16 +30,11 @@
         </div>
       </div>
 
-      <div class="check">
-        <input type="checkbox" name="" id="" />
-        <span>I've read and agree with T&C</span>
-      </div>
+      <div></div>
 
-      <input class="btn" type="submit" value="Create an Account" />
-      <span class="extra-line">
-        <span>Already have an account?</span>
-        <a href="#">Sign In</a>
-      </span>
+      <div *ngIf="authenticationError" class="error-message">Authentication failed. Please check your credentials.</div>
+
+      <button (click)="onSubmit()">Sign In</button>
     </form>
   </div>
 </div>

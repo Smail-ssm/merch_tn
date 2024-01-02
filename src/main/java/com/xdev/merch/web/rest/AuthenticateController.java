@@ -37,6 +37,8 @@ public class AuthenticateController {
     private final Logger log = LoggerFactory.getLogger(AuthenticateController.class);
 
     private final JwtEncoder jwtEncoder;
+    private final AuthenticationManagerBuilder authenticationManagerBuilder;
+    private final TokenProvider tokenProvider;
 
     @Value("${jhipster.security.authentication.jwt.token-validity-in-seconds:0}")
     private long tokenValidityInSeconds;
@@ -44,11 +46,14 @@ public class AuthenticateController {
     @Value("${jhipster.security.authentication.jwt.token-validity-in-seconds-for-remember-me:0}")
     private long tokenValidityInSecondsForRememberMe;
 
-    private final AuthenticationManagerBuilder authenticationManagerBuilder;
-
-    public AuthenticateController(JwtEncoder jwtEncoder, AuthenticationManagerBuilder authenticationManagerBuilder) {
+    public AuthenticateController(
+        JwtEncoder jwtEncoder,
+        AuthenticationManagerBuilder authenticationManagerBuilder,
+        TokenProvider tokenProvider
+    ) {
         this.jwtEncoder = jwtEncoder;
         this.authenticationManagerBuilder = authenticationManagerBuilder;
+        this.tokenProvider = tokenProvider;
     }
 
     @PostMapping("/authenticate")
@@ -101,6 +106,19 @@ public class AuthenticateController {
         return this.jwtEncoder.encode(JwtEncoderParameters.from(jwsHeader, claims)).getTokenValue();
     }
 
+    //    @PostMapping("/authenticate")
+//    public ResponseEntity<AuthenticationResponse> authenticate(@Valid @RequestBody LoginRequest loginRequest) {
+//        Authentication authentication = new UsernamePasswordAuthenticationToken(
+//            loginRequest.getUsername(),
+//            loginRequest.getPassword()
+//        );
+//
+//        SecurityContextHolder.getContext().setAuthentication(authentication);
+//        String jwt = tokenProvider.createToken(authentication);
+//
+//        return ResponseEntity.ok(new AuthenticationResponse(jwt));
+//    }
+
     /**
      * Object to return as body in JWT Authentication.
      */
@@ -120,5 +138,31 @@ public class AuthenticateController {
         void setIdToken(String idToken) {
             this.idToken = idToken;
         }
+    }
+
+    static class LoginRequest {
+        private String username;
+        private String password;public String getUsername() {
+    return username;
+}public void setUsername(String username) {
+    this.username = username;
+}public String getPassword() {
+    return password;
+}public void setPassword(String password) {
+    this.password = password;
+}
+// Getters and setters
+
+        // You can add validation annotations as needed
+    }
+
+    static class AuthenticationResponse {
+        private final String token;
+
+        public AuthenticationResponse(String token) {
+            this.token = token;
+        }
+
+        // Getters and setters
     }
 }

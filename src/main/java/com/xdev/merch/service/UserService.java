@@ -3,8 +3,10 @@ package com.xdev.merch.service;
 import com.xdev.merch.config.Constants;
 import com.xdev.merch.domain.Authority;
 import com.xdev.merch.domain.User;
+import com.xdev.merch.domain.Users;
 import com.xdev.merch.repository.AuthorityRepository;
 import com.xdev.merch.repository.UserRepository;
+import com.xdev.merch.repository.UsersRepository;
 import com.xdev.merch.security.AuthoritiesConstants;
 import com.xdev.merch.security.SecurityUtils;
 import com.xdev.merch.service.dto.AdminUserDTO;
@@ -30,6 +32,8 @@ import tech.jhipster.security.RandomUtil;
 @Transactional
 public class UserService {
 
+    UsersRepository usersRepository;
+
     private final Logger log = LoggerFactory.getLogger(UserService.class);
 
     private final UserRepository userRepository;
@@ -38,8 +42,14 @@ public class UserService {
 
     private final AuthorityRepository authorityRepository;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository) {
+    public UserService(
+        UserRepository userRepository,
+        UsersRepository usersRepository,
+        PasswordEncoder passwordEncoder,
+        AuthorityRepository authorityRepository
+    ) {
         this.userRepository = userRepository;
+        this.usersRepository = usersRepository;
         this.passwordEncoder = passwordEncoder;
         this.authorityRepository = authorityRepository;
     }
@@ -259,8 +269,8 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public Page<UserDTO> getAllPublicUsers(Pageable pageable) {
-        return userRepository.findAllByIdNotNullAndActivatedIsTrue(pageable).map(UserDTO::new);
+    public Page<Users> getAllPublicUsers(Pageable pageable) {
+        return usersRepository.findAll(pageable);
     }
 
     @Transactional(readOnly = true)

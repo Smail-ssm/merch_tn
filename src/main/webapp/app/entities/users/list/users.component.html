@@ -4,8 +4,14 @@
 
     <div class="d-flex justify-content-start align-items-center">
       <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Search by name..." [(ngModel)]="userEmail" (keyup.enter)="searchUsers()" />
-        <button class="btn btn-outline-secondary me-2" type="button" (click)="searchUsers()">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search by name..."
+          [(ngModel)]="searchQuery"
+          (keyup.enter)="applySearchFilter()"
+        />
+        <button class="btn btn-outline-secondary me-2" type="button" (click)="applySearchFilter()">
           <fa-icon icon="search"></fa-icon>
         </button>
         <!-- Refresh list button with icon only -->
@@ -18,7 +24,7 @@
           id="jh-create-entity"
           data-cy="entityCreateButton"
           class="btn btn-primary jh-create-entity create-products"
-          [routerLink]="['/users/new']"
+          [routerLink]="['/products/new']"
         >
           <fa-icon icon="plus"></fa-icon>
         </button>
@@ -77,8 +83,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let user of filteredUsers; trackBy: trackId" data-cy="entityTable">
+        <tr *ngFor="let user of users; trackBy: trackId" data-cy="entityTable">
           <!-- Display the desired attributes -->
+          <td>
+            <a [routerLink]="['/users', user.id, 'view']">{{ user.id }}</a>
+          </td>
           <td>{{ user.name }}</td>
           <td>{{ user.email }}</td>
           <td>{{ user.shopName }}</td>
