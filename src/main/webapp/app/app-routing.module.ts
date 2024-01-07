@@ -9,7 +9,8 @@ import { errorRoute } from './layouts/error/error.route';
 import HomeComponent from './home/home.component';
 import NavbarComponent from './layouts/navbar/navbar.component';
 import LoginComponent from './login/login.component';
-import { MloginComponent } from './entities/mercher/mlogin/mlogin.component';
+import { MloginComponent } from './entities/users/mlogin/mlogin.component';
+import { DashboardComponent } from './layouts/dashboard/dashboard.component';
 
 @NgModule({
   imports: [
@@ -23,6 +24,8 @@ import { MloginComponent } from './entities/mercher/mlogin/mlogin.component';
             hideNavbar: true,
           },
         },
+        { path: 'dashboard', component: DashboardComponent },
+
         {
           path: '',
           children: [

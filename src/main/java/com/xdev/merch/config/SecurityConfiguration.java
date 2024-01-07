@@ -10,6 +10,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer.FrameOptionsConfig;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -24,6 +25,7 @@ import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 import tech.jhipster.config.JHipsterProperties;
 
 @Configuration
+@EnableWebSecurity
 @EnableMethodSecurity(securedEnabled = true)
 public class SecurityConfiguration {
 
@@ -66,6 +68,8 @@ public class SecurityConfiguration {
                     .requestMatchers(mvc.pattern("/swagger-ui/**")).permitAll()
                     .requestMatchers(mvc.pattern(HttpMethod.POST, "/api/authenticate")).permitAll()
                     .requestMatchers(mvc.pattern(HttpMethod.GET, "/api/authenticate")).permitAll()
+                    .requestMatchers(mvc.pattern(HttpMethod.POST, "/api/merchauth")).permitAll()
+                    .requestMatchers(mvc.pattern(HttpMethod.GET, "/api/merchauth")).permitAll()
                     .requestMatchers(mvc.pattern("/api/register")).permitAll()
                     .requestMatchers(mvc.pattern("/api/activate")).permitAll()
                     .requestMatchers(mvc.pattern("/api/account/reset-password/init")).permitAll()

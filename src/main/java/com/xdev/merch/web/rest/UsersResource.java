@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotNull;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import org.slf4j.Logger;
@@ -19,6 +20,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -34,14 +36,12 @@ import tech.jhipster.web.util.ResponseUtil;
 @Transactional
 public class UsersResource {
 
-    private final Logger log = LoggerFactory.getLogger(UsersResource.class);
-
     private static final String ENTITY_NAME = "users";
+    private final Logger log = LoggerFactory.getLogger(UsersResource.class);
+    private final UsersRepository usersRepository;
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
-
-    private final UsersRepository usersRepository;
 
     public UsersResource(UsersRepository usersRepository) {
         this.usersRepository = usersRepository;
@@ -70,7 +70,7 @@ public class UsersResource {
     /**
      * {@code PUT  /users/:id} : Updates an existing users.
      *
-     * @param id the id of the users to save.
+     * @param id    the id of the users to save.
      * @param users the users to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated users,
      * or with status {@code 400 (Bad Request)} if the users is not valid,
@@ -102,7 +102,7 @@ public class UsersResource {
     /**
      * {@code PATCH  /users/:id} : Partial updates given fields of an existing users, field will ignore if it is null
      *
-     * @param id the id of the users to save.
+     * @param id    the id of the users to save.
      * @param users the users to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated users,
      * or with status {@code 400 (Bad Request)} if the users is not valid,
@@ -281,6 +281,7 @@ public class UsersResource {
     //        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
     //        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     //    }
+
     /**
      * {@code GET  /users/:id} : get the "id" users.
      *
@@ -308,5 +309,24 @@ public class UsersResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    @PostMapping("/mercher/login")
+    public ResponseEntity<Users> loginUser(@RequestBody Map<String, String> credentials) {
+        log.debug("REST request to login Users : {}", credentials);
+        final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+
+        String username = credentials.get("username");
+        String password = credentials.get("password");
+
+        Optional<Users> user = usersRepository.findUsersByEmail(username);
+
+        if (user.isPresent() && bCryptPasswordEncoder.matches(password, user.get().getPassword())) {
+            // Passwords match, user is authenticated
+            return ResponseEntity.ok(user.get());
+        } else {
+            // Passwords don't match or user not found
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
     }
 }

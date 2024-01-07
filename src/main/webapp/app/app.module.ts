@@ -20,7 +20,8 @@ import MainComponent from './layouts/main/main.component';
 import MainModule from './layouts/main/main.module';
 import { AppPageTitleStrategy } from './app-page-title-strategy';
 import { FormsModule } from '@angular/forms';
-import { MloginComponent } from './entities/mercher/mlogin/mlogin.component';
+import { MloginComponent } from './entities/users/mlogin/mlogin.component';
+import { DashboardComponent } from './layouts/dashboard/dashboard.component';
 
 @NgModule({
   imports: [
@@ -41,7 +42,7 @@ import { MloginComponent } from './entities/mercher/mlogin/mlogin.component';
     { provide: TitleStrategy, useClass: AppPageTitleStrategy },
   ],
   bootstrap: [MainComponent],
-  declarations: [MloginComponent],
+  declarations: [MloginComponent, DashboardComponent],
 })
 export class AppModule {
   constructor(applicationConfigService: ApplicationConfigService, iconLibrary: FaIconLibrary, dpConfig: NgbDatepickerConfig) {

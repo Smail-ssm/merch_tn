@@ -3,24 +3,38 @@ package com.xdev.merch.web.rest;
 import static com.xdev.merch.security.SecurityUtils.AUTHORITIES_KEY;
 import static com.xdev.merch.security.SecurityUtils.JWT_ALGORITHM;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.xdev.merch.domain.Users;
+import com.xdev.merch.service.UsersService;
 import com.xdev.merch.web.rest.vm.LoginVM;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import java.security.Key;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
+import java.util.Collections;
+import java.util.Date;
 import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.jwt.JwsHeader;
 import org.springframework.security.oauth2.jwt.JwtClaimsSet;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
@@ -34,11 +48,17 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api")
 public class AuthenticateController {
 
-    private final Logger log = LoggerFactory.getLogger(AuthenticateController.class);
+    private static final long rememberMeDuration = 3600000; // Example duration in milliseconds (1 hour)
+    private static final long tokenValidityDuration = 86400000; // Example duration in milliseconds (24 hours)
+    private static final String secretKey = "yourSecretKey"; // Replace with your actual secret key
 
+    private final Logger log = LoggerFactory.getLogger(AuthenticateController.class);
     private final JwtEncoder jwtEncoder;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private final TokenProvider tokenProvider;
+
+    @Autowired
+    UsersService usersService;
 
     @Value("${jhipster.security.authentication.jwt.token-validity-in-seconds:0}")
     private long tokenValidityInSeconds;
@@ -69,6 +89,75 @@ public class AuthenticateController {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setBearerAuth(jwt);
         return new ResponseEntity<>(new JWTToken(jwt), httpHeaders, HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/merchauth", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AuthResponse> mercherAuthorize(@RequestBody @Valid LoginVM loginVM) {
+        // Mercher-specific authentication logic
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+        Users mercher = usersService.findUsersByEmail(loginVM.getUsername()).orElse(null);
+
+        if (mercher != null && passwordEncoder.matches(loginVM.getPassword(), mercher.getPassword())) {
+            // Authentication successful
+            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
+                loginVM.getUsername(),
+                loginVM.getPassword()
+            );
+
+            Authentication authentication = createAuthenticationToken(loginVM.getUsername());
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+
+            // JWT creation
+            String jwt = createTokenMerch(authentication, false);
+
+            HttpHeaders httpHeaders = new HttpHeaders();
+            httpHeaders.setBearerAuth(jwt);
+            AuthResponse authResponse = new AuthResponse(jwt, mercher);
+            return new ResponseEntity<>(authResponse, httpHeaders, HttpStatus.OK);
+        } else {
+            // Authentication failed
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+    }
+
+    @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+    public class AuthResponse {
+
+        private String token;
+        private Users user;
+
+        // Constructors, getters, and setters
+
+        public AuthResponse(String token, Users user) {
+            this.token = token;
+            this.user = user;
+        }
+        // Additional getters and setters as needed
+    }
+
+    private Authentication createAuthenticationToken(String username) {
+        // Your custom logic to create a simple authentication token
+        // You might not want to use this in a real-world scenario
+        // This example is for demonstration purposes only
+
+        return new UsernamePasswordAuthenticationToken(username, null, Collections.emptyList());
+    }
+
+    private String createTokenMerch(Authentication authentication, boolean rememberMe) {
+        String authorities = authentication.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.joining(","));
+
+        long now = System.currentTimeMillis();
+        long validityMillis = rememberMe ? rememberMeDuration : tokenValidityDuration;
+
+        return Jwts
+            .builder()
+            .setSubject(authentication.getName())
+            .claim("authorities", authorities)
+            .signWith(SignatureAlgorithm.HS512, "j0n/nx30x7Yk5gZVja1CfMxm5VVMXpd2kBsDrA/R5l6k4e5zeWW5hlffv3gDtW5VVzAnFgMMi1OJkKoTy/qK/Q==")
+            .setIssuedAt(new Date(now))
+            .setExpiration(new Date(now + validityMillis))
+            .compact();
     }
 
     /**
@@ -106,19 +195,6 @@ public class AuthenticateController {
         return this.jwtEncoder.encode(JwtEncoderParameters.from(jwsHeader, claims)).getTokenValue();
     }
 
-    //    @PostMapping("/authenticate")
-//    public ResponseEntity<AuthenticationResponse> authenticate(@Valid @RequestBody LoginRequest loginRequest) {
-//        Authentication authentication = new UsernamePasswordAuthenticationToken(
-//            loginRequest.getUsername(),
-//            loginRequest.getPassword()
-//        );
-//
-//        SecurityContextHolder.getContext().setAuthentication(authentication);
-//        String jwt = tokenProvider.createToken(authentication);
-//
-//        return ResponseEntity.ok(new AuthenticationResponse(jwt));
-//    }
-
     /**
      * Object to return as body in JWT Authentication.
      */
@@ -138,31 +214,5 @@ public class AuthenticateController {
         void setIdToken(String idToken) {
             this.idToken = idToken;
         }
-    }
-
-    static class LoginRequest {
-        private String username;
-        private String password;public String getUsername() {
-    return username;
-}public void setUsername(String username) {
-    this.username = username;
-}public String getPassword() {
-    return password;
-}public void setPassword(String password) {
-    this.password = password;
-}
-// Getters and setters
-
-        // You can add validation annotations as needed
-    }
-
-    static class AuthenticationResponse {
-        private final String token;
-
-        public AuthenticationResponse(String token) {
-            this.token = token;
-        }
-
-        // Getters and setters
     }
 }
