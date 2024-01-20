@@ -19,7 +19,6 @@
           <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
         </button>
 
-        <!-- Create new Products button with icon only -->
         <button
           id="jh-create-entity"
           data-cy="entityCreateButton"
@@ -44,40 +43,44 @@
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
-          <th scope="col" jhiSortBy="name">
+          <th scope="col">
+            <div class="d-flex">
+              <span>ID</span>
+            </div>
+          </th>
+          <th scope="col">
             <div class="d-flex">
               <span>Name</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="email">
+          <th scope="col">
             <div class="d-flex">
               <span>Email</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="shopName">
+          <th scope="col">
             <div class="d-flex">
               <span>Store Name</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="vendorEmail">
+          <th scope="col">
             <div class="d-flex">
               <span>Vendor Email</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="shopNumber">
+          <th scope="col">
             <div class="d-flex">
               <span>Shop Number</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="status">
+          <th scope="col">
             <div class="d-flex">
               <span>Status</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col">
+            <div class="d-flex">
+              <span> <td>isPrinter</td></span>
             </div>
           </th>
         </tr>
@@ -94,6 +97,7 @@
           <td>{{ user.isVendor }}</td>
           <td>{{ user.shopNumber }}</td>
           <td>{{ user.status }}</td>
+          <td>{{ user.isPrinter }}</td>
           <!-- Add or remove attributes as needed -->
         </tr>
       </tbody>
