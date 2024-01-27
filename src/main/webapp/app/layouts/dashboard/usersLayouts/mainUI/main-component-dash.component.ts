@@ -1,14 +1,13 @@
-import { Component } from '@angular/core';
-import { IUser } from '../../admin/user-management/user-management.model';
-import { IUsers } from '../../entities/users/users.model';
+import { Component, Input } from '@angular/core';
+import { IUsers } from '../../../../entities/users/users.model';
 
 @Component({
-  selector: 'jhi-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss'],
+  selector: 'jhi-main',
+  templateUrl: './main-component-dash.component.html',
+  styleUrls: ['./main-component-dash.component.scss'],
 })
-export class DashboardComponent {
-  currentUser?: IUsers;
+export class MainComponentDash {
+  @Input() currentUser?: IUsers;
   ordersPending: number = 10;
   totalProducts: number = 50;
   ordersProcessing: number = 20;
@@ -18,7 +17,6 @@ export class DashboardComponent {
   printJobsPending: number = 5;
   printJobsInProgress: number = 10;
   printJobsCompleted: number = 15;
-  constructor() {}
   ngOnInit(): void {
     const userString = localStorage.getItem('currentUser');
 

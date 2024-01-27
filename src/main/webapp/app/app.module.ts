@@ -22,6 +22,11 @@ import { AppPageTitleStrategy } from './app-page-title-strategy';
 import { FormsModule } from '@angular/forms';
 import { MloginComponent } from './entities/users/mlogin/mlogin.component';
 import { DashboardComponent } from './layouts/dashboard/dashboard.component';
+import { UsersNavbarComponent } from './layouts/dashboard/usersLayouts/navbar/users-navbar.component';
+import { SideMenuComponent } from './layouts/dashboard/usersLayouts/side-menu/side-menu.component';
+import { DesignerToolComponent } from './designer-tool/designer-tool.component';
+import { UserProfileComponent } from './layouts/dashboard/usersLayouts/user-profile/user-profile.component';
+import { MainComponentDash } from './layouts/dashboard/usersLayouts/mainUI/main-component-dash.component';
 
 @NgModule({
   imports: [
@@ -42,7 +47,16 @@ import { DashboardComponent } from './layouts/dashboard/dashboard.component';
     { provide: TitleStrategy, useClass: AppPageTitleStrategy },
   ],
   bootstrap: [MainComponent],
-  declarations: [MloginComponent, DashboardComponent],
+  declarations: [
+    MloginComponent,
+    DashboardComponent,
+    UsersNavbarComponent,
+    SideMenuComponent,
+    DesignerToolComponent,
+    UserProfileComponent,
+    MainComponentDash,
+    MainComponentDash,
+  ],
 })
 export class AppModule {
   constructor(applicationConfigService: ApplicationConfigService, iconLibrary: FaIconLibrary, dpConfig: NgbDatepickerConfig) {

@@ -1,0 +1,61 @@
+<div style="padding-left: 200px; padding-top: 30px" class="design-dashboard" *ngIf="!currentUser?.isPrinter">
+  <div class="card-dashboard">
+    <h3>Orders Pending</h3>
+    <p>{{ ordersPending }}</p>
+    <a routerLink="/orders">View All</a>
+  </div>
+
+  <div class="card-dashboard">
+    <h3>Total Products</h3>
+    <p>{{ totalProducts }}</p>
+    &lt;!&ndash; You can add logic to display additional details if needed &ndash;&gt;
+  </div>
+
+  <div class="card-dashboard">
+    <h3>Orders Processing</h3>
+    <p>{{ ordersProcessing }}</p>
+    <a routerLink="/orders-processing">View All</a>
+  </div>
+
+  <div class="card-dashboard">
+    <h3>Total Items Sold</h3>
+    <p>{{ totalItemsSold }}</p>
+    &lt;!&ndash; You can add logic to display additional details if needed &ndash;&gt;
+  </div>
+
+  <div class="card-dashboard">
+    <h3>Orders Completed</h3>
+    <p>{{ ordersCompleted }}</p>
+    <a routerLink="/orders-completed">View All</a>
+  </div>
+
+  <div class="card-dashboard">
+    <h3>Total Earnings</h3>
+    <p>{{ totalEarnings | currency: 'USD' : 'symbol' : '1.2-2' }}</p>
+    &lt;!&ndash; Format totalEarnings as currency &ndash;&gt;
+  </div>
+</div>
+<div style="padding-left: 200px; padding-top: 30px" class="printer-dashboard" *ngIf="currentUser?.isPrinter">
+  <div class="card card-dashboard">
+    <h3>Print Jobs Pending</h3>
+    <p>{{ printJobsPending }}</p>
+    <a routerLink="/print-jobs-pending">View All</a>
+  </div>
+
+  <div class="card card-dashboard">
+    <h3>Print Jobs In Progress</h3>
+    <p>{{ printJobsInProgress }}</p>
+    <a routerLink="/print-jobs-in-progress">View All</a>
+  </div>
+
+  <div class="card card-dashboard">
+    <h3>Print Jobs Completed</h3>
+    <p>{{ printJobsCompleted }}</p>
+    <a routerLink="/print-jobs-completed">View All</a>
+  </div>
+
+  <div class="card card-dashboard">
+    <h3>Total Earnings</h3>
+    <p>{{ totalEarnings | currency: 'USD' : 'symbol' : '1.2-2' }}</p>
+  </div>
+</div>

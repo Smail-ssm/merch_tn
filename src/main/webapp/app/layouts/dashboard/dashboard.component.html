@@ -1,13 +1,9 @@
-<p>dashboard works!</p>
 <!-- dashboard.component.html -->
-<div>
-  <h2>Welcome to the Dashboard!</h2>
-
-  <!-- Display user information -->
-  <div *ngIf="currentUser">
-    <p>User Name: {{ currentUser.name }}</p>
-    <p>User Email: {{ currentUser.email }}</p>
-    <p>User isPrinter: {{ currentUser.isPrinter }}</p>
-    <!-- Add more user properties as needed -->
-  </div>
+<div class="dashboard-container">
+  <!-- Other dashboard content -->
+  <jhi-navbar-users></jhi-navbar-users>
+  <jhi-side-menu [currentUser]="currentUser"></jhi-side-menu>
+  <jhi-main [currentUser]="currentUser"></jhi-main>
+  <!--<jhi-designer-tool> </jhi-designer-tool>-->
+  <router-outlet></router-outlet>
 </div>

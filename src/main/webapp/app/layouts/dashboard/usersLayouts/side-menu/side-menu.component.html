@@ -1,0 +1,29 @@
+<!-- side-menu.component.html -->
+
+<div class="side-menu">
+  <ul>
+    <li><a routerLink="/dashboard/main">Dashboard</a></li>
+    <li><a routerLink="/dashboard/profile">Profile</a></li>
+
+    <!-- Designer-Specific Menu Items -->
+    <ng-container *ngIf="currentUser && !currentUser.isPrinter">
+      <li><a routerLink="/designs">My Designs</a></li>
+      <li><a routerLink="/upload-design">Upload Design</a></li>
+      <li><a routerLink="/order-management">Order Management</a></li>
+    </ng-container>
+
+    <!-- Printer-Specific Menu Items -->
+    <ng-container *ngIf="currentUser && currentUser.isPrinter">
+      <li><a routerLink="/print-jobs">Print Jobs</a></li>
+      <li><a routerLink="/print-settings">Print Settings</a></li>
+      <li><a routerLink="/quality-assurance">Quality Assurance</a></li>
+    </ng-container>
+
+    <!-- Common Menu Items -->
+    <li><a routerLink="/collaboration-space">Collaboration Space</a></li>
+    <li><a routerLink="/account-settings">Account Settings</a></li>
+    <li><a routerLink="/reports-analytics">Reports & Analytics</a></li>
+
+    <li><a routerLink="/help">Help</a></li>
+  </ul>
+</div>

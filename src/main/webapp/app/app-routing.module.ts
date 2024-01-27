@@ -11,6 +11,8 @@ import NavbarComponent from './layouts/navbar/navbar.component';
 import LoginComponent from './login/login.component';
 import { MloginComponent } from './entities/users/mlogin/mlogin.component';
 import { DashboardComponent } from './layouts/dashboard/dashboard.component';
+import { UserProfileComponent } from './layouts/dashboard/usersLayouts/user-profile/user-profile.component';
+import { MainComponentDash } from './layouts/dashboard/usersLayouts/mainUI/main-component-dash.component';
 
 @NgModule({
   imports: [
@@ -24,7 +26,15 @@ import { DashboardComponent } from './layouts/dashboard/dashboard.component';
             hideNavbar: true,
           },
         },
-        { path: 'dashboard', component: DashboardComponent },
+        {
+          path: 'dashboard',
+          component: DashboardComponent,
+          children: [
+            { path: 'profile', component: UserProfileComponent },
+            { path: 'main', component: MainComponentDash },
+            // ... other child routes if needed
+          ],
+        },
 
         {
           path: '',

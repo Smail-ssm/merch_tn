@@ -1,0 +1,107 @@
+/* Add this to your styles.css or component's styles */
+.side-menu button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.side-menu ul {
+  list-style: none;
+  padding: 0;
+  transition: width 0.3s;
+}
+
+.side-menu li {
+  margin-bottom: 10px;
+}
+
+.side-menu a {
+  text-decoration: none;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+}
+
+.side-menu i {
+  margin-right: 10px;
+}
+
+.side-menu.collapsed ul {
+  width: 0;
+  overflow: hidden;
+}
+
+.side-menu.collapsed button {
+  margin-left: 10px; /* Adjust as needed */
+}
+le-button {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  $size: 25px;
+  width: $size;
+  height: $size;
+  margin: 0;
+  padding: 0;
+
+  position: absolute;
+  top: 48px;
+  right: calc($size / -2) - 2px;
+
+  border: 1px solid #ff0000;
+  border-radius: 50%;
+
+  background-color: #ff0000;
+
+  cursor: pointer;
+
+  &:hover {
+    border: 2px solid rgb(255, 0, 0);
+  }
+
+  &.is-flipped {
+    transform: rotate(-180deg);
+  }
+}
+.toggle-button {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  $size: 25px;
+  width: $size;
+  height: $size;
+  margin: 0;
+  padding: 0;
+
+  position: absolute;
+  top: 48px;
+  right: calc($size / -2) - 2px;
+
+  border: 1px solid #ff0000;
+  border-radius: 50%;
+
+  background-color: #ff0000;
+
+  cursor: pointer;
+
+  &:hover {
+    border: 2px solid rgb(255, 255, 255);
+  }
+
+  &.is-flipped {
+    transform: rotate(-180deg);
+  }
+
+  mat-icon {
+    font-size: 1.5em;
+
+    width: fit-content;
+    height: fit-content;
+  }
+}

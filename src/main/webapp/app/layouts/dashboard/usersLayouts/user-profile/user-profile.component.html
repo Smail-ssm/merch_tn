@@ -1,0 +1,28 @@
+<!-- user-profile.component.html -->
+<div class="user-profile">
+  <div class="user-avatar">
+    <!-- You can replace 'path_to_user_image' with the actual path to the user's profile picture -->
+    <!--    <img src="path_to_user_image" alt="User Avatar">-->
+  </div>
+  <div class="user-details">
+    <h2>{{ currentUser?.name }}</h2>
+    <div class="grid-container">
+      <div>ID#</div>
+      <div>{{ currentUser?.id }}</div>
+      <div>Email</div>
+      <div>{{ currentUser?.email }}</div>
+      <div>Phone</div>
+      <div>{{ currentUser?.phone }}</div>
+      <div>Address</div>
+      <div>{{ currentUser?.address }}</div>
+      <div>City</div>
+      <div>{{ currentUser?.city }}</div>
+      <div>Fax</div>
+      <div>{{ currentUser?.fax }}</div>
+      <div>Zip Code</div>
+      <div>{{ currentUser?.zip }}</div>
+      <div>Joined</div>
+      <div>{{ currentUser?.createdAt }}</div>
+    </div>
+  </div>
+</div>
