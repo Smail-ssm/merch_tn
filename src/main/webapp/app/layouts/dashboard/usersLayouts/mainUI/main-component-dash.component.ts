@@ -24,4 +24,8 @@ export class MainComponentDash {
       this.currentUser = JSON.parse(userString);
     }
   }
+
+  performAction1() {}
+
+  performAction2() {}
 }

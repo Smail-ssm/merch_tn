@@ -1,0 +1,24 @@
+/* designer-tool.component.scss */
+
+body {
+  padding-top: 60px;
+}
+
+.color-preview {
+  border: 1px solid #ccc;
+  margin: 2px;
+  zoom: 1;
+  vertical-align: top;
+  display: inline-block;
+  cursor: pointer;
+  overflow: hidden;
+  width: 20px;
+  height: 20px;
+}
+
+.rotate {
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+}

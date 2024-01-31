@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-import { IUser } from '../../admin/user-management/user-management.model';
-import { IUsers } from '../../entities/users/users.model';
+import { Component, Input, Output } from '@angular/core';
+import { IUsers } from '../../../../entities/users/users.model';
 
 @Component({
   selector: 'jhi-dashboard',
@@ -8,7 +7,7 @@ import { IUsers } from '../../entities/users/users.model';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent {
-  currentUser?: IUsers;
+  @Output() currentUser?: IUsers;
   ordersPending: number = 10;
   totalProducts: number = 50;
   ordersProcessing: number = 20;

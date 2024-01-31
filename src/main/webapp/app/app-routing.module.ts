@@ -10,9 +10,10 @@ import HomeComponent from './home/home.component';
 import NavbarComponent from './layouts/navbar/navbar.component';
 import LoginComponent from './login/login.component';
 import { MloginComponent } from './entities/users/mlogin/mlogin.component';
-import { DashboardComponent } from './layouts/dashboard/dashboard.component';
+import { DashboardComponent } from './layouts/dashboard/usersLayouts/dashboard/dashboard.component';
 import { UserProfileComponent } from './layouts/dashboard/usersLayouts/user-profile/user-profile.component';
 import { MainComponentDash } from './layouts/dashboard/usersLayouts/mainUI/main-component-dash.component';
+import { DesignerToolComponent } from './layouts/dashboard/usersLayouts/designer-tool/designer-tool.component';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { MainComponentDash } from './layouts/dashboard/usersLayouts/mainUI/main-
           children: [
             { path: 'profile', component: UserProfileComponent },
             { path: 'main', component: MainComponentDash },
+            { path: 'designs', component: DesignerToolComponent },
             // ... other child routes if needed
           ],
         },

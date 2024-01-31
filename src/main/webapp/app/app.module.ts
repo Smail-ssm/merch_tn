@@ -21,12 +21,13 @@ import MainModule from './layouts/main/main.module';
 import { AppPageTitleStrategy } from './app-page-title-strategy';
 import { FormsModule } from '@angular/forms';
 import { MloginComponent } from './entities/users/mlogin/mlogin.component';
-import { DashboardComponent } from './layouts/dashboard/dashboard.component';
-import { UsersNavbarComponent } from './layouts/dashboard/usersLayouts/navbar/users-navbar.component';
+import { DashboardComponent } from './layouts/dashboard/usersLayouts/dashboard/dashboard.component';
 import { SideMenuComponent } from './layouts/dashboard/usersLayouts/side-menu/side-menu.component';
-import { DesignerToolComponent } from './designer-tool/designer-tool.component';
-import { UserProfileComponent } from './layouts/dashboard/usersLayouts/user-profile/user-profile.component';
 import { MainComponentDash } from './layouts/dashboard/usersLayouts/mainUI/main-component-dash.component';
+import { UsersNavbarComponent } from './layouts/dashboard/usersLayouts/navbar/users-navbar.component';
+import { UserProfileComponent } from './layouts/dashboard/usersLayouts/user-profile/user-profile.component';
+import FormatMediumDatePipe from './shared/date/format-medium-date.pipe';
+import { DesignerToolComponent } from './layouts/dashboard/usersLayouts/designer-tool/designer-tool.component';
 
 @NgModule({
   imports: [
@@ -38,6 +39,7 @@ import { MainComponentDash } from './layouts/dashboard/usersLayouts/mainUI/main-
     HttpClientModule,
     MainModule,
     FormsModule,
+    FormatMediumDatePipe,
   ],
   providers: [
     Title,

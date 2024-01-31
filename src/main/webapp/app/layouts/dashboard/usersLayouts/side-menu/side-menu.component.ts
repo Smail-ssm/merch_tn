@@ -8,5 +8,13 @@ import { IUsers } from '../../../../entities/users/users.model';
   styleUrls: ['./side-menu.component.scss'],
 })
 export class SideMenuComponent {
-  @Input() currentUser?: IUsers;
+  currentUser?: IUsers;
+
+  ngOnInit(): void {
+    const userString = localStorage.getItem('currentUser');
+
+    if (userString) {
+      this.currentUser = JSON.parse(userString);
+    }
+  }
 }

@@ -1,8 +1,7 @@
-<!-- user-profile.component.html -->
-<div class="user-profile">
+<div>
   <div class="user-avatar">
     <!-- You can replace 'path_to_user_image' with the actual path to the user's profile picture -->
-    <!--    <img src="path_to_user_image" alt="User Avatar">-->
+    <!-- <img src="path_to_user_image" alt="User Avatar"> -->
   </div>
   <div class="user-details">
     <h2>{{ currentUser?.name }}</h2>
@@ -22,7 +21,25 @@
       <div>Zip Code</div>
       <div>{{ currentUser?.zip }}</div>
       <div>Joined</div>
-      <div>{{ currentUser?.createdAt }}</div>
+      <div>{{ currentUser?.createdAt | formatMediumDate }}</div>
+    </div>
+  </div>
+
+  <!-- New Section for Shop Info -->
+  <div class="shop-details">
+    <h3>Shop Information</h3>
+    <div class="grid-container">
+      <div>Shop Name</div>
+      <div>{{ currentUser?.shopName }}</div>
+      <div>Shop Number</div>
+      <div>{{ currentUser?.shopNumber }}</div>
+      <div>Shop Address</div>
+      <div>{{ currentUser?.shopAddress }}</div>
+      <div>Registration Number</div>
+      <div>{{ currentUser?.regNumber }}</div>
+      <div>Shop Message</div>
+      <div>{{ currentUser?.shopMessage }}</div>
+      <!-- Add more shop details as needed -->
     </div>
   </div>
 </div>

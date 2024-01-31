@@ -8,4 +8,11 @@ import { IUsers } from '../../../../entities/users/users.model';
 })
 export class UserProfileComponent {
   @Input() currentUser?: IUsers;
+  ngOnInit(): void {
+    const userString = localStorage.getItem('currentUser');
+
+    if (userString) {
+      this.currentUser = JSON.parse(userString);
+    }
+  }
 }

@@ -1,4 +1,11 @@
-<div style="padding-left: 200px; padding-top: 30px" class="design-dashboard" *ngIf="!currentUser?.isPrinter">
+<div class="design-dashboard" *ngIf="!currentUser?.isPrinter">
+  <div class="card-dashboard">
+    <h3>User Information</h3>
+    <p>Name: {{ currentUser?.name }}</p>
+    <p>Email: {{ currentUser?.email }}</p>
+    <!-- Add more user details as needed -->
+  </div>
+
   <div class="card-dashboard">
     <h3>Orders Pending</h3>
     <p>{{ ordersPending }}</p>
@@ -8,7 +15,6 @@
   <div class="card-dashboard">
     <h3>Total Products</h3>
     <p>{{ totalProducts }}</p>
-    &lt;!&ndash; You can add logic to display additional details if needed &ndash;&gt;
   </div>
 
   <div class="card-dashboard">
@@ -18,23 +24,30 @@
   </div>
 
   <div class="card-dashboard">
-    <h3>Total Items Sold</h3>
-    <p>{{ totalItemsSold }}</p>
-    &lt;!&ndash; You can add logic to display additional details if needed &ndash;&gt;
-  </div>
-
-  <div class="card-dashboard">
-    <h3>Orders Completed</h3>
-    <p>{{ ordersCompleted }}</p>
-    <a routerLink="/orders-completed">View All</a>
-  </div>
-
-  <div class="card-dashboard">
     <h3>Total Earnings</h3>
     <p>{{ totalEarnings | currency: 'USD' : 'symbol' : '1.2-2' }}</p>
-    &lt;!&ndash; Format totalEarnings as currency &ndash;&gt;
+  </div>
+
+  <div class="card-dashboard">
+    <h3>Recent Activity</h3>
+    <!-- Display recent activity or transactions -->
+    <!-- Example: <p>Last Order: {{ lastOrderDate }}</p> -->
+  </div>
+
+  <div class="card-dashboard">
+    <h3>Notifications</h3>
+    <!-- Display notifications or messages -->
+    <!-- Example: <p>You have new messages</p> -->
+  </div>
+
+  <div class="card-dashboard">
+    <h3>Quick Actions</h3>
+    <button (click)="performAction1()">Action 1</button>
+    <button (click)="performAction2()">Action 2</button>
+    <!-- Add more quick actions as needed -->
   </div>
 </div>
+
 <div style="padding-left: 200px; padding-top: 30px" class="printer-dashboard" *ngIf="currentUser?.isPrinter">
   <div class="card card-dashboard">
     <h3>Print Jobs Pending</h3>
