@@ -1,4 +1,3 @@
-<!-- mlogin.component.html -->
 <link
   rel="stylesheet"
   href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
@@ -7,34 +6,36 @@
 />
 
 <div class="flex-r login-wrapper">
-  <div class="login-text">
-    <div class="logo">
-      <span><i class="fab fa-speakap"></i></span>
-      <span>Coders</span>
-    </div>
-    <h1>Sign Up</h1>
-    <p>It's not long before you embark on this journey!</p>
-
-    <div class="flex-c">
-      <div class="input-box">
-        <span class="label">E-mail</span>
-        <div class="flex-r input">
-          <input type="text" placeholder="name@abc.com" [(ngModel)]="email" />
-          <i class="fas fa-at"></i>
-        </div>
+  <div class="login-card">
+    <div class="login-text">
+      <div class="logo">
+        <span><i class="fab fa-speakap"></i></span>
+        <span>Coders</span>
       </div>
+      <h1>Sign Up</h1>
+      <p>It's not long before you embark on this journey!</p>
 
-      <div class="input-box">
-        <span class="label">Password</span>
-        <div class="flex-r input">
-          <input type="password" placeholder="8+ (a, A, 1, #)" [(ngModel)]="password" />
-          <i class="fas fa-lock"></i>
+      <div class="flex-c">
+        <div class="input-box">
+          <span class="label">E-mail</span>
+          <div class="flex-r input">
+            <input type="text" placeholder="name@abc.com" [(ngModel)]="email" />
+            <i class="fas fa-at"></i>
+          </div>
         </div>
+
+        <div class="input-box">
+          <span class="label">Password</span>
+          <div class="flex-r input">
+            <input type="password" placeholder="8+ (a, A, 1, #)" [(ngModel)]="password" />
+            <i class="fas fa-lock"></i>
+          </div>
+        </div>
+
+        <div *ngIf="authenticationError" class="error-message">Authentication failed. Please check your credentials.</div>
+
+        <button type="button" (click)="onSubmit()">Sign In</button>
       </div>
-
-      <div *ngIf="authenticationError" class="error-message">Authentication failed. Please check your credentials.</div>
-
-      <button type="button" (click)="onSubmit()">Sign In</button>
     </div>
   </div>
 </div>

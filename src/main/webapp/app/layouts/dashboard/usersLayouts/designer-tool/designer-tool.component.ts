@@ -1,15 +1,23 @@
-import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, Renderer2, ViewChild } from '@angular/core';
 import { fabric } from 'fabric';
 import html2canvas from 'html2canvas';
-
+interface FontFamily {
+  name: string;
+  fonts: string[];
+}
 @Component({
   selector: 'jhi-designer-tool',
   templateUrl: './designer-tool.component.html',
   styleUrls: ['./bootstrap.min.css', './bootstrap-responsive.min.css', './jquery.miniColors.css', './designer-tool.component.scss'],
 })
 export class DesignerToolComponent {
+  // ViewChild declarations
   @ViewChild('tshirttype', { static: true }) tshirtType!: ElementRef;
   @ViewChild('tcanvas', { static: true }) canvasElement!: ElementRef;
+  @ViewChild('canvasContainer', { static: true }) canvasContainer!: ElementRef;
+  @ViewChild('shirtDiv', { static: true }) shirtDivElement!: ElementRef;
+
+  // Other class properties
   colorOptions: string[] = [
     '#ffffff',
     '#616161',
@@ -39,44 +47,67 @@ export class DesignerToolComponent {
   tshirtTypes = [
     {
       value: './content/images/crew_front.png',
-      label: 'Crew Front',
+      label: 'Crew',
     },
     {
-      value: './content/images/mens_longsleeve_front.png',
-      label: "Men's Long Sleeve Front",
+      value: './content/images/longsleev.png',
+      label: ' Long Sleeve',
     },
     {
-      value: './content/images/mens_tank_front.png',
-      label: "Men's Tank Front",
+      value: './content/images/tank.png',
+      label: ' Tank ',
     },
     {
-      value: './content/images/mens_hoodie_front.png',
-      label: "Men's Hoodie Front",
+      value: './content/images/hoodie.png',
+      label: 'Hoodie',
     },
-    { value: './content/images/womens_crew_front.png', label: 'womens crew front' },
+    { value: './content/images/women_crew.png', label: 'womens crew front' },
   ];
   canvas!: fabric.Canvas;
-  selectedCustomImage: string = './content/images/crew_front.png'; // Initialize with the default value if needed
-  selectedCustomImageBack: string = './content/images/crew_back.png';
+  selectedCustomImage: string = './content/images/crew_front.png';
+  // selectedCustomImageBack: string = './content/images/crew_back.png';
   canvasHovered: boolean | undefined;
   selectedCustomText: fabric.Text;
 
+  // Default font family and list
+  selectedFontFamily: string = 'Arial';
+
+  fontFamilies: FontFamily[] = [
+    { name: 'Sans-serif', fonts: ['Arial', 'Helvetica', 'Verdana', 'Tahoma', 'Geneva'] },
+    { name: 'Serif', fonts: ['Times New Roman', 'Georgia', 'Palatino', 'Book Antiqua', 'Garamond'] },
+    { name: 'Monospace', fonts: ['Courier New', 'Lucida Console', 'Monaco', 'Consolas', 'Andale Mono'] },
+    // Add more font families and their fonts as needed
+  ];
+  onFontChange(event: any) {
+    this.selectedFontFamily = event.target.value;
+
+    // Apply the font family to the selected text on the canvas
+    const activeObject = this.canvas.getActiveObject();
+
+    if (activeObject && activeObject.type === 'i-text') {
+      (activeObject as any).set('fontFamily', this.selectedFontFamily);
+      this.canvas.renderAll();
+    }
+    console.log('Selected Font: ', this.selectedFontFamily);
+  }
+  // ngAfterViewInit lifecycle hook
   ngAfterViewInit() {
+    // Canvas initialization and event listeners
     this.canvas = new fabric.Canvas(this.canvasElement.nativeElement);
     this.createCanvas();
     this.initTshirtTypeChange();
     this.initializeChangeHandler();
+    this.setCanvasSize();
 
     // Add event listeners for canvas interactions
     this.canvas.on('object:selected', event => {
       this.selectedObject = event.target;
     });
 
-    this.canvas.on('selection:cleared', () => {
-      this.selectedObject = null;
-    });
+    // Other canvas event listeners...
 
     this.canvas.on('mouse:over', event => {
+      // Handle mouse over canvas event
       if (event.target) {
         this.canvas.hoverCursor = 'pointer';
         this.canvas.setActiveObject(event.target);
@@ -87,14 +118,27 @@ export class DesignerToolComponent {
     });
   }
 
+  // Constructor
   constructor(private renderer: Renderer2) {
+    // Initialize the default text object
     this.selectedCustomText = new fabric.Text('Default Text', {
       left: 10,
       top: 10,
-      fontSize: 20, // other properties...
+      fontSize: 20, // Other properties...
     });
   }
 
+  // Method to set canvas size based on container size
+  setCanvasSize() {
+    // Set canvas size based on container size
+    const container = this.canvasContainer.nativeElement;
+    const canvas = this.canvasElement.nativeElement;
+
+    canvas.width = container.offsetWidth;
+    canvas.height = container.offsetHeight;
+  }
+
+  // Method to create canvas element dynamically
   private createCanvas() {
     const canvasElement = this.renderer.createElement('canvas');
     this.renderer.setAttribute(canvasElement, 'id', 'tcanvas');
@@ -102,33 +146,39 @@ export class DesignerToolComponent {
     this.canvas = new fabric.Canvas(canvasElement);
   }
 
+  // HostListener for window resize
+  @HostListener('window:resize', ['$event']) onResize(event: Event) {
+    this.setCanvasSize();
+  }
+
+  // Method to handle change in tshirt type
   private initializeChangeHandler(): void {
     const tshirtType = document.getElementById('tshirttype') as HTMLSelectElement;
 
     if (tshirtType) {
       tshirtType.addEventListener('change', () => {
         this.selectedCustomImage = './content/images/' + tshirtType.value;
-        this.selectedCustomImageBack = this.getBackImageName(this.selectedCustomImage);
+        // this.selectedCustomImageBack = this.getBackImageName(this.selectedCustomImage);
       });
     }
   }
 
-  @ViewChild('shirtDiv', { static: true }) shirtDivElement!: ElementRef;
-
+  // Method to get the back image name based on front image
   private getBackImageName(frontImage: string): string {
-    // Assuming the back view image name is the front view image name with 'front' replaced by 'back'
     return frontImage.replace('front', 'back');
   }
 
+  // Method to load custom image based on user selection
   loadCustomImage(event: any) {
     const selectedOption = this.tshirtTypes.find(option => option.value === event.target.value);
 
     if (selectedOption) {
       this.selectedCustomImage = selectedOption.value;
-      this.selectedCustomImageBack = this.getBackImageName(this.selectedCustomImage);
+      // this.selectedCustomImageBack = this.getBackImageName(this.selectedCustomImage);
     }
   }
 
+  // Method to add text to the canvas
   addTextToCanvas() {
     if (this.textToAdd) {
       const text = new fabric.IText(this.textToAdd, {
@@ -145,39 +195,11 @@ export class DesignerToolComponent {
     }
   }
 
-  selectedFontFamily: string = 'Arial'; // Default font family, change as needed
   changeFontFamily(fontFamily: string): void {
     // Handle font family change logic
-    this.selectedFontFamily = fontFamily;
-
-    // Apply the font family to the selected text on the canvas
-    const activeObject = this.canvas.getActiveObject();
-
-    if (activeObject && activeObject.type === 'i-text') {
-      (activeObject as any).set('fontFamily', fontFamily);
-      this.canvas.renderAll();
-    }
   }
 
-  fontList: string[] = [
-    'Arial',
-    'Helvetica',
-    'Myriad Pro',
-    'Delicious',
-    'Verdana',
-    'Georgia',
-    'Courier',
-    'Comic Sans MS',
-    'Impact',
-    'Monaco',
-    'Optima',
-    'Hoefler Text',
-    'Plaster',
-    'Engagement',
-  ];
-
-  // Other methods and properties in your component...
-
+  // Method to delete selected object from canvas
   deleteSelectedObject() {
     if (this.selectedObject) {
       this.canvas.remove(this.selectedObject);
@@ -185,6 +207,7 @@ export class DesignerToolComponent {
     }
   }
 
+  // Method to initialize tshirt type change
   private initTshirtTypeChange() {
     const tshirtType = this.tshirtType.nativeElement;
 
@@ -193,6 +216,7 @@ export class DesignerToolComponent {
     });
   }
 
+  // Method to save the canvas content as an image
   saveDivAsImage(): void {
     // Use html2canvas to capture the content of the shirtDiv
     html2canvas(this.shirtDivElement.nativeElement).then(canvas => {
@@ -210,21 +234,23 @@ export class DesignerToolComponent {
     });
   }
 
+  // Method to apply background color to the canvas
   applyBackgroundColor() {
     const tshirtFacing = document.getElementById('tshirtFacingFront');
-    const tshirtFacingBack = document.getElementById('tshirtFacingBack');
+    // const tshirtFacingBack = document.getElementById('tshirtFacingBack');
 
-    if (tshirtFacing && tshirtFacingBack) {
+    if (tshirtFacing) {
       tshirtFacing.style.backgroundColor = this.selectedColor;
-      tshirtFacingBack.style.backgroundColor = this.selectedColor;
     }
   }
 
+  // Method to select a color
   selectColor(color: string) {
     this.selectedColor = color;
     this.applyBackgroundColor();
   }
 
+  // Method to change text value on the canvas
   changeTextValue(event: Event): void {
     const newTextValue = (event.target as HTMLInputElement).value;
 
@@ -235,67 +261,98 @@ export class DesignerToolComponent {
     this.canvas.renderAll();
   }
 
-  // Function to toggle bold style
+  // Method to toggle bold style
+  // Method to toggle bold style
   toggleBold(): void {
-    // Toggle bold style for the selected text
-    this.selectedCustomText.set('fontWeight', this.selectedCustomText.fontWeight === 'bold' ? 'normal' : 'bold');
+    if (this.selectedCustomText) {
+      // Update the Fabric.js text object with desired styles
+      this.selectedCustomText.set({
+        fontStyle: 'normal',
+        fontWeight: 'bold',
+        fontSize: 10,
+        fontFamily: 'Courier',
+      });
 
-    // Render canvas after style change
-    this.canvas.renderAll();
+      // Render canvas after style change
+      this.canvas.renderAll();
+    }
   }
 
-  // Function to toggle italic style
+  // Method to toggle italic style
   toggleItalic(): void {
-    // Toggle italic style for the selected text
-    this.selectedCustomText.set('fontStyle', this.selectedCustomText.fontStyle === 'italic' ? '' : 'italic');
+    if (this.selectedCustomText) {
+      // Toggle italic style for the selected text
+      const fontStyle = this.selectedCustomText.fontStyle === 'italic' ? '' : 'italic';
+      this.selectedCustomText.set('fontStyle', fontStyle);
 
-    // Render canvas after style change
-    this.canvas.renderAll();
+      // Render canvas after style change
+      this.canvas.renderAll();
+    }
   }
 
-  // Function to toggle strike-through
+  // Method to toggle strike-through
   toggleStrike(): void {
-    // Toggle strike-through for the selected text
-    const currentTextDecoration = (this.selectedCustomText as any).textDecoration as string;
-    const newDecoration = currentTextDecoration === 'line-through' ? '' : 'line-through';
+    if (this.selectedCustomText) {
+      // Toggle strike-through for the selected text
+      // @ts-ignore
+      const currentTextDecoration = (this.selectedCustomText.get('textDecoration') as string) || '';
+      const newDecoration = currentTextDecoration.includes('line-through')
+        ? currentTextDecoration.replace('line-through', '')
+        : `${currentTextDecoration} line-through`;
 
-    (this.selectedCustomText as any).set('textDecoration', newDecoration);
+      // Use set with a generic object to avoid TypeScript error
+      this.selectedCustomText.set({
+        textDecoration: newDecoration,
+      } as Partial<Text>);
 
-    // Render canvas after style change
-    this.canvas.renderAll();
+      // Render canvas after style change
+      this.canvas.renderAll();
+    }
   }
 
-  // Function to toggle underline
+  // Method to toggle underline
   toggleUnderline(): void {
-    // Toggle underline for the selected text
-    const currentTextDecoration = (this.selectedCustomText as any).textDecoration as string;
-    const newDecoration = currentTextDecoration === 'underline' ? '' : 'underline';
+    if (this.selectedCustomText) {
+      // Toggle underline for the selected text
+      // @ts-ignore
+      const currentTextDecoration = (this.selectedCustomText.get('textDecoration') as string) || '';
+      const newDecoration = currentTextDecoration.includes('underline')
+        ? currentTextDecoration.replace('underline', '')
+        : `${currentTextDecoration} underline`;
 
-    (this.selectedCustomText as any).set('textDecoration', newDecoration);
+      // Use set with a generic object to avoid TypeScript error
+      this.selectedCustomText.set({
+        textDecoration: newDecoration,
+      } as Partial<Text>);
 
-    // Render canvas after style change
-    this.canvas.renderAll();
+      // Render canvas after style change
+      this.canvas.renderAll();
+    }
   }
 
-  // Function to handle font color change
+  // Method to handle font color change
   changeFontColor(event: Event): void {
-    const newFontColor = (event.target as HTMLInputElement).value;
+    if (this.selectedCustomText) {
+      const newFontColor = (event.target as HTMLInputElement).value;
 
-    // Assuming this.selectedCustomText is the fabric.js text object
-    this.selectedCustomText.set('fill', newFontColor);
+      // Assuming this.selectedCustomText is the fabric.js text object
+      this.selectedCustomText.set('fill', newFontColor);
 
-    // Render canvas after color change
-    this.canvas.renderAll();
+      // Render canvas after color change
+      this.canvas.renderAll();
+    }
   }
 
-  // Function to handle stroke color change
+  // Method to handle stroke color change
   changeStrokeColor(event: Event): void {
-    const newStrokeColor = (event.target as HTMLInputElement).value;
+    if (this.selectedCustomText) {
+      const newStrokeColor = (event.target as HTMLInputElement).value;
 
-    // Assuming this.selectedCustomText is the fabric.js text object
-    this.selectedCustomText.set('stroke', newStrokeColor);
+      // Assuming this.selectedCustomText is the fabric.js text object
+      this.selectedCustomText.set('stroke', newStrokeColor);
 
-    // Render canvas after color change
-    this.canvas.renderAll();
+      // Render canvas after color change
+      this.canvas.renderAll();
+    }
   }
 }

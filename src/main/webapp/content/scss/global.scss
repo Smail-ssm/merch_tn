@@ -19,7 +19,19 @@ a {
   color: #533f03;
   font-weight: bold;
 }
+.buttonWithSize {
+  width: 100px; /* Set your desired width */
+  height: 40px; /* Set your desired height */
+  background-color: orange;
+  color: white; /* Optional: Set text color to contrast with the background */
+  border: none; /* Optional: Remove border for a cleaner look */
+  cursor: pointer; /* Optional: Add cursor pointer for interaction */
+}
 
+/* Additional styles for hover effect */
+.buttonWithSize:hover {
+  background-color: darkorange;
+}
 a:hover {
   color: #533f03;
 }

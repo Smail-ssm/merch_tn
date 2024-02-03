@@ -1,198 +1,85 @@
-<head>
-  <meta charset="utf-8" />
-  <title>TShirt Editor</title>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <meta content="" name="description" />
-  <meta content="" name="author" />
-
-  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <script src="js/excanvas.js" type="text/javascript"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-  <script src="js/fabric.js"></script>
-
-  <!-- Le styles -->
-  <link href="bootstrap.min.css" rel="stylesheet" type="text/css" />
-  <link href="bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
-  <link href="jquery.miniColors.css" rel="stylesheet" type="text/css" />
-
-  <style type="text/css">
-    body {
-      padding-top: 60px;
-    }
-
-    .color-preview {
-      border: 1px solid #ccc;
-      margin: 2px;
-      zoom: 1;
-      vertical-align: top;
-      display: inline-block;
-      cursor: pointer;
-      overflow: hidden;
-      width: 20px;
-      height: 20px;
-    }
-
-    .rotate {
-      -webkit-transform: rotate(90deg);
-      -moz-transform: rotate(90deg);
-      -o-transform: rotate(90deg);
-      -ms-transform: rotate(90deg);
-    }
-  </style>
-</head>
-
 <div>
-  <div class="container">
-    <section id="typography">
-      <div class="page-header">
-        <h1>Customize T-Shirt</h1>
-      </div>
+  <section id="typography">
+    <h1>Customize T-Shirt</h1>
 
-      <!-- Headings & Paragraph Copy -->
-      <div class="row">
-        <div class="span3">
-          <div class="well">
-            <ul class="nav">
-              <li
-                (click)="selectColor(color)"
-                *ngFor="let color of colorOptions"
-                [style.background-color]="color"
-                [title]="color"
-                class="color-preview"
-              ></li>
-            </ul>
-          </div>
-          <div>
-            <div class="well">
-              <!-- Add this select element to your HTML template -->
-              <select #customImageSelector (change)="loadCustomImage($event)">
-                <option *ngFor="let option of tshirtTypes" [value]="option.value">{{ option.label }}</option>
-              </select>
-            </div>
-
-            <div class="well">
-              <div class="input-append">
-                <div class="input-append">
-                  <input [(ngModel)]="textToAdd" class="span2" id="text-string" placeholder="add text here..." type="text" />
-                  <button (click)="addTextToCanvas()" class="btn" id="add-text" title="Add text">
-                    <i class="icon-share-alt"></i>
-                  </button>
-                  <button (click)="deleteSelectedObject()" class="btn" id="delete-object" title="Delete selected object">
-                    <i class="icon-trash"></i>
-                  </button>
-                  <hr />
-                </div>
-                <hr />
-              </div>
-              <div>
-                <hr />
-                <form action="" enctype="multipart/form-data" method="post">
-                  <input id="fileToUpload" name="fileToUpload" type="file" />
-                  <input class="btn btn-primary" name="submit" type="submit" value="Upload Custom Image" />
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="span6">
-          <div style="min-height: 32px">
-            <div class="clearfix">
-              <div class="btn-group inline pull-left" id="texteditor">
-                <!-- Font Family Dropdown -->
-                <button class="btn dropdown-toggle" data-toggle="dropdown" id="font-family" title="Font Style">
-                  <i class="icon-font" style="width: 19px; height: 19px"></i>
-                </button>
-                <ul aria-labelledby="font-family-X" class="dropdown-menu" role="menu">
-                  <!-- Font family options -->
-                  <li (click)="changeFontFamily(font)" *ngFor="let font of fontList">
-                    <a href="#" style="font-family: {{ font }};">{{ font }}</a>
-                  </li>
-                </ul>
-
-                <!-- Other elements... -->
-
-                <!-- Text Style Buttons -->
-                <button (click)="toggleBold()" class="btn" data-original-title="Bold" id="text-bold">Bold</button>
-                <button (click)="toggleItalic()" class="btn" data-original-title="Italic" id="text-italic">Italic</button>
-                <button (click)="toggleStrike()" class="btn" id="text-strike" title="Strike">Strikethrough</button>
-                <button (click)="toggleUnderline()" class="btn" id="text-underline" title="Underline">Underline</button>
-
-                <!-- Color Pickers -->
-                <div class="btn-group">
-                  <a class="btn" data-original-title="Font Color" data-placement="top" href="#" rel="tooltip"
-                    >Font Color
-                    <input
-                      (change)="changeFontColor($event)"
-                      class="color-picker"
-                      id="text-fontcolor"
-                      size="7"
-                      type="hidden"
-                      value="#000000"
-                    />
-                  </a>
-                  <a class="btn" data-original-title="Font Border Color" data-placement="top" href="#" rel="tooltip"
-                    >Stroke Color
-                    <input
-                      (change)="changeStrokeColor($event)"
-                      class="color-picker"
-                      id="text-strokecolor"
-                      size="7"
-                      type="hidden"
-                      value="#000000"
-                    />
-                  </a>
-                  <button (click)="saveDivAsImage()">Save Image</button>
-                </div>
-              </div>
-
-              <!-- Other elements... -->
-
-              <div class="pull-right" id="imageeditor" style="display: none">
-                <!-- Other image editor buttons -->
-              </div>
-            </div>
-          </div>
-          <!-- EDITOR -->
-          <!-- designer-tool.component.html -->
-          <!-- Add this button wherever you want in your template -->
-
-          <!-- The shirtDiv element containing your canvas and other content -->
-          <div
-            class="page"
-            id="shirtDiv"
-            style="max-width: 530px; max-height: 630px; position: relative; background-color: rgb(255, 255, 255)"
-          >
-            <!-- Shirt Images -->
-            <div #shirtDiv id="tshirtImages" style="display: flex">
-              <img [src]="selectedCustomImage" id="tshirtFacingFront" />
-              <img [src]="selectedCustomImageBack" id="tshirtFacingBack" />
-            </div>
-
-            <!-- Drawing Area -->
-            <div id="drawingArea" style="position: absolute; top: 100px; left: 160px; z-index: 10; width: 200px; height: 400px">
-              <canvas
-                #tcanvas
-                (mouseenter)="canvasHovered = true"
-                (mouseleave)="canvasHovered = false"
-                [style.border]="'1px solid ' + (canvasHovered ? 'black' : 'transparent')"
-                height="600"
-                width="800"
-              ></canvas>
-            </div>
-          </div>
-        </div>
-        <!-- /EDITOR -->
-      </div>
-
+    <div class="row">
       <div class="span3">
         <div class="well">
-          <h3>Save</h3>
+          <select #customImageSelector (change)="loadCustomImage($event)">
+            <option *ngFor="let option of tshirtTypes" [value]="option.value">{{ option.label }}</option>
+          </select>
+          <div
+            (click)="selectColor(color)"
+            *ngFor="let color of colorOptions"
+            [style.background-color]="color"
+            [title]="color"
+            class="color-preview"
+          ></div>
+        </div>
+        <div class="well">
+          <label for="fontFamilyDropdown">Select a Font Family:</label>
+          <select (change)="onFontChange($event)" [(ngModel)]="selectedFontFamily" id="fontFamilyDropdown">
+            <option *ngFor="let fontFamily of fontFamilies" [value]="fontFamily.name">{{ fontFamily.name }}</option>
+          </select>
 
-          <button class="btn btn-large btn-block btn-success" id="addToTheBag" name="addToTheBag" type="button">
-            Add to bag <i class="icon-briefcase icon-white"></i>
+          <div *ngFor="let fontFamily of fontFamilies">
+            <div *ngIf="selectedFontFamily === fontFamily.name">
+              <label for="fontDropdown">Select a Font:</label>
+              <select id="fontDropdown">
+                <option *ngFor="let font of fontFamily.fonts" [value]="font">{{ font }}</option>
+              </select>
+            </div>
+          </div>
+
+          <p style="font-family: {{ selectedFontFamily }};">This text is in {{ selectedFontFamily }} font.</p>
+
+          <input [(ngModel)]="textToAdd" class="span2" id="text-string" placeholder="Add text here..." style="height: 30px" type="text" />
+          <button (click)="addTextToCanvas()" class="btn" id="add-text" title="Add text">Add text</button>
+          <button (click)="deleteSelectedObject()" class="btn" id="delete-object" title="Delete selected object">
+            Delete selected object
           </button>
+          <hr />
+          <form action="" enctype="multipart/form-data" method="post">
+            <input id="fileToUpload" name="fileToUpload" type="file" />
+            <input class="btn btn-primary" name="submit" type="submit" value="Upload Custom Image" />
+          </form>
         </div>
       </div>
-    </section>
-  </div>
+
+      <div class="span6">
+        <div style="min-height: 32px">
+          <div class="clearfix">
+            <div class="btn-group inline pull-left" id="texteditor">
+              <button (click)="toggleBold()" class="btn" data-original-title="Bold" id="text-bold">Bold</button>
+              <button (click)="toggleItalic()" class="btn" data-original-title="Italic" id="text-italic">Italic</button>
+              <button (click)="toggleStrike()" class="btn" id="text-strike" title="Strike">Strikethrough</button>
+              <button (click)="toggleUnderline()" class="btn" id="text-underline" title="Underline">Underline</button>
+              <button (click)="saveDivAsImage()" class="btn" id="save">Save Image</button>
+            </div>
+          </div>
+        </div>
+        <div
+          #canvasContainer
+          class="page"
+          id="shirtDiv"
+          style="min-width: 1000px; max-height: 630px; position: relative; background-color: rgb(255, 255, 255); z-index: 1"
+        >
+          <div #shirtDiv id="tshirtImages" style="width: 100%; height: 100%; position: relative">
+            <div>
+              <img
+                [src]="selectedCustomImage"
+                id="tshirtFacingFront"
+                style="width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 1"
+              />
+            </div>
+            <canvas
+              id="canva"
+              #tcanvas
+              style="border: 2px solid black; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2"
+            ></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
