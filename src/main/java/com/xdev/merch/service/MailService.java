@@ -1,6 +1,6 @@
 package com.xdev.merch.service;
 
-import com.xdev.merch.domain.User;
+import com.xdev.merch.entities.User;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import java.nio.charset.StandardCharsets;

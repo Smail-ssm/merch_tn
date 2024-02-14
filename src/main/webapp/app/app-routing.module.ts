@@ -14,6 +14,7 @@ import { DashboardComponent } from './layouts/dashboard/usersLayouts/dashboard/d
 import { UserProfileComponent } from './layouts/dashboard/usersLayouts/user-profile/user-profile.component';
 import { MainComponentDash } from './layouts/dashboard/usersLayouts/mainUI/main-component-dash.component';
 import { DesignerToolComponent } from './layouts/dashboard/usersLayouts/designer-tool/designer-tool.component';
+import { UserProductsComponent } from './layouts/dashboard/usersLayouts/user-products/user-products.component';
 
 @NgModule({
   imports: [
@@ -34,6 +35,7 @@ import { DesignerToolComponent } from './layouts/dashboard/usersLayouts/designer
             { path: 'profile', component: UserProfileComponent },
             { path: 'main', component: MainComponentDash },
             { path: 'designs', component: DesignerToolComponent },
+            { path: 'myProducts', component: UserProductsComponent },
             // ... other child routes if needed
           ],
         },

@@ -1,9 +1,7 @@
 package com.xdev.merch.repository;
 
-import com.xdev.merch.domain.Users;
+import com.xdev.merch.entities.Users;
 import java.util.Optional;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 

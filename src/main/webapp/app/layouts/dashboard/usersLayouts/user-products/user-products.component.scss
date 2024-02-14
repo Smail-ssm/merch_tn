@@ -1,0 +1,54 @@
+/* Style for the heading */
+#page-heading {
+  margin-bottom: 20px;
+}
+
+/* Style for the alert message when there are no products */
+#no-result {
+  margin-bottom: 20px;
+}
+
+/* Style for the card view */
+.row {
+  margin: -10px; /* Add negative margin to counteract padding */
+}
+
+.col-md-4 {
+  padding: 10px; /* Add padding to each column */
+}
+
+.card {
+  height: 100%; /* Make the cards take full height */
+  border: 1px solid #ddd;
+  border-radius: 12px; /* Add rounded corners */
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  transition:
+    box-shadow 0.3s,
+    background-color 0.3s;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Box shadow on hover */
+  background-color: #f0f0f0; /* Background color on hover */
+}
+
+.card-body {
+  height: 100%; /* Make the card body take full height */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Style for the card title */
+.card-title {
+  margin-bottom: 10px;
+  white-space: nowrap; /* Prevent text from wrapping to the next line */
+  overflow: hidden; /* Hide any overflowed text */
+  text-overflow: ellipsis;
+}
+
+/* Style for the card buttons */
+.card a.btn {
+  margin-top: auto; /* Push the button to the bottom of the card body */
+}

@@ -55,6 +55,8 @@
               <button (click)="toggleStrike()" class="btn" id="text-strike" title="Strike">Strikethrough</button>
               <button (click)="toggleUnderline()" class="btn" id="text-underline" title="Underline">Underline</button>
               <button (click)="saveDivAsImage()" class="btn" id="save">Save Image</button>
+              <input type="file" (change)="onFileChange($event)" />
+              <button (click)="uploadFile(selectedFile)">Upload</button>
             </div>
           </div>
         </div>

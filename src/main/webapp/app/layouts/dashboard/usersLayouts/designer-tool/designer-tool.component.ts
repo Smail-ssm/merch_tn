@@ -1,10 +1,14 @@
 import { Component, ElementRef, HostListener, Renderer2, ViewChild } from '@angular/core';
 import { fabric } from 'fabric';
 import html2canvas from 'html2canvas';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
 interface FontFamily {
   name: string;
   fonts: string[];
 }
+
 @Component({
   selector: 'jhi-designer-tool',
   templateUrl: './designer-tool.component.html',
@@ -45,18 +49,12 @@ export class DesignerToolComponent {
   selectedObject: Object | any;
   selectedColor: string = '#ffffff';
   tshirtTypes = [
-    {
-      value: './content/images/crew_front.png',
-      label: 'Crew',
-    },
+    { value: './content/images/crew_front.png', label: 'Crew' },
     {
       value: './content/images/longsleev.png',
       label: ' Long Sleeve',
     },
-    {
-      value: './content/images/tank.png',
-      label: ' Tank ',
-    },
+    { value: './content/images/tank.png', label: ' Tank ' },
     {
       value: './content/images/hoodie.png',
       label: 'Hoodie',
@@ -65,7 +63,6 @@ export class DesignerToolComponent {
   ];
   canvas!: fabric.Canvas;
   selectedCustomImage: string = './content/images/crew_front.png';
-  // selectedCustomImageBack: string = './content/images/crew_back.png';
   canvasHovered: boolean | undefined;
   selectedCustomText: fabric.Text;
 
@@ -73,11 +70,31 @@ export class DesignerToolComponent {
   selectedFontFamily: string = 'Arial';
 
   fontFamilies: FontFamily[] = [
-    { name: 'Sans-serif', fonts: ['Arial', 'Helvetica', 'Verdana', 'Tahoma', 'Geneva'] },
+    {
+      name: 'Sans-serif',
+      fonts: ['Arial', 'Helvetica', 'Verdana', 'Tahoma', 'Geneva'],
+    },
     { name: 'Serif', fonts: ['Times New Roman', 'Georgia', 'Palatino', 'Book Antiqua', 'Garamond'] },
-    { name: 'Monospace', fonts: ['Courier New', 'Lucida Console', 'Monaco', 'Consolas', 'Andale Mono'] },
-    // Add more font families and their fonts as needed
+    {
+      name: 'Monospace',
+      fonts: ['Courier New', 'Lucida Console', 'Monaco', 'Consolas', 'Andale Mono'],
+    }, // Add more font families and their fonts as needed
   ];
+  // Method to initialize tshirt type change
+  selectedFile!: File;
+
+  // Constructor
+  constructor(
+    private renderer: Renderer2,
+    private http: HttpClient,
+  ) {
+    this.selectedCustomText = new fabric.Text('Default Text', {
+      left: 10,
+      top: 10,
+      fontSize: 20, // Other properties...
+    });
+  }
+
   onFontChange(event: any) {
     this.selectedFontFamily = event.target.value;
 
@@ -90,6 +107,7 @@ export class DesignerToolComponent {
     }
     console.log('Selected Font: ', this.selectedFontFamily);
   }
+
   // ngAfterViewInit lifecycle hook
   ngAfterViewInit() {
     // Canvas initialization and event listeners
@@ -118,16 +136,6 @@ export class DesignerToolComponent {
     });
   }
 
-  // Constructor
-  constructor(private renderer: Renderer2) {
-    // Initialize the default text object
-    this.selectedCustomText = new fabric.Text('Default Text', {
-      left: 10,
-      top: 10,
-      fontSize: 20, // Other properties...
-    });
-  }
-
   // Method to set canvas size based on container size
   setCanvasSize() {
     // Set canvas size based on container size
@@ -138,34 +146,9 @@ export class DesignerToolComponent {
     canvas.height = container.offsetHeight;
   }
 
-  // Method to create canvas element dynamically
-  private createCanvas() {
-    const canvasElement = this.renderer.createElement('canvas');
-    this.renderer.setAttribute(canvasElement, 'id', 'tcanvas');
-    this.renderer.appendChild(this.tshirtType.nativeElement.parentNode, canvasElement);
-    this.canvas = new fabric.Canvas(canvasElement);
-  }
-
   // HostListener for window resize
   @HostListener('window:resize', ['$event']) onResize(event: Event) {
     this.setCanvasSize();
-  }
-
-  // Method to handle change in tshirt type
-  private initializeChangeHandler(): void {
-    const tshirtType = document.getElementById('tshirttype') as HTMLSelectElement;
-
-    if (tshirtType) {
-      tshirtType.addEventListener('change', () => {
-        this.selectedCustomImage = './content/images/' + tshirtType.value;
-        // this.selectedCustomImageBack = this.getBackImageName(this.selectedCustomImage);
-      });
-    }
-  }
-
-  // Method to get the back image name based on front image
-  private getBackImageName(frontImage: string): string {
-    return frontImage.replace('front', 'back');
   }
 
   // Method to load custom image based on user selection
@@ -205,15 +188,6 @@ export class DesignerToolComponent {
       this.canvas.remove(this.selectedObject);
       this.canvas.renderAll();
     }
-  }
-
-  // Method to initialize tshirt type change
-  private initTshirtTypeChange() {
-    const tshirtType = this.tshirtType.nativeElement;
-
-    this.renderer.listen(tshirtType, 'change', event => {
-      this.loadCustomImage(event);
-    });
   }
 
   // Method to save the canvas content as an image
@@ -262,7 +236,6 @@ export class DesignerToolComponent {
   }
 
   // Method to toggle bold style
-  // Method to toggle bold style
   toggleBold(): void {
     if (this.selectedCustomText) {
       // Update the Fabric.js text object with desired styles
@@ -310,6 +283,8 @@ export class DesignerToolComponent {
     }
   }
 
+  // Method to toggle bold style
+
   // Method to toggle underline
   toggleUnderline(): void {
     if (this.selectedCustomText) {
@@ -354,5 +329,62 @@ export class DesignerToolComponent {
       // Render canvas after color change
       this.canvas.renderAll();
     }
+  }
+
+  onFileChange(event: any): void {
+    const file: File = event.target.files[0];
+
+    if (file) {
+      this.uploadFile(file).subscribe(
+        response => {
+          console.log('File uploaded successfully:', response);
+        },
+        error => {
+          console.error('Error uploading file:', error);
+        },
+      );
+    }
+  }
+
+  uploadFile(file: File): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('file', file);
+
+    const fileName = 'file' + Date.now().toString();
+
+    return this.http.put(`/api/products/upload/${encodeURIComponent(fileName)}`, formData);
+  }
+
+  // Method to create canvas element dynamically
+  private createCanvas() {
+    const canvasElement = this.renderer.createElement('canvas');
+    this.renderer.setAttribute(canvasElement, 'id', 'tcanvas');
+    this.renderer.appendChild(this.tshirtType.nativeElement.parentNode, canvasElement);
+    this.canvas = new fabric.Canvas(canvasElement);
+  }
+
+  // Method to handle change in tshirt type
+  private initializeChangeHandler(): void {
+    const tshirtType = document.getElementById('tshirttype') as HTMLSelectElement;
+
+    if (tshirtType) {
+      tshirtType.addEventListener('change', () => {
+        this.selectedCustomImage = './content/images/' + tshirtType.value;
+        // this.selectedCustomImageBack = this.getBackImageName(this.selectedCustomImage);
+      });
+    }
+  }
+
+  // Method to get the back image name based on front image
+  private getBackImageName(frontImage: string): string {
+    return frontImage.replace('front', 'back');
+  }
+
+  private initTshirtTypeChange() {
+    const tshirtType = this.tshirtType.nativeElement;
+
+    this.renderer.listen(tshirtType, 'change', event => {
+      this.loadCustomImage(event);
+    });
   }
 }

@@ -7,23 +7,23 @@
 
     <!-- Designer-Specific Menu Items -->
     <ng-container *ngIf="currentUser && !currentUser.isPrinter">
-      <li><a routerLink="/dashboard/designs">My Designs</a></li>
-      <li><a routerLink="/upload-design">Upload Design</a></li>
-      <li><a routerLink="/order-management">Order Management</a></li>
+      <li><a routerLink="/dashboard/designs">Design Tool</a></li>
+      <li><a routerLink="/dashboard/upload-design">Upload Design</a></li>
+      <li><a routerLink="/dashboard/myProducts">Order Management</a></li>
     </ng-container>
 
     <!-- Printer-Specific Menu Items -->
     <ng-container *ngIf="currentUser && currentUser.isPrinter">
-      <li><a routerLink="/print-jobs">Print Jobs</a></li>
-      <li><a routerLink="/print-settings">Print Settings</a></li>
-      <li><a routerLink="/quality-assurance">Quality Assurance</a></li>
+      <li><a routerLink="/dashboard/print-jobs">Print Jobs</a></li>
+      <li><a routerLink="/dashboard/print-settings">Print Settings</a></li>
+      <li><a routerLink="/dashboard/quality-assurance">Quality Assurance</a></li>
     </ng-container>
 
     <!-- Common Menu Items -->
-    <li><a routerLink="/collaboration-space">Collaboration Space</a></li>
-    <li><a routerLink="/account-settings">Account Settings</a></li>
-    <li><a routerLink="/reports-analytics">Reports & Analytics</a></li>
+    <li><a routerLink="/dashboard/collaboration-space">Collaboration Space</a></li>
+    <li><a routerLink="/dashboard/account-settings">Account Settings</a></li>
+    <li><a routerLink="/dashboard/reports-analytics">Reports & Analytics</a></li>
 
-    <li><a routerLink="/help">Help</a></li>
+    <li><a routerLink="/dashboard/help">Help</a></li>
   </ul>
 </div>

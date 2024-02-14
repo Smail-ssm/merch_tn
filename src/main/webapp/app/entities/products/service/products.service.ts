@@ -62,6 +62,11 @@ export class ProductsService {
       .get<RestProducts>(`${this.resourceUrl}/${id}`, { observe: 'response' })
       .pipe(map(res => this.convertResponseFromServer(res)));
   }
+  findByUser(id: number): Observable<any> {
+    return this.http
+      .get<RestProducts>(`${this.resourceUrl}/user/${id}`, { observe: 'response' })
+      .pipe(map(res => this.convertResponseFromServer(res)));
+  }
 
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);

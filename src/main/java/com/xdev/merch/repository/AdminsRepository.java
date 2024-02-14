@@ -1,6 +1,6 @@
 package com.xdev.merch.repository;
 
-import com.xdev.merch.domain.Admins;
+import com.xdev.merch.entities.Admins;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 

@@ -1,16 +1,15 @@
 package com.xdev.merch.service;
 
 import com.xdev.merch.config.Constants;
-import com.xdev.merch.domain.Authority;
-import com.xdev.merch.domain.User;
-import com.xdev.merch.domain.Users;
+import com.xdev.merch.dto.AdminUserDTO;
+import com.xdev.merch.entities.Authority;
+import com.xdev.merch.entities.User;
+import com.xdev.merch.entities.Users;
 import com.xdev.merch.repository.AuthorityRepository;
 import com.xdev.merch.repository.UserRepository;
 import com.xdev.merch.repository.UsersRepository;
 import com.xdev.merch.security.AuthoritiesConstants;
 import com.xdev.merch.security.SecurityUtils;
-import com.xdev.merch.service.dto.AdminUserDTO;
-import com.xdev.merch.service.dto.UserDTO;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.*;

@@ -1,7 +1,7 @@
 package com.xdev.merch.repository;
 
-import com.xdev.merch.domain.User;
-import com.xdev.merch.domain.Users;
+import com.xdev.merch.entities.User;
+import com.xdev.merch.entities.Users;
 import java.time.Instant;
 import java.util.List;
 import java.util.Optional;

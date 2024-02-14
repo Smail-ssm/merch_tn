@@ -28,6 +28,8 @@ import { UsersNavbarComponent } from './layouts/dashboard/usersLayouts/navbar/us
 import { UserProfileComponent } from './layouts/dashboard/usersLayouts/user-profile/user-profile.component';
 import FormatMediumDatePipe from './shared/date/format-medium-date.pipe';
 import { DesignerToolComponent } from './layouts/dashboard/usersLayouts/designer-tool/designer-tool.component';
+import { UserProductsComponent } from './layouts/dashboard/usersLayouts/user-products/user-products.component';
+import { ProductComponent } from './layouts/dashboard/usersLayouts/product/product.component';
 
 @NgModule({
   imports: [
@@ -58,6 +60,8 @@ import { DesignerToolComponent } from './layouts/dashboard/usersLayouts/designer
     UserProfileComponent,
     MainComponentDash,
     MainComponentDash,
+    UserProductsComponent,
+    ProductComponent,
   ],
 })
 export class AppModule {

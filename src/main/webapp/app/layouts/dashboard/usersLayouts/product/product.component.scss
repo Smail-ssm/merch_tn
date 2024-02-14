@@ -1,0 +1,46 @@
+/* Style for modal header */
+.modal-header {
+  background-color: #007bff; /* Change to your desired background color */
+  color: #ffffff; /* Change to your desired text color */
+  padding: 15px;
+  border-bottom: 1px solid #dee2e6; /* Add a border at the bottom */
+}
+
+/* Style for modal title */
+.modal-title {
+  margin: 0;
+  font-size: 1.25rem; /* Adjust the font size as needed */
+}
+
+/* Style for modal body */
+.modal-body {
+  padding: 20px;
+}
+
+/* Style for product details */
+h1 {
+  font-size: 1.5rem; /* Adjust the font size as needed */
+}
+
+/* Style for product information */
+p {
+  margin-bottom: 10px;
+}
+
+/* Style for no product message */
+.modal-body > div:not(:first-child) {
+  color: #dc3545; /* Change to your desired text color for error messages */
+}
+
+/* Style for modal footer */
+.modal-footer {
+  padding: 15px;
+  border-top: 1px solid #dee2e6; /* Add a border at the top */
+  text-align: right;
+}
+
+/* Style for close button */
+.btn-secondary {
+  background-color: #6c757d; /* Change to your desired background color for the button */
+  color: #ffffff; /* Change to your desired text color for the button */
+}

@@ -30,6 +30,15 @@ spring:
   jackson:
     serialization:
       indent-output: true
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+    web:
+      resources:
+        static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
+
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:mysql://localhost:3306/printy?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true
@@ -95,7 +104,7 @@ jhipster: # CORS is only enabled by default with the "dev" profile
       host: localhost
       port: 5000
       ring-buffer-size: 512
-# ===================================================================
+  # ===================================================================
 # Application specific properties
 # Add your own application properties here, see the ApplicationProperties class
 # to have type-safe configuration, like in the JHipsterProperties above

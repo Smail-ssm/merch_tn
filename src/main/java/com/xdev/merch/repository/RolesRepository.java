@@ -1,6 +1,6 @@
 package com.xdev.merch.repository;
 
-import com.xdev.merch.domain.Roles;
+import com.xdev.merch.entities.Roles;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 

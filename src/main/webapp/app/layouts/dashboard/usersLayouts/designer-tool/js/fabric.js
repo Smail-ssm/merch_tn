@@ -6213,7 +6213,7 @@ fabric.Observable.off = fabric.Observable.stopObserving;
     /**
      * Method that defines the actions when mouse is clic ked on canvas.
      * The method inits the currentTransform parameters and renders all the
-     * canvas so the current image can be placed on the top canvas and the rest
+     * canvas so the current image can be placed on the top canvas and the controllers
      * in on the container one.
      * @method __onMouseDown
      * @param e {Event} Event object fired on mousedown

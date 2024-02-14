@@ -1,6 +1,6 @@
 package com.xdev.merch.service;
 
-import com.xdev.merch.domain.Users;
+import com.xdev.merch.entities.Users;
 import com.xdev.merch.repository.UsersRepository;
 import java.util.Optional;
 import org.springframework.security.crypto.password.PasswordEncoder;

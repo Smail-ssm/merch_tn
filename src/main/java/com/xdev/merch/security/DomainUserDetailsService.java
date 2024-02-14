@@ -1,7 +1,7 @@
 package com.xdev.merch.security;
 
-import com.xdev.merch.domain.Authority;
-import com.xdev.merch.domain.User;
+import com.xdev.merch.entities.Authority;
+import com.xdev.merch.entities.User;
 import com.xdev.merch.repository.UserRepository;
 import java.util.*;
 import org.hibernate.validator.internal.constraintvalidators.hv.EmailValidator;

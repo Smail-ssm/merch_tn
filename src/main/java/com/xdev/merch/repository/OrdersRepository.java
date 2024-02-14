@@ -1,9 +1,8 @@
 package com.xdev.merch.repository;
 
-import com.xdev.merch.domain.Orders;
+import com.xdev.merch.entities.Orders;
 import java.util.List;
 import org.springframework.data.jpa.repository.*;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**

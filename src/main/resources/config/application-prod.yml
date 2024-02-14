@@ -26,6 +26,11 @@ management:
         enabled: false
 
 spring:
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
   devtools:
     restart:
       enabled: false
@@ -54,6 +59,9 @@ spring:
     password:
   thymeleaf:
     cache: true
+  web:
+    resources:
+      static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
 
 # ===================================================================
 # To enable TLS in production, generate a certificate using:

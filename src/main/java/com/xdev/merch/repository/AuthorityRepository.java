@@ -1,6 +1,6 @@
 package com.xdev.merch.repository;
 
-import com.xdev.merch.domain.Authority;
+import com.xdev.merch.entities.Authority;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

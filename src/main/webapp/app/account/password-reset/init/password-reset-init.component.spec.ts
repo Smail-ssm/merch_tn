@@ -35,12 +35,12 @@ describe('PasswordResetInitComponent', () => {
   it('notifies of success upon successful requestReset', inject([PasswordResetInitService], (service: PasswordResetInitService) => {
     jest.spyOn(service, 'save').mockReturnValue(of({}));
     comp.resetRequestForm.patchValue({
-      email: 'user@domain.com',
+      email: 'user@entities.com',
     });
 
     comp.requestReset();
 
-    expect(service.save).toHaveBeenCalledWith('user@domain.com');
+    expect(service.save).toHaveBeenCalledWith('user@entities.com');
     expect(comp.success).toBe(true);
   }));
 
@@ -52,11 +52,11 @@ describe('PasswordResetInitComponent', () => {
       }),
     );
     comp.resetRequestForm.patchValue({
-      email: 'user@domain.com',
+      email: 'user@entities.com',
     });
     comp.requestReset();
 
-    expect(service.save).toHaveBeenCalledWith('user@domain.com');
+    expect(service.save).toHaveBeenCalledWith('user@entities.com');
     expect(comp.success).toBe(false);
   }));
 });

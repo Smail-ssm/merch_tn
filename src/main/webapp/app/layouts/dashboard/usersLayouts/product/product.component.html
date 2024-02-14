@@ -1,0 +1,16 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ product?.name }} Details</h4>
+</div>
+<div class="modal-body">
+  <div *ngIf="product">
+    <h1>{{ product.name }}</h1>
+    <p>Type: {{ product.type }}</p>
+    <p>Stock: {{ product.stock }}</p>
+    <p>Price: {{ product.price }}</p>
+    <p>Status: {{ product.status }}</p>
+  </div>
+  <div *ngIf="!product">no product</div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+</div>
