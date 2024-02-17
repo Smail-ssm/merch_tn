@@ -1,3 +1,4 @@
+
 import { Component, ElementRef, HostListener, Renderer2, ViewChild } from '@angular/core';
 import { fabric } from 'fabric';
 import html2canvas from 'html2canvas';
@@ -15,11 +16,12 @@ interface FontFamily {
   styleUrls: ['./bootstrap.min.css', './bootstrap-responsive.min.css', './jquery.miniColors.css', './designer-tool.component.scss'],
 })
 export class DesignerToolComponent {
+  // ViewChild declarations
   @ViewChild('tshirttype', { static: true }) tshirtType!: ElementRef;
-  // @ViewChild('tcanvas', {static: true}) canvasElement!: ElementRef;
-  @ViewChild('shirtDiv', { static: true }) shirtDivElement!: ElementRef;
   @ViewChild('overlayCanvasElement', { static: true }) overlayCanvasElement!: ElementRef;
+   @ViewChild('shirtDiv', { static: true }) shirtDivElement!: ElementRef;
 
+  // Other class properties
   colorOptions: string[] = [
     '#ffffff',
     '#616161',
@@ -61,8 +63,10 @@ export class DesignerToolComponent {
   ];
   canvas!: fabric.Canvas;
   selectedCustomImage: string = './content/images/crew_front.png';
+  canvasHovered: boolean | undefined;
   selectedCustomText: fabric.Text;
 
+  // Default font family and list
   selectedFontFamily: string = 'Arial';
 
   fontFamilies: FontFamily[] = [
@@ -76,8 +80,10 @@ export class DesignerToolComponent {
       fonts: ['Courier New', 'Lucida Console', 'Monaco', 'Consolas', 'Andale Mono'],
     }, // Add more font families and their fonts as needed
   ];
+  // Method to initialize tshirt type change
   selectedFile!: File;
 
+  // Constructor
   constructor(
     private renderer: Renderer2,
     private http: HttpClient,
@@ -88,34 +94,23 @@ export class DesignerToolComponent {
       fontSize: 20, // Other properties...
     });
   }
+  overlayCanvas!: fabric.Canvas; // Added line for overlay canvas
+
   onFontChange(event: any) {
     this.selectedFontFamily = event.target.value;
+
+    // Apply the font family to the selected text on the canvas
     const activeObject = this.canvas.getActiveObject();
+
     if (activeObject && activeObject.type === 'i-text') {
       (activeObject as any).set('fontFamily', this.selectedFontFamily);
       this.canvas.renderAll();
     }
+    console.log('Selected Font: ', this.selectedFontFamily);
   }
-  overlayCanvas!: fabric.Canvas; // Declare overlayCanvas property
 
-  ngAfterViewInit() {
+   ngAfterViewInit() {
     // Canvas initialization and event listeners
-    if (this.overlayCanvasElement) {
-      // Initialize overlay canvas
-      this.overlayCanvas = this.canvas;
-
-      // Add event listeners for canvas interactions
-      this.overlayCanvas.on('mouse:over', event => {
-        // Handle mouse over overlay canvas event
-        if (event.target) {
-          this.overlayCanvas.hoverCursor = 'pointer';
-          this.overlayCanvas.setActiveObject(event.target);
-        } else {
-          this.overlayCanvas.hoverCursor = 'default';
-          this.overlayCanvas.discardActiveObject();
-        }
-      });
-    }
     this.initTshirtTypeChange();
     this.initializeChangeHandler();
 
@@ -125,7 +120,9 @@ export class DesignerToolComponent {
     });
 
     // Initialize overlay canvas
-    this.overlayCanvas = this.canvas;
+    this.overlayCanvas = new fabric.Canvas(this.overlayCanvasElement.nativeElement, {
+      // Add any additional options if needed
+    });
 
     // Add event listeners for canvas interactions
     this.canvas.on('object:selected', event => {
@@ -144,17 +141,49 @@ export class DesignerToolComponent {
         this.overlayCanvas.discardActiveObject();
       }
     });
-
-    // Log to check if overlayCanvas is initialized
-    console.log('Overlay Canvas Initialized:', this.overlayCanvas);
   }
+
+
+  // Method to load custom image based on user selection
   loadCustomImage(event: any) {
     const selectedOption = this.tshirtTypes.find(option => option.value === event.target.value);
+
     if (selectedOption) {
       this.selectedCustomImage = selectedOption.value;
+      // this.selectedCustomImageBack = this.getBackImageName(this.selectedCustomImage);
     }
   }
 
+  // Method to add text to the canvas
+  addTextToCanvas() {
+    if (this.textToAdd && this.overlayCanvas) {
+      const text = new fabric.IText(this.textToAdd, {
+        left: 50,
+        top: 50,
+        fontFamily: 'Arial',
+        fontSize: 20,
+        fill: 'black',
+      });
+
+      this.overlayCanvas.add(text);
+      this.overlayCanvas.renderAll();
+      this.textToAdd = '';
+    }
+  }
+
+  changeFontFamily(fontFamily: string): void {
+    // Handle font family change logic
+  }
+
+  // Method to delete selected object from canvas
+  deleteSelectedObject() {
+    if (this.selectedObject) {
+      this.canvas.remove(this.selectedObject);
+      this.canvas.renderAll();
+    }
+  }
+
+  // Method to save the canvas content as an image
   saveDivAsImage(): void {
     // Use html2canvas to capture the content of the shirtDiv
     html2canvas(this.shirtDivElement.nativeElement).then(canvas => {
@@ -172,18 +201,129 @@ export class DesignerToolComponent {
     });
   }
 
+  // Method to apply background color to the canvas
   applyBackgroundColor() {
     const tshirtFacing = document.getElementById('tshirtFacingFront');
+    // const tshirtFacingBack = document.getElementById('tshirtFacingBack');
 
     if (tshirtFacing) {
       tshirtFacing.style.backgroundColor = this.selectedColor;
     }
   }
 
+  // Method to select a color
   selectColor(color: string) {
     this.selectedColor = color;
     this.applyBackgroundColor();
   }
+
+  // Method to change text value on the canvas
+  changeTextValue(event: Event): void {
+    const newTextValue = (event.target as HTMLInputElement).value;
+
+    // Assuming this.selectedCustomText is the fabric.js text object
+    this.selectedCustomText.set('text', newTextValue);
+
+    // Render canvas after text change
+    this.canvas.renderAll();
+  }
+
+  // Method to toggle bold style
+  toggleBold(): void {
+    if (this.selectedCustomText) {
+      // Update the Fabric.js text object with desired styles
+      this.selectedCustomText.set({
+        fontStyle: 'normal',
+        fontWeight: 'bold',
+        fontSize: 10,
+        fontFamily: 'Courier',
+      });
+
+      // Render canvas after style change
+      this.canvas.renderAll();
+    }
+  }
+
+  // Method to toggle italic style
+  toggleItalic(): void {
+    if (this.selectedCustomText) {
+      // Toggle italic style for the selected text
+      const fontStyle = this.selectedCustomText.fontStyle === 'italic' ? '' : 'italic';
+      this.selectedCustomText.set('fontStyle', fontStyle);
+
+      // Render canvas after style change
+      this.canvas.renderAll();
+    }
+  }
+
+  // Method to toggle strike-through
+  toggleStrike(): void {
+    if (this.selectedCustomText) {
+      // Toggle strike-through for the selected text
+      // @ts-ignore
+      const currentTextDecoration = (this.selectedCustomText.get('textDecoration') as string) || '';
+      const newDecoration = currentTextDecoration.includes('line-through')
+        ? currentTextDecoration.replace('line-through', '')
+        : `${currentTextDecoration} line-through`;
+
+      // Use set with a generic object to avoid TypeScript error
+      this.selectedCustomText.set({
+        textDecoration: newDecoration,
+      } as Partial<Text>);
+
+      // Render canvas after style change
+      this.canvas.renderAll();
+    }
+  }
+
+  // Method to toggle bold style
+
+  // Method to toggle underline
+  toggleUnderline(): void {
+    if (this.selectedCustomText) {
+      // Toggle underline for the selected text
+      // @ts-ignore
+      const currentTextDecoration = (this.selectedCustomText.get('textDecoration') as string) || '';
+      const newDecoration = currentTextDecoration.includes('underline')
+        ? currentTextDecoration.replace('underline', '')
+        : `${currentTextDecoration} underline`;
+
+      // Use set with a generic object to avoid TypeScript error
+      this.selectedCustomText.set({
+        textDecoration: newDecoration,
+      } as Partial<Text>);
+
+      // Render canvas after style change
+      this.canvas.renderAll();
+    }
+  }
+
+  // Method to handle font color change
+  changeFontColor(event: Event): void {
+    if (this.selectedCustomText) {
+      const newFontColor = (event.target as HTMLInputElement).value;
+
+      // Assuming this.selectedCustomText is the fabric.js text object
+      this.selectedCustomText.set('fill', newFontColor);
+
+      // Render canvas after color change
+      this.canvas.renderAll();
+    }
+  }
+
+  // Method to handle stroke color change
+  changeStrokeColor(event: Event): void {
+    if (this.selectedCustomText) {
+      const newStrokeColor = (event.target as HTMLInputElement).value;
+
+      // Assuming this.selectedCustomText is the fabric.js text object
+      this.selectedCustomText.set('stroke', newStrokeColor);
+
+      // Render canvas after color change
+      this.canvas.renderAll();
+    }
+  }
+
   onFileChange(event: any): void {
     const file: File = event.target.files[0];
 
@@ -198,6 +338,7 @@ export class DesignerToolComponent {
       );
     }
   }
+
   uploadFile(file: File): Observable<any> {
     const formData: FormData = new FormData();
     formData.append('file', file);
@@ -206,6 +347,11 @@ export class DesignerToolComponent {
 
     return this.http.put(`/api/products/upload/${encodeURIComponent(fileName)}`, formData);
   }
+
+  // Method to create canvas element dynamically
+
+
+  // Method to handle change in tshirt type
   private initializeChangeHandler(): void {
     const tshirtType = document.getElementById('tshirttype') as HTMLSelectElement;
 
@@ -216,31 +362,15 @@ export class DesignerToolComponent {
       });
     }
   }
-  addTextToCanvas() {
-    if (this.textToAdd && this.overlayCanvas) {
-      console.log('Adding text to canvas...');
 
-      const text = new fabric.IText(this.textToAdd, {
-        left: 50,
-        top: 50,
-        fontFamily: this.selectedFontFamily,
-        fontSize: 20,
-        fill: this.selectedColor,
-      });
-
-      console.log('Text object created:', text);
-
-      this.overlayCanvas.add(text);
-      this.overlayCanvas.renderAll();
-
-      console.log('Text added to overlay canvas:', text);
-
-      this.textToAdd = '';
-    }
+  // Method to get the back image name based on front image
+  private getBackImageName(frontImage: string): string {
+    return frontImage.replace('front', 'back');
   }
 
   private initTshirtTypeChange() {
     const tshirtType = this.tshirtType.nativeElement;
+
     this.renderer.listen(tshirtType, 'change', event => {
       this.loadCustomImage(event);
     });

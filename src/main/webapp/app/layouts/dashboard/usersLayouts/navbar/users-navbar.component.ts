@@ -5,4 +5,12 @@ import { Component } from '@angular/core';
   templateUrl: './users-navbar.component.html',
   styleUrls: ['./users-navbar.component.scss'],
 })
-export class UsersNavbarComponent {}
+export class UsersNavbarComponent {
+  showNotification() {}
+
+  viewUserProfile() {}
+
+  signOut() {}
+
+  navigateTo(home: string) {}
+}

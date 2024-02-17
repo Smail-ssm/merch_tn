@@ -6,17 +6,28 @@
       <i class="fas fa-bars"></i>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+      <!-- Add notification icon aligned to the left with dollar sign -->
+      <div>
+        <span class="navbar-text mr-3">
+          <i (click)="showNotification()" class="fas fa-bell"></i>
+          <img alt="appointment-reminders--v1" height="24" src="https://img.icons8.com/ios/24/appointment-reminders--v1.png" width="24" />
+        </span>
+        <!-- Add user icon aligned to the left with dollar sign -->
+        <span class="navbar-text mr-3">
+          <img alt="user" height="24" routerLink="/dashboard/profile" src="https://img.icons8.com/parakeet-line/24/user.png" width="24" />
+        </span>
+        <!-- Add signout icon aligned to the left with dollar sign -->
+        <span class="navbar-text">
+          <img
+            (click)="signOut()"
+            alt="external-logout-screen-from-the-working-portfolio-of-a-user-classic-light-tal-revivo"
+            height="24"
+            src="https://img.icons8.com/external-tal-revivo-light-tal-revivo/24/external-logout-screen-from-the-working-portfolio-of-a-user-classic-light-tal-revivo.png"
+            width="24"
+          />
+        </span>
+      </div>
     </div>
   </div>
 </div>

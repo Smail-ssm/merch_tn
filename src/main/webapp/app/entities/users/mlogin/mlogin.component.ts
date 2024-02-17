@@ -33,7 +33,7 @@ export class MloginComponent {
         // You can store the token in localStorage or a cookie for future requests
         localStorage.setItem('jwtToken', jwtToken);
         localStorage.setItem('currentUser', JSON.stringify(user));
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/dashboard/main']);
 
         // Redirect to another page or perform other actions as needed
         // Example: this.router.navigate(['/dashboard']);
